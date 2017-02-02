@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">BABL</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="pittEmail">"@"Pitt.edu</string>
+    <string name="WhatIs">BABL used to help University of Pittsburgh students of all campuses connect with and meet new people.
+        It\'s core functionality is based around people that speak or are learning another language discover someone else that also speaks their language.
+
+    </string>
+    <string name="NewUser">New User</string>
+    <string name="username">Username</string>
+    <string name="FirstName">First Name</string>
+    <string name="passConfirm">Confirm</string>
+    <string name="Languages">Add Languages</string>
+    <string name="langDesc">Add Languages to the List that you speak, or are learning to speak.</string>
+    <string name="Campus">Select Campus</string>
+    <string name="campusSelect">Next, select which campuses you would like to meet someone from.</string>
+    <string name="maxLang">You can only have 5 Languages</string>
+    <string name="NothingSelected">Nothing Selected</string>
+    <string name="AddFacebook">Link Facebook</string>
+    <string name="AddFacebookDesc">Connect with Facebook to become friends with and chat with people that you meet</string>
+    <string name="NewUserSubmit">Submit</string>
+
+
+    <string-array name="LanguagesArray">
+        <item>English</item>
+        <item>Japanese</item>
+        <item>German</item>
+        <item>Chinese</item>
+        <item>Russian</item>
+        <item>Latin</item>
+        <item>English</item>
+        <item>Japanese</item>
+        <item>German</item>
+        <item>Chinese</item>
+        <item>Russian</item>
+        <item>Latin</item>
+        <item>English</item>
+        <item>Japanese</item>
+        <item>German</item>
+        <item>Chinese</item>
+        <item>Russian</item>
+        <item>Latin</item>
+        <item>English</item>
+        <item>Japanese</item>
+        <item>German</item>
+        <item>Chinese</item>
+        <item>Russian</item>
+        <item>Latin</item>
+
+    </string-array>
+    <string name="facebook_app_id">1752316158322312</string>
+
+</resources>
