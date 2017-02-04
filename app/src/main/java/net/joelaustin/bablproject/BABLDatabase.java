@@ -16,9 +16,6 @@ import java.sql.*;
 public class BABLDatabase extends Application {
 
 
-
-
-
     String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     String classs = "net.sourceforge.jtds.jdbc.Driver";
     String db = "DbBABL";
@@ -30,8 +27,8 @@ public class BABLDatabase extends Application {
     Statement stmt;
 
 
-    @SuppressLint("NewApi")
-    public Connection CONN(String username, String password) {
+    public void DbLoginInput(String strUsername, String strPassword) {
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -45,10 +42,9 @@ public class BABLDatabase extends Application {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "INSERT INTO Users (Username) VALUES ('Test123')";
+            String query = "INSERT INTO Users (Username, Password) VALUES ('" + strUsername + "','" + strPassword + "')";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
-
 
 
         } catch (ClassNotFoundException e) {
@@ -56,13 +52,5 @@ public class BABLDatabase extends Application {
         } catch (Exception e) {
             Log.e("ERRO", e.getMessage());
         }
-        return conn;
     }
-
-    public void DbInput(String strUsername, String strPassword){
-
-        
-
-    }
-
 }

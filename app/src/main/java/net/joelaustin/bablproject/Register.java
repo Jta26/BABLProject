@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -145,8 +146,23 @@ public class Register extends Activity implements OnItemSelectedListener{
 
     public void btnSubmitOnClick(View v) {
         //Hash Passwords Here
-        //Database Entry Method Here
-        Toast.makeText(getApplication().getBaseContext(), "Database Entry Method Here", Toast.LENGTH_SHORT).show();
+
+
+        BABLDatabase DbEnter = new BABLDatabase();
+        EditText edtUsername = (EditText) findViewById(R.id.edtUsername);
+        EditText edtPassword = (EditText) findViewById(R.id.edtPassword);
+        EditText edtPasswordConfirm = (EditText) findViewById(R.id.edtPasswordConfirm);
+        String strUsername = edtUsername.getText().toString();
+        String strPassword = edtPassword.getText().toString();
+        String strPasswordConfirm = edtPasswordConfirm.getText().toString();
+        if (strPassword.equals(strPasswordConfirm)) {
+            DbEnter.DbLoginInput(strUsername, strPassword);
+        }
+        else {
+            Toast.makeText(getApplication().getBaseContext(), "Database Entry Method Here", Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 }
