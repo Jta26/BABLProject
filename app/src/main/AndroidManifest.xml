@@ -8,7 +8,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".BABLDatabase"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -26,12 +25,12 @@
         </activity>
         <activity
             android:name=".Register"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-        <activity android:name=".MainActivity"></activity>
+
     </application>
 
 </manifest>
