@@ -339,6 +339,7 @@
                     android:id="@+id/btnFacebook"/>
 
             </RelativeLayout>
+
             <Button
                 android:background="@drawable/rounded_button"
                 android:layout_marginTop="10dp"
