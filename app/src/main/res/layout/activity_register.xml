@@ -32,6 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -49,6 +50,37 @@
             android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:text="@string/FirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/txvFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:background="@drawable/rounded_edittext"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/edtFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="190dp" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -91,6 +123,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/txvPitt"
                     android:layout_toStartOf="@+id/txvPitt" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -137,37 +170,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="5dp"
                     android:hint="@string/passConfirm"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="25dp">
-
-                <TextView
-                    android:text="@string/FirstName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="25dp"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/txvFirstName"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:background="@drawable/rounded_edittext"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/login_font_size"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/edtFirstName"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="190dp" />
 
             </RelativeLayout>
 

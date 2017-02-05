@@ -37,7 +37,7 @@ public class Register extends Activity implements OnItemSelectedListener{
     private TextView txvFacebook;
 
     //String Array for Storing the Languages
-    String[] strArr;
+    String[] strArr = new String[5];
     //Spinner Objects
     List<String> listLang;
     ArrayAdapter<String> adapterLang;
@@ -131,7 +131,7 @@ public class Register extends Activity implements OnItemSelectedListener{
             linLangX.addView(btnRemoveLang);
 
             //Adds to An Array
-            strArr = new String[5];
+
             strArr[index] = strLang;
             listLang.remove(pos);
             adapterLang.notifyDataSetChanged();
@@ -147,16 +147,22 @@ public class Register extends Activity implements OnItemSelectedListener{
     public void btnSubmitOnClick(View v) {
         //Hash Passwords Here
 
-
+        //Calls the Database Class
         BABLDatabase DbEnter = new BABLDatabase();
         EditText edtUsername = (EditText) findViewById(R.id.edtUsername);
         EditText edtPassword = (EditText) findViewById(R.id.edtPassword);
         EditText edtPasswordConfirm = (EditText) findViewById(R.id.edtPasswordConfirm);
+        EditText edtFirstName = (EditText) findViewById(R.id.edtFirstName);
         String strUsername = edtUsername.getText().toString();
         String strPassword = edtPassword.getText().toString();
         String strPasswordConfirm = edtPasswordConfirm.getText().toString();
+        String strFirstName = edtFirstName.getText().toString();
+
+
+
         if (strPassword.equals(strPasswordConfirm)) {
-            DbEnter.DbLoginInput(strUsername, strPassword);
+            DbEnter.DbLoginInput(strUsername, strPassword, strFirstName, strArr);
+
         }
         else {
             Toast.makeText(getApplication().getBaseContext(), "Database Entry Method Here", Toast.LENGTH_SHORT).show();

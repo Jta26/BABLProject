@@ -27,7 +27,7 @@ public class BABLDatabase extends Application {
     Statement stmt;
 
 
-    public void DbLoginInput(String strUsername, String strPassword) {
+    public void DbLoginInput(String strUsername, String strPassword, String strFirstName, String[] strLangArr) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -42,15 +42,32 @@ public class BABLDatabase extends Application {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "INSERT INTO Users (Username, Password) VALUES ('" + strUsername + "','" + strPassword + "')";
+            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5) VALUES " +
+                    "(" +
+                    "'" + strUsername + "'," +
+                    "'" + strPassword + "'," +
+                    "'" + strFirstName + "'," +
+                    "'" + strLangArr[0] + "'," +
+                    "'" + strLangArr[1] + "'," +
+                    "'" + strLangArr[2] + "'," +
+                    "'" + strLangArr[3] + "'," +
+                    "'" + strLangArr[4] + "'" +
+                    ")";
+
+
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
-
-        } catch (ClassNotFoundException e) {
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e) {
             Log.e("ERRO", e.getMessage());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             Log.e("ERRO", e.getMessage());
         }
     }
+
 }

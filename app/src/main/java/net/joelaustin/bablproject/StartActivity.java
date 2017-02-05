@@ -11,8 +11,6 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        BABLDatabase dbConn = new BABLDatabase();
-        dbConn.DbLoginInput("User1", "Pass");
     }
     public void btnRegisterOnClick(View v){
         Intent intentRegister = new Intent(this, Register.class);
