@@ -24,11 +24,21 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private String strUsername;
     private String strPassword;
     private String strFirstName;
-    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName) {
+    private Boolean boolMain;
+    private Boolean boolJohnstown;
+    private Boolean boolBradford;
+    private Boolean boolTitusville;
+    private Boolean boolGreensburg;
+    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
         this.strUsername = strUsername;
         this.strPassword = strPassword;
         this.strFirstName = strFirstName;
+        this.boolMain = boolMain;
+        this.boolJohnstown = boolJohnstown;
+        this.boolBradford = boolBradford;
+        this.boolTitusville = boolTitusville;
+        this.boolGreensburg = boolGreensburg;
     }
 
 
@@ -97,14 +107,19 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
             String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5) VALUES " +
                     "(" +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?" +
+                    "?," + //1
+                    "?," + //2
+                    "?," + //3
+                    "?," + //4
+                    "?," + //5
+                    "?," + //6
+                    "?," + //7
+                    "?," + //8
+                    "?," + //9
+                    "?," + //10
+                    "?," + //11
+                    "?," + //12
+                    "?" + //13
                     ")";
 
 
@@ -117,6 +132,12 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             pstmt.setString(6, strArr[2]);
             pstmt.setString(7, strArr[3]);
             pstmt.setString(8, strArr[4]);
+            pstmt.setBoolean(9, boolMain);
+            pstmt.setBoolean(10, boolJohnstown);
+            pstmt.setBoolean(11, boolBradford);
+            pstmt.setBoolean(12, boolTitusville);
+            pstmt.setBoolean(13, boolGreensburg);
+
             pstmt.executeUpdate();
             return "New User Added Successfully";
 

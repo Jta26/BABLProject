@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -149,7 +150,9 @@ public class Register extends Activity implements OnItemSelectedListener{
 
     }
     public void onNothingSelected(AdapterView<?> parent){
+
     }
+
 
     public void btnSubmitOnClick(View v) {
         //Hash Passwords Here
@@ -166,8 +169,36 @@ public class Register extends Activity implements OnItemSelectedListener{
         String strPasswordConfirm = edtPasswordConfirm.getText().toString();
         String strFirstName = edtFirstName.getText().toString();
 
+        Boolean boolMain = false;
+        Boolean boolJohnstown = false;
+        Boolean boolBradford = false;
+        Boolean boolTitusville = false;
+        Boolean boolGreensburg = false;
+
+        CheckBox chkMain = (CheckBox) findViewById(R.id.chkMain);
+        CheckBox chkJohnstown = (CheckBox) findViewById(R.id.chkJohnstown);
+        CheckBox chkBradford = (CheckBox) findViewById(R.id.chkBradford);
+        CheckBox chkTitusville = (CheckBox) findViewById(R.id.chkTitusville);
+        CheckBox chkGreensburg = (CheckBox) findViewById(R.id.chkGreensburg);
+        if (chkMain.isChecked()){
+            boolMain = true;
+        }
+        if (chkJohnstown.isChecked()){
+            boolJohnstown = true;
+        }
+        if (chkBradford.isChecked()) {
+            boolBradford = true;
+        }
+        if (chkTitusville.isChecked()) {
+            boolTitusville = true;
+        }
+        if (chkGreensburg.isChecked()) {
+            boolGreensburg = true;
+        }
+
+
         if (strPassword.equals(strPasswordConfirm)) {
-            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName).execute(strArr);
+            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName, boolMain, boolJohnstown, boolBradford,boolTitusville,boolGreensburg).execute(strArr);
             Intent intentRegister = new Intent(this, StartActivity.class);
             startActivity(intentRegister);
         }
