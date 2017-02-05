@@ -2,6 +2,7 @@ package net.joelaustin.bablproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import com.facebook.login.widget.LoginButton;
 
 import org.w3c.dom.Text;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,16 +40,20 @@ public class Register extends Activity implements OnItemSelectedListener{
     private TextView txvFacebook;
 
     //String Array for Storing the Languages
-    String[] strArr = new String[5];
+    public String[] strArr = new String[5];
     //Spinner Objects
     List<String> listLang;
     ArrayAdapter<String> adapterLang;
     Spinner spinnerLang;
+
     int index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+
         //Spinner List Things
         listLang = new ArrayList<>(Arrays.asList("Nothing","English", "Japanese", "German", "Chinese", "Latin", "Cantonese", "French"));
         spinnerLang = (Spinner) findViewById(R.id.spinnerLang);
@@ -147,8 +154,9 @@ public class Register extends Activity implements OnItemSelectedListener{
     public void btnSubmitOnClick(View v) {
         //Hash Passwords Here
 
+
         //Calls the Database Class
-        BABLDatabase DbEnter = new BABLDatabase();
+
         EditText edtUsername = (EditText) findViewById(R.id.edtUsername);
         EditText edtPassword = (EditText) findViewById(R.id.edtPassword);
         EditText edtPasswordConfirm = (EditText) findViewById(R.id.edtPasswordConfirm);
@@ -159,16 +167,10 @@ public class Register extends Activity implements OnItemSelectedListener{
         String strFirstName = edtFirstName.getText().toString();
 
 
+            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName).execute(strArr);
 
-        if (strPassword.equals(strPasswordConfirm)) {
-            DbEnter.DbLoginInput(strUsername, strPassword, strFirstName, strArr);
+
+
 
         }
-        else {
-            Toast.makeText(getApplication().getBaseContext(), "Database Entry Method Here", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-    }
 }
