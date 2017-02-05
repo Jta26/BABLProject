@@ -21,6 +21,9 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
     private Context context;
+    private String strUsername;
+    private String strPassword;
+    private String strFirstName;
     public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName) {
         this.context = context;
         this.strUsername = strUsername;
@@ -29,25 +32,17 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     }
 
 
-    String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
-    String classs = "net.sourceforge.jtds.jdbc.Driver";
-    String db = "DbBABL";
-    String un = "gregmckibbin";
-    String password = "password";
-    String test = "Test";
+    private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String classs = "net.sourceforge.jtds.jdbc.Driver";
+    private String db = "DbBABL";
+    private String un = "gregmckibbin";
+    private String password = "password";
+    private String test = "Test";
 
     ResultSet rs;
     PreparedStatement pstmt;
 
 
-
-    String strUsername;
-    String strPassword;
-    String strFirstName;
-    protected void onPreExecute(){
-
-
-    }
 
     protected String doInBackground(String... strArr){
 
@@ -122,8 +117,11 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             pstmt.setString(6, strArr[2]);
             pstmt.setString(7, strArr[3]);
             pstmt.setString(8, strArr[4]);
-            rs = pstmt.executeQuery();
-            return "Inserted";
+            pstmt.executeUpdate();
+            return "New User Added Successfully";
+
+
+
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -140,6 +138,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     }
 
     protected void onPostExecute(String result) {
+
 
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 

@@ -166,10 +166,14 @@ public class Register extends Activity implements OnItemSelectedListener{
         String strPasswordConfirm = edtPasswordConfirm.getText().toString();
         String strFirstName = edtFirstName.getText().toString();
 
-
+        if (strPassword.equals(strPasswordConfirm)) {
             new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName).execute(strArr);
-
-
+            Intent intentRegister = new Intent(this, StartActivity.class);
+            startActivity(intentRegister);
+        }
+        else {
+            Toast.makeText(getApplication().getBaseContext(), "Passwords to not match", Toast.LENGTH_LONG);
+        }
 
 
         }
