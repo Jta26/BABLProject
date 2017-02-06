@@ -19,6 +19,9 @@ public class BABLLoginVerify {
 
     ResultSet rs;
     PreparedStatement pstmt;
+
+    BABLDataLocal localData = new BABLDataLocal();
+
     private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
     private String db = "DbBABL";
@@ -39,7 +42,7 @@ public class BABLLoginVerify {
         String ConnURL = null;
 
 
-        //Checks if USERNAMES are Equal, if they are, stops process;
+        //Checks if USERNAMES and PASSWORDS are Equal, if they are, stops process;
         try {
             Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
@@ -54,6 +57,11 @@ public class BABLLoginVerify {
             rs = pstmt.executeQuery();
             while (rs.next()){
                 String strUsernameVerify = rs.getString("Username");
+                String strPasswordVerify = rs.getString("Password");
+                if (strUsername.equals(strUsernameVerify) && strPassword.equals(strPasswordVerify)){
+                    localData.set_strUsername(strUsernameVerify);
+                    return true;
+                }
 
 
             }
