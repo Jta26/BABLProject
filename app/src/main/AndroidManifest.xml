@@ -24,13 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Register"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:name=".RegisterActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
