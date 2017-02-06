@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
 
+    BABLDataLocal localData = new BABLDataLocal();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +27,8 @@ public class StartActivity extends AppCompatActivity {
         String strPassword = edtPassword.getText().toString();
 
         Boolean boolVerify;
-        BABLLoginVerify loginClass = new BABLLoginVerify();
-        boolVerify = loginClass.VerifyLogin(strUsername, strPassword);
+        new BABLLoginVerify(StartActivity.this, strUsername, strPassword).execute();
 
-        if (boolVerify == true) {
-            Intent intentMainActivity = new Intent(this, MainActivity.class);
-            startActivity(intentMainActivity);
-        }
-        else {
-            Toast.makeText(getApplication().getBaseContext(), R.string.incorrectPass, Toast.LENGTH_LONG);
-        }
 
 
 

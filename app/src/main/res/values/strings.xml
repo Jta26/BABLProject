@@ -73,5 +73,5 @@
     <string name="Or">Or</string>
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
-
+    <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
 </resources>

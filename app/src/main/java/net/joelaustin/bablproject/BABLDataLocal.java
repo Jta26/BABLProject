@@ -6,26 +6,26 @@ package net.joelaustin.bablproject;
 
 public class BABLDataLocal {
 
-    private String _strUsername;
-    private String _strFirstName;
+    private static String _strUsername;
+    private static String _strFirstName;
 
-    private String _strLang1;
-    private String _strLang2;
-    private String _strLang3;
-    private String _strLang4;
-    private String _strLang5;
+    private static String _strLang1;
+    private static String _strLang2;
+    private static String _strLang3;
+    private static String _strLang4;
+    private static String _strLang5;
 
-    private Integer _intCampusAttend;
+    private static Integer _intCampusAttend;
 
-    private Boolean _boolMain;
-    private Boolean _boolJohnstown;
-    private Boolean _boolBradford;
-    private Boolean _boolTitusville;
-    private Boolean _boolGreensburg;
+    private static Boolean _boolMain;
+    private static Boolean _boolJohnstown;
+    private static Boolean _boolBradford;
+    private static Boolean _boolTitusville;
+    private static Boolean _boolGreensburg;
 
     //set Username
     public void set_strUsername(String strUsername) {
-        this._strUsername = strUsername;
+        _strUsername = strUsername;
     }
     //get Username
     public String get_strUsername() {
