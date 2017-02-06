@@ -10,13 +10,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="net.joelaustin.bablproject.Register"
+    tools:context="net.joelaustin.bablproject.RegisterActivity"
     android:windowSoftInputMode="stateVisible">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
-        android:layout_height="70dp">
+        android:layout_height="50dp">
 
         <TextView
             android:text="@string/NewUser"
@@ -32,6 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -49,6 +50,37 @@
             android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:text="@string/FirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/txvFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:background="@drawable/rounded_edittext"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/edtFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="190dp" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -91,6 +123,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/txvPitt"
                     android:layout_toStartOf="@+id/txvPitt" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -138,36 +171,6 @@
                     android:layout_marginTop="5dp"
                     android:hint="@string/passConfirm"/>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="25dp">
-
-                <TextView
-                    android:text="@string/FirstName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="25dp"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/txvFirstName"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:background="@drawable/rounded_edittext"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/login_font_size"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/edtFirstName"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="190dp" />
 
             </RelativeLayout>
 
@@ -205,6 +208,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
+
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -226,81 +231,159 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/spinnerLang"
-                android:layout_toStartOf="@+id/spinnerLang"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:text="@string/Campus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txvAddCampus"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/login_font_size"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/txvSelectCampus"
+                    android:layout_alignBottom="@+id/txvSelectCampus"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="11dp"
+                    android:layout_marginEnd="11dp">
 
-                <CheckBox
-                    android:text="Pittsburgh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/chkMain"
-                    android:layout_below="@+id/txvSelectCampus"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="25sp" />
+                    <TextView
+                        android:text="@string/campusAttend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvSelectCampusAttend"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
-                <CheckBox
-                    android:text="Johnstown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/chkJohnstown"
-                    android:layout_below="@+id/chkMain"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="25sp" />
+                    <RadioGroup
+                        android:id="@+id/rdgCampuses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txvSelectCampusAttend">
 
-                <CheckBox
-                    android:text="Bradford"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/chkBradford"
-                    android:layout_below="@+id/chkJohnstown"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="25sp" />
+                        <RadioButton
+                            android:id="@+id/rdbPittsburgh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Pittsburgh"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:checked="false"
+                            android:layout_weight="1" />
 
-                <CheckBox
-                    android:text="Titusville"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/chkTitusville"
-                    android:layout_below="@+id/chkBradford"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="25sp" />
+                        <RadioButton
+                            android:id="@+id/rdbJohnstown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbPittsburgh"
+                            android:text="@string/Johnstown"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
 
-                <CheckBox
-                    android:text="Greensburg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/chkGreensburg"
-                    android:layout_below="@+id/chkTitusville"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="25sp" />
+                        <RadioButton
+                            android:id="@+id/rdbBradford"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Bradford"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_below="@id/rdbJohnstown"
+                            android:layout_weight="1" />
+                        <RadioButton
+                            android:id="@+id/rdbTitusville"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbBradford"
+                            android:text="@string/Titusville"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
 
-                <TextView
-                    android:text="@string/campusSelect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txvSelectCampus"
-                    android:layout_below="@+id/txvAddCampus"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
 
-            </RelativeLayout>
+
+                        <RadioButton
+                            android:id="@+id/rdbGreensburg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbTitusville"
+                            android:text="@string/Greensburg"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="@string/campusSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvSelectCampus"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:text="@string/Pittsburgh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkMain"
+                        android:layout_below="@+id/txvSelectCampus"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Johnstown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkJohnstown"
+                        android:layout_below="@+id/chkMain"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Bradford"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkBradford"
+                        android:layout_below="@+id/chkJohnstown"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Titusville"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkTitusville"
+                        android:layout_below="@+id/chkBradford"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Greensburg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkGreensburg"
+                        android:layout_below="@+id/chkTitusville"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -337,6 +420,7 @@
                     android:id="@+id/btnFacebook"/>
 
             </RelativeLayout>
+
             <Button
                 android:background="@drawable/rounded_button"
                 android:layout_marginTop="10dp"
@@ -355,5 +439,4 @@
                 android:layout_marginBottom="10dp" />
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>
