@@ -21,33 +21,38 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
     private Context context;
-    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName) {
+    private String strUsername;
+    private String strPassword;
+    private String strFirstName;
+    private Integer intCampusSelect;
+    private Boolean boolMain;
+    private Boolean boolJohnstown;
+    private Boolean boolBradford;
+    private Boolean boolTitusville;
+    private Boolean boolGreensburg;
+    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
         this.strUsername = strUsername;
         this.strPassword = strPassword;
         this.strFirstName = strFirstName;
+        this.intCampusSelect = intCampusSelect;
+        this.boolMain = boolMain;
+        this.boolJohnstown = boolJohnstown;
+        this.boolBradford = boolBradford;
+        this.boolTitusville = boolTitusville;
+        this.boolGreensburg = boolGreensburg;
     }
 
 
-    String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
-    String classs = "net.sourceforge.jtds.jdbc.Driver";
-    String db = "DbBABL";
-    String un = "gregmckibbin";
-    String password = "password";
-    String test = "Test";
+    private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
+    private String db = "DbBABL";
+    private String un = "gregmckibbin";
+    private String password = "password";
+    private String test = "Test";
 
     ResultSet rs;
     PreparedStatement pstmt;
-
-
-
-    String strUsername;
-    String strPassword;
-    String strFirstName;
-    protected void onPreExecute(){
-
-
-    }
 
     protected String doInBackground(String... strArr){
 
@@ -59,7 +64,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
         //Checks if USERNAMES are Equal, if they are, stops process;
         try {
-            Class.forName(classs).newInstance();
+            Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                     + "databaseName=" + db + ";user=" + un + ";password="
                     + password + ";";
@@ -94,22 +99,27 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         //Inputs to the Database
         try {
 
-            Class.forName(classs).newInstance();
+            Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                     + "databaseName=" + db + ";user=" + un + ";password="
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
-
-            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5) VALUES " +
+            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
                     "(" +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?," +
-                    "?" +
+                    "?," + //1
+                    "?," + //2
+                    "?," + //3
+                    "?," + //4
+                    "?," + //5
+                    "?," + //6
+                    "?," + //7
+                    "?," + //8
+                    "?," + //9
+                    "?," + //10
+                    "?," + //11
+                    "?," + //12
+                    "?," + //13
+                    "?" + //14
                     ")";
 
 
@@ -122,8 +132,18 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             pstmt.setString(6, strArr[2]);
             pstmt.setString(7, strArr[3]);
             pstmt.setString(8, strArr[4]);
-            rs = pstmt.executeQuery();
-            return "Inserted";
+            pstmt.setInt(9, intCampusSelect);
+            pstmt.setBoolean(10, boolMain);
+            pstmt.setBoolean(11, boolJohnstown);
+            pstmt.setBoolean(12, boolBradford);
+            pstmt.setBoolean(13, boolTitusville);
+            pstmt.setBoolean(14, boolGreensburg);
+
+            pstmt.executeUpdate();
+            return "New User Added Successfully";
+
+
+
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -140,6 +160,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     }
 
     protected void onPostExecute(String result) {
+
 
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 

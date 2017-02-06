@@ -32,6 +32,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
+        <TextView
+            android:text="@string/login"
+            android:layout_height="wrap_content"
+            android:id="@+id/txvLogin"
+            android:textSize="@dimen/login_font_size"
+            android:textColor="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_alignBaseline="@+id/relativeLayout2"
+            android:layout_alignBottom="@+id/relativeLayout2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <EditText
             android:background="@drawable/rounded_edittext"
             android:textAlignment="center"
@@ -39,11 +51,10 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/edtUsername"
+            android:id="@+id/edtLoginUsername"
             android:layout_width="80dp"
-            android:layout_alignBottom="@+id/txvLogin"
-            android:layout_toRightOf="@+id/txvLogin"
-            android:layout_toEndOf="@+id/txvLogin" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:text="@string/pittEmail"
@@ -52,63 +63,35 @@
             android:layout_height="wrap_content"
             android:id="@+id/txvPittedu"
             android:gravity="center"
+            android:layout_width="110dp"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/edtUsername"
-            android:layout_toEndOf="@+id/edtUsername"
-            android:layout_width="110dp" />
+            android:layout_toRightOf="@+id/edtLoginUsername"
+            android:layout_toEndOf="@+id/edtLoginUsername" />
 
         <TextView
-            android:text="@string/login"
-            android:layout_marginRight="50dp"
+            android:text="@string/password"
             android:layout_height="wrap_content"
-            android:id="@+id/txvLogin"
+            android:id="@+id/txvPassword"
             android:textSize="@dimen/login_font_size"
             android:textColor="@color/colorAccent"
-            android:layout_alignParentTop="true"
+            android:layout_width="130dp"
+            android:layout_below="@+id/txvLogin"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_width="80dp" />
+            android:layout_marginTop="12dp" />
 
         <EditText
             android:background="@drawable/rounded_edittext"
             android:layout_height="wrap_content"
             android:textSize="@dimen/login_font_size"
-            android:layout_marginTop="10dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/edtPasswordConfirm"
+            android:id="@+id/edtLoginPassword"
+            android:layout_width="190dp"
             android:layout_alignBaseline="@+id/txvPassword"
             android:layout_alignBottom="@+id/txvPassword"
             android:layout_toRightOf="@+id/txvPassword"
-            android:layout_toEndOf="@+id/txvPassword"
-            android:layout_width="190dp" />
-
-        <TextView
-            android:text="@string/password"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/txvPassword"
-            android:textSize="@dimen/login_font_size"
-            android:textColor="@color/colorAccent"
-            android:layout_below="@+id/txvLogin"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_width="130dp" />
-
-        <Button
-            android:background="@drawable/rounded_button"
-            android:layout_marginTop="10dp"
-            android:text="@string/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnNewUserSubmit"
-            android:layout_below="@+id/edtPasswordConfirm"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="normal|bold"
-            android:textAlignment="center"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textSize="@dimen/login_font_size" />
+            android:layout_toEndOf="@+id/txvPassword" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -116,31 +99,53 @@
             android:layout_below="@+id/btnNewUserSubmit"
             android:layout_above="@+id/btnRegister">
 
+            <Button
+                android:background="@drawable/rounded_button"
+                android:onClick="btnRegisterOnClick"
+                android:text="@string/NewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRegister"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/login_font_size"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
             <TextView
                 android:text="@string/WhatIs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txvbablWhatIs"
-                android:textSize="@dimen/desc_font_size" />
+                android:textSize="@dimen/desc_font_size"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </RelativeLayout>
 
         <Button
             android:background="@drawable/rounded_button"
-            android:onClick="btnRegisterOnClick"
-            android:text="@string/NewUser"
-            android:layout_width="wrap_content"
+            android:text="@string/login"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnNewUserSubmit"
+            android:onClick="btnLoginOnClick"
             android:textColor="@color/colorPrimary"
             android:textStyle="normal|bold"
             android:textAlignment="center"
             android:textSize="@dimen/login_font_size"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/edtLoginUsername"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>
+
+
 
 </RelativeLayout>

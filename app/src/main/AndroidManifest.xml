@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.facebook.FacebookActivity"
