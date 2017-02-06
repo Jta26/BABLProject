@@ -30,6 +30,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private Boolean boolBradford;
     private Boolean boolTitusville;
     private Boolean boolGreensburg;
+
     public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
         this.strUsername = strUsername;

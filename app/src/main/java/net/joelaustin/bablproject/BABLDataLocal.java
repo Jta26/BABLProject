@@ -80,7 +80,7 @@ public class BABLDataLocal {
         return _strLang5;
     }
     //set Campus Attendance
-    public void set_intCampusAttend(Integer intCampusAttend){
+    public void set_intCampusAttend(Integer intCampusAttend) {
         this._intCampusAttend = intCampusAttend;
     }
     //get Campus Attendance
@@ -120,7 +120,7 @@ public class BABLDataLocal {
         return _boolTitusville;
     }
     //set UPG Setting
-    public void set_boolGreensburg(Boolean boolGreensburg){
+    public void set_boolGreensburg(Boolean boolGreensburg) {
         this._boolGreensburg = boolGreensburg;
     }
     //get UPG Setting
