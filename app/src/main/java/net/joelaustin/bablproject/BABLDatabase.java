@@ -45,7 +45,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
     private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
-    private String classs = "net.sourceforge.jtds.jdbc.Driver";
+    private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
     private String db = "DbBABL";
     private String un = "gregmckibbin";
     private String password = "password";
@@ -64,7 +64,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
         //Checks if USERNAMES are Equal, if they are, stops process;
         try {
-            Class.forName(classs).newInstance();
+            Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                     + "databaseName=" + db + ";user=" + un + ";password="
                     + password + ";";
@@ -99,12 +99,11 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         //Inputs to the Database
         try {
 
-            Class.forName(classs).newInstance();
+            Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                     + "databaseName=" + db + ";user=" + un + ";password="
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
-
             String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
                     "(" +
                     "?," + //1
