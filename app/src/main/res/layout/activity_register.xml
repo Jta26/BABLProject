@@ -288,6 +288,14 @@
                             android:layout_weight="1" />
 
                         <RadioButton
+                            android:id="@+id/rdbBradford"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Bradford"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_below="@id/rdbJohnstown"
+                            android:layout_weight="1" />
+                        <RadioButton
                             android:id="@+id/rdbTitusville"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -296,14 +304,7 @@
                             android:textSize="@dimen/login_font_size"
                             android:layout_weight="1" />
 
-                        <RadioButton
-                            android:id="@+id/rdbBradford"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Bradford"
-                            android:textSize="@dimen/login_font_size"
-                            android:layout_below="@id/rdbJohnstown"
-                            android:layout_weight="1" />
+
 
                         <RadioButton
                             android:id="@+id/rdbGreensburg"

@@ -24,16 +24,18 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private String strUsername;
     private String strPassword;
     private String strFirstName;
+    private Integer intCampusSelect;
     private Boolean boolMain;
     private Boolean boolJohnstown;
     private Boolean boolBradford;
     private Boolean boolTitusville;
     private Boolean boolGreensburg;
-    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
+    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
         this.strUsername = strUsername;
         this.strPassword = strPassword;
         this.strFirstName = strFirstName;
+        this.intCampusSelect = intCampusSelect;
         this.boolMain = boolMain;
         this.boolJohnstown = boolJohnstown;
         this.boolBradford = boolBradford;
@@ -103,7 +105,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
+            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
                     "(" +
                     "?," + //1
                     "?," + //2
@@ -117,7 +119,8 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                     "?," + //10
                     "?," + //11
                     "?," + //12
-                    "?" + //13
+                    "?," + //13
+                    "?" + //14
                     ")";
 
 
@@ -130,11 +133,12 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             pstmt.setString(6, strArr[2]);
             pstmt.setString(7, strArr[3]);
             pstmt.setString(8, strArr[4]);
-            pstmt.setBoolean(9, boolMain);
-            pstmt.setBoolean(10, boolJohnstown);
-            pstmt.setBoolean(11, boolBradford);
-            pstmt.setBoolean(12, boolTitusville);
-            pstmt.setBoolean(13, boolGreensburg);
+            pstmt.setInt(9, intCampusSelect);
+            pstmt.setBoolean(10, boolMain);
+            pstmt.setBoolean(11, boolJohnstown);
+            pstmt.setBoolean(12, boolBradford);
+            pstmt.setBoolean(13, boolTitusville);
+            pstmt.setBoolean(14, boolGreensburg);
 
             pstmt.executeUpdate();
             return "New User Added Successfully";

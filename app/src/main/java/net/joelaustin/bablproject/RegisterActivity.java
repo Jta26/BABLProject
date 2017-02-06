@@ -227,7 +227,7 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
         //Checks if passwords are equal
         if (strPassword.equals(strPasswordConfirm)) {
-            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName, boolMain, boolJohnstown, boolBradford,boolTitusville,boolGreensburg).execute(strArr);
+            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName,intCampusSelect, boolMain, boolJohnstown, boolBradford,boolTitusville,boolGreensburg).execute(strArr);
             Intent intentRegister = new Intent(this, StartActivity.class);
             startActivity(intentRegister);
         }
