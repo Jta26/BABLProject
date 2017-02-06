@@ -8,6 +8,7 @@
     <string name="WhatIs">BABL used to help University of Pittsburgh students of all campuses connect with and meet new people.
         It\'s core functionality is based around people that speak or are learning another language discover someone else that also speaks their language.
     </string>
+    <string name="incorrectPass">Username or Password Incorrect</string>
 
     <!--RegisterActivity Strings-->
     <string name="NewUser">New User</string>
@@ -30,6 +31,8 @@
     <string name="Bradford">Bradford</string>
     <string name="Titusville">Titusville</string>
     <string name="Greensburg">Greensburg</string>
+
+
 
 
     <string-array name="LanguagesArray">
