@@ -52,8 +52,6 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     ResultSet rs;
     PreparedStatement pstmt;
 
-
-
     protected String doInBackground(String... strArr){
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -105,7 +103,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5) VALUES " +
+            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
                     "(" +
                     "?," + //1
                     "?," + //2

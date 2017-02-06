@@ -13,7 +13,10 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
     }
     public void btnRegisterOnClick(View v){
-        Intent intentRegister = new Intent(this, Register.class);
+        Intent intentRegister = new Intent(this, RegisterActivity.class);
         startActivity(intentRegister);
+    }
+    public void btnLoginOnClick(View v) {
+
     }
 }
