@@ -9,16 +9,17 @@ import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
 
-    BABLDataLocal localData = new BABLDataLocal();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
     }
+    //Register Button Event Handler
     public void btnRegisterOnClick(View v){
         Intent intentRegister = new Intent(this, RegisterActivity.class);
         startActivity(intentRegister);
     }
+    //Login Button Event Handler
     public void btnLoginOnClick(View v) {
 
         EditText edtUsername = (EditText) findViewById(R.id.edtLoginUsername);

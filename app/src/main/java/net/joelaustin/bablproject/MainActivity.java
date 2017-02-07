@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //Logout button event handler
     public void btnLogoutOnClick(View v) {
 
         dataLocal.set_strFirstName(null);
