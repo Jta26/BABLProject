@@ -66,7 +66,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
                 String strUsernameVerify = rs.getString("Username");
 
 
-                if (strUsernameVerify.equals(strUsername)) {
+                if (strUsernameVerify.toUpperCase().equals(strUsername.toUpperCase())) {
                     //sets First Name
                     String strFirstName = rs.getString("FirstName");
                     localData.set_strFirstName(strFirstName);

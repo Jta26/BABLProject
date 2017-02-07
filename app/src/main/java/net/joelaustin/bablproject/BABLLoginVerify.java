@@ -1,7 +1,6 @@
 package net.joelaustin.bablproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
@@ -31,7 +30,6 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
     private String db = "DbBABL";
     private String un = "gregmckibbin";
     private String password = "password";
-    private String test = "Test";
 
     private String strUsername;
     private String strPassword;
@@ -68,7 +66,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
             while (rs.next()) {
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
-                if (strUsername.equals(strUsernameVerify) && strPassword.equals(strPasswordVerify)) {
+                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && strPassword.equals(strPasswordVerify)) {
 
                     return true;
                 }

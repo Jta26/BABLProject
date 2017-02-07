@@ -26,7 +26,6 @@ public class StartActivity extends AppCompatActivity {
         String strUsername = edtUsername.getText().toString();
         String strPassword = edtPassword.getText().toString();
 
-        Boolean boolVerify;
         new BABLLoginVerify(StartActivity.this, strUsername, strPassword).execute();
 
 

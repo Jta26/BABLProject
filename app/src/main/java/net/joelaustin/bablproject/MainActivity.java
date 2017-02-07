@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,28 @@ public class MainActivity extends AppCompatActivity {
         TextView txvWelcome = (TextView) findViewById(R.id.txvWelcome);
 
         txvWelcome.setText(txvWelcome.getText() + " " + dataLocal.get_strFirstName());
+
+        ImageView imgSign = (ImageView) findViewById(R.id.imgMain);
+
+        switch (dataLocal.get_intCampusAttend()){
+
+            case 0:
+                imgSign.setImageResource(R.drawable.mainsign);
+                break;
+            case 1:
+                imgSign.setImageResource(R.drawable.upjsign);
+                break;
+            case 2:
+                imgSign.setImageResource(R.drawable.bradfordsign);
+                break;
+            case 3:
+                imgSign.setImageResource(R.drawable.uptsign);
+                break;
+            case 4:
+                imgSign.setImageResource(R.drawable.upgsign);
+                break;
+
+        }
 
 
 
