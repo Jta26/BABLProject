@@ -5,6 +5,7 @@ package net.joelaustin.bablproject;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
@@ -162,8 +163,14 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
     protected void onPostExecute(String result) {
 
-
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        if (result.equals("New User Added Successfully")) {
+            Intent intentRegister = new Intent(context, StartActivity.class);
+            context.startActivity(intentRegister);
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
 
 
     }

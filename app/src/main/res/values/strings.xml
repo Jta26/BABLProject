@@ -25,7 +25,7 @@
     <string name="AddFacebook">Link Facebook</string>
     <string name="AddFacebookDesc">Connect with Facebook to become friends with and chat with people that you meet.</string>
     <string name="NewUserSubmit">Submit</string>
-
+    <string name="FieldCantEmpty">Field Cannot be Empty</string>
     <string name="Pittsburgh">Pittsburgh</string>
     <string name="Johnstown">Johnstown</string>
     <string name="Bradford">Bradford</string>

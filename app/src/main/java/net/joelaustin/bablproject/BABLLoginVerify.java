@@ -1,6 +1,7 @@
 package net.joelaustin.bablproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
@@ -90,7 +91,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
 
         if (result == true) {
             localData.set_strUsername(strUsername);
-
+            strPassword = null;
             new BABLDataRetrieve(context).execute();
         }
         if (result == false) {
