@@ -198,7 +198,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 pstmt.setBoolean(10, boolTitusville);
                 pstmt.setBoolean(11, boolGreensburg);
                 pstmt.setString(12, strUsername);
-                pstmt = conn.prepareStatement(query);
+              
 
 
                 rs = pstmt.executeQuery();
