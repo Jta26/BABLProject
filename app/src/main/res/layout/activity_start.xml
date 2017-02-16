@@ -44,18 +44,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/edtLoginUsername"
-            android:layout_width="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
         <TextView
             android:text="@string/pittEmail"
             android:textSize="@dimen/login_font_size"
@@ -144,6 +132,19 @@
             android:layout_below="@+id/edtLoginUsername"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <EditText
+            android:background="@drawable/rounded_edittext"
+            android:textAlignment="center"
+            android:textSize="@dimen/login_font_size"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/edtLoginUsername"
+            android:layout_width="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/txvPassword"
+            android:layout_toEndOf="@+id/txvPassword" />
 
     </RelativeLayout>
 

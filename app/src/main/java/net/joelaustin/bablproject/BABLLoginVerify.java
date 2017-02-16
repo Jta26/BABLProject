@@ -1,7 +1,11 @@
 package net.joelaustin.bablproject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +19,7 @@ import java.sql.SQLException;
 
 //WIP
 
-public class BABLLoginVerify {
+public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
 
     ResultSet rs;
     PreparedStatement pstmt;
@@ -27,13 +31,18 @@ public class BABLLoginVerify {
     private String db = "DbBABL";
     private String un = "gregmckibbin";
     private String password = "password";
-    private String test = "Test";
 
-    public BABLLoginVerify() {
+    private String strUsername;
+    private String strPassword;
+    private Context context;
 
+    public BABLLoginVerify(Context context, String strUsername, String strPassword) {
+        this.context = context;
+        this.strUsername = strUsername;
+        this.strPassword = strPassword;
     }
 
-    public Boolean VerifyLogin(String strUsername, String strPassword){
+    public Boolean doInBackground(Boolean... boolVerify) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -55,31 +64,41 @@ public class BABLLoginVerify {
             pstmt = conn.prepareStatement(query);
 
             rs = pstmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
-                if (strUsername.equals(strUsernameVerify) && strPassword.equals(strPasswordVerify)){
-                    localData.set_strUsername(strUsernameVerify);
+                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && strPassword.equals(strPasswordVerify)) {
+
                     return true;
                 }
 
 
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
+            Log.e("ERRO", e.getMessage());
+            return false;
+        } catch (Exception e) {
             Log.e("ERRO", e.getMessage());
             return false;
         }
-        catch (Exception e) {
-            Log.e("ERRO", e.getMessage());
-            return false;
+        return false;
+    }
+
+    protected void onPostExecute(Boolean result){
+
+        if (result == true) {
+            localData.set_strUsername(strUsername);
+            strPassword = null;
+            new BABLDataRetrieve(context).execute();
+        }
+        if (result == false) {
+            Toast.makeText(context, R.string.incorrectPass, Toast.LENGTH_LONG).show();
         }
 
-        return false;
+
     }
 
 

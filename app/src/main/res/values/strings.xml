@@ -25,14 +25,12 @@
     <string name="AddFacebook">Link Facebook</string>
     <string name="AddFacebookDesc">Connect with Facebook to become friends with and chat with people that you meet.</string>
     <string name="NewUserSubmit">Submit</string>
-
+    <string name="FieldCantEmpty">Field Cannot be Empty</string>
     <string name="Pittsburgh">Pittsburgh</string>
     <string name="Johnstown">Johnstown</string>
     <string name="Bradford">Bradford</string>
     <string name="Titusville">Titusville</string>
     <string name="Greensburg">Greensburg</string>
-
-
 
 
     <string-array name="LanguagesArray">
@@ -65,7 +63,6 @@
     <string name="facebook_app_id">1752316158322312</string>
 
 
-
     <!--MainActivity Strings-->
     <string name="Welcome">Welcome</string>
     <string name="ActionPhrase">What would you like to do?</string>
@@ -73,5 +70,14 @@
     <string name="Or">Or</string>
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
+    <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
 
+    <!--SettingsActivity Strings -->
+    <string name="accountsettings">Account Settings</string>
+    <string name="settingschangelang">Change Languages</string>
+    <string name="settingschangelangdesc">Here you can change the languages that you would like to meet people from.</string>
+    <string name="settingschangecampus">Change Campus</string>
+    <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
 </resources>
+
+

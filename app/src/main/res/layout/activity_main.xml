@@ -109,6 +109,7 @@
             android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:id="@+id/btnAccountSettings"
+            android:onClick="btnAccountSettingsOnClick"
             android:background="@drawable/rounded_button"
             />
 
@@ -120,6 +121,7 @@
                 android:text="@string/Logout"
                 android:layout_width="match_parent"
                 android:textSize="@dimen/login_font_size"
+                android:onClick="btnLogoutOnClick"
                 android:textStyle="normal|bold|italic"
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
