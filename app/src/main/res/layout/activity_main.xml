@@ -109,6 +109,7 @@
             android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:id="@+id/btnAccountSettings"
+            android:onClick="btnAccountSettingsOnClick"
             android:background="@drawable/rounded_button"
             />
 

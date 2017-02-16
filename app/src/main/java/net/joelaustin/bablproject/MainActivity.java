@@ -1,6 +1,7 @@
 package net.joelaustin.bablproject;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+    public void btnAccountSettingsOnClick(View v) {
+        Intent intent = new Intent(getApplication().getBaseContext(), SettingsActivity.class);
+        startActivity(intent);
     }
     //Logout button event handler
     public void btnLogoutOnClick(View v) {

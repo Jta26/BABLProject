@@ -33,8 +33,6 @@
     <string name="Greensburg">Greensburg</string>
 
 
-
-
     <string-array name="LanguagesArray">
         <item>English</item>
         <item>Japanese</item>
@@ -65,7 +63,6 @@
     <string name="facebook_app_id">1752316158322312</string>
 
 
-
     <!--MainActivity Strings-->
     <string name="Welcome">Welcome</string>
     <string name="ActionPhrase">What would you like to do?</string>
@@ -74,4 +71,13 @@
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
     <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
+
+    <!--SettingsActivity Strings -->
+    <string name="accountsettings">Account Settings</string>
+    <string name="settingschangelang">Change Languages</string>
+    <string name="settingschangelangdesc">Here you can change the languages that you would like to meet people from.</string>
+    <string name="settingschangecampus">Change Campus</string>
+    <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
 </resources>
+
+
