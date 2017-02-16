@@ -30,6 +30,17 @@ import java.util.List;
 
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+
+    private Integer intCampusSelect = 6;
+    private Boolean boolMain = false;
+    private Boolean boolJohnstown = false;
+    private Boolean boolBradford = false;
+    private Boolean boolTitusville = false;
+    private Boolean boolGreensburg = false;
+
+    BABLDataLocal localdata = new BABLDataLocal();
+
     //Facebook Objects
     private CallbackManager callbackManager;
     private LoginButton loginButton;
@@ -79,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         });
 
         //Reads Data from BABLDataLocal
-        BABLDataLocal localdata = new BABLDataLocal();
+
         EditText edtSettingsUsername = (EditText) findViewById(R.id.edtSettingsUsername);
         EditText edtSettingsFirstName = (EditText) findViewById(R.id.edtSettingsFirstName);
         strArr[0] = localdata.get_strLang1();
@@ -128,6 +139,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v){
                         linLang.removeView(linLangX);
+                        strArr[index] = null;
                         index--;
                         listLang.add(txvLang.getText().toString().substring(3));
 
@@ -148,28 +160,35 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             }
         }
 
+
+
         //User's Campus
         RadioButton rdbSettingsPittsburgh = (RadioButton) findViewById(R.id.rdbSettingsPittsburgh);
         RadioButton rdbSettingsJohnstown = (RadioButton) findViewById(R.id.rdbSettingsJohnstown);
         RadioButton rdbSettingsBradford = (RadioButton) findViewById(R.id.rdbSettingsBradford);
         RadioButton rdbSettingsTitusville = (RadioButton) findViewById(R.id.rdbSettingsTitusville);
         RadioButton rdbSettingsGreensburg = (RadioButton) findViewById(R.id.rdbSettingsGreensburg);
-        Integer intCampusSelect = 6;
+
         switch (localdata.get_intCampusAttend()) {
             case 0 :
                 rdbSettingsPittsburgh.setChecked(true);
+                intCampusSelect = 0;
                 break;
             case 1 :
                 rdbSettingsJohnstown.setChecked(true);
+                intCampusSelect = 1;
                 break;
             case 2 :
                 rdbSettingsBradford.setChecked(true);
+                intCampusSelect = 2;
                 break;
             case 3 :
                 rdbSettingsTitusville.setChecked(true);
+                intCampusSelect = 3;
                 break;
             case 4 :
                 rdbSettingsGreensburg.setChecked(true);
+                intCampusSelect = 4;
                 break;
         }
 
@@ -180,18 +199,23 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         CheckBox chkSettingsGreensburg = (CheckBox) findViewById(R.id.chkSettingsGreensburg);
         if (localdata.get_boolMain() == true) {
             chkSettingsMain.setChecked(true);
+            boolMain = true;
         }
         if (localdata.get_boolJohnstown() == true) {
             chkSettingsJohnstown.setChecked(true);
+            boolJohnstown = true;
         }
         if (localdata.get_boolBradford() == true) {
             chkSettingsBradford.setChecked(true);
+            boolBradford = true;
         }
         if (localdata.get_boolTitusville() == true) {
             chkSettingsTitusville.setChecked(true);
+            boolTitusville = true;
         }
         if (localdata.get_boolGreensburg() == true) {
             chkSettingsGreensburg.setChecked(true);
+            boolGreensburg = true;
         }
 
 
@@ -243,6 +267,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v){
                     linLang.removeView(linLangX);
+
                     index--;
                     listLang.add(txvLang.getText().toString().substring(3));
 
@@ -266,6 +291,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    public void btnSubmitSettingsOnClick(View v) {
+
+        Boolean boolNewUser = false;
+        new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),"" , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+    }
 
 }
 

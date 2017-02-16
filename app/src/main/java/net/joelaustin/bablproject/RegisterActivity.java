@@ -162,6 +162,9 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
         //Calls the Database Class
 
+        //NewUserBoolean
+        Boolean boolNewUser = true;
+
         //Strings for base User data
         EditText edtUsername = (EditText) findViewById(R.id.edtUsername);
         EditText edtPassword = (EditText) findViewById(R.id.edtPassword);
@@ -235,7 +238,8 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
             //Checks if passwords are equal
             if (strPassword.equals(strPasswordConfirm)) {
-                new BABLDatabase(getApplication().getBaseContext(), strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+
+                new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
 
             } else {
                 Toast.makeText(getApplication().getBaseContext(), "Passwords to not match", Toast.LENGTH_LONG);
