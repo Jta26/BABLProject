@@ -5,6 +5,7 @@ package net.joelaustin.bablproject;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
@@ -30,7 +31,9 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private Boolean boolBradford;
     private Boolean boolTitusville;
     private Boolean boolGreensburg;
-    public BABLDatabase(Context context, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
+    private Boolean boolNewUser;
+
+    public BABLDatabase(Context context,Boolean boolNewUser, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
         this.strUsername = strUsername;
         this.strPassword = strPassword;
@@ -41,6 +44,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         this.boolBradford = boolBradford;
         this.boolTitusville = boolTitusville;
         this.boolGreensburg = boolGreensburg;
+        this.boolNewUser = boolNewUser;
     }
 
 
@@ -49,7 +53,6 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private String db = "DbBABL";
     private String un = "gregmckibbin";
     private String password = "password";
-    private String test = "Test";
 
     ResultSet rs;
     PreparedStatement pstmt;
@@ -62,107 +65,179 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         Connection conn = null;
         String ConnURL = null;
 
-        //Checks if USERNAMES are Equal, if they are, stops process;
-        try {
-            Class.forName(Dbclass).newInstance();
-            ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
-                    + "databaseName=" + db + ";user=" + un + ";password="
-                    + password + ";";
-            conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT * FROM Users";
+        if (boolNewUser == true){
+            //Checks if USERNAMES are Equal, if they are, stops process;
+            try {
+                Class.forName(Dbclass).newInstance();
+                ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
+                        + "databaseName=" + db + ";user=" + un + ";password="
+                        + password + ";";
+                conn = DriverManager.getConnection(ConnURL);
 
-            pstmt = conn.prepareStatement(query);
+                String query = "SELECT * FROM Users";
 
-            rs = pstmt.executeQuery();
-            while (rs.next()){
-                String strUsernameVerify = rs.getString("Username");
-                if (strUsernameVerify.equals(strUsername)){
-                    return "Username Already Exists";
+                pstmt = conn.prepareStatement(query);
+
+
+                rs = pstmt.executeQuery();
+                while (rs.next()){
+                    String strUsernameVerify = rs.getString("Username");
+                    if (strUsernameVerify.equals(strUsername)){
+                        return "Username Already Exists";
+                    }
+
                 }
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                return "exception";
+            }
+            catch (ClassNotFoundException e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+            catch (Exception e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+
+            //Inputs to the Database
+            try {
+
+                Class.forName(Dbclass).newInstance();
+                ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
+                        + "databaseName=" + db + ";user=" + un + ";password="
+                        + password + ";";
+                conn = DriverManager.getConnection(ConnURL);
+                String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
+                        "(" +
+                        "?," + //1
+                        "?," + //2
+                        "?," + //3
+                        "?," + //4
+                        "?," + //5
+                        "?," + //6
+                        "?," + //7
+                        "?," + //8
+                        "?," + //9
+                        "?," + //10
+                        "?," + //11
+                        "?," + //12
+                        "?," + //13
+                        "?" + //14
+                        ")";
+
+
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, strUsername);
+                pstmt.setString(2, strPassword);
+                pstmt.setString(3, strFirstName);
+                pstmt.setString(4, strArr[0]);
+                pstmt.setString(5, strArr[1]);
+                pstmt.setString(6, strArr[2]);
+                pstmt.setString(7, strArr[3]);
+                pstmt.setString(8, strArr[4]);
+                pstmt.setInt(9, intCampusSelect);
+                pstmt.setBoolean(10, boolMain);
+                pstmt.setBoolean(11, boolJohnstown);
+                pstmt.setBoolean(12, boolBradford);
+                pstmt.setBoolean(13, boolTitusville);
+                pstmt.setBoolean(14, boolGreensburg);
+
+                pstmt.executeUpdate();
+                return "New User Added Successfully";
+
+
 
             }
+            catch (SQLException e) {
+                e.printStackTrace();
+                return "exception";
+            }
+            catch (ClassNotFoundException e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+            catch (Exception e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-            return "exception";
-        }
-        catch (ClassNotFoundException e) {
-            Log.e("ERRO", e.getMessage());
-            return "exception";
-        }
-        catch (Exception e) {
-            Log.e("ERRO", e.getMessage());
-            return "exception";
-        }
+        else {
+            try {
+                Class.forName(Dbclass).newInstance();
+                ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
+                        + "databaseName=" + db + ";user=" + un + ";password="
+                        + password + ";";
+                conn = DriverManager.getConnection(ConnURL);
 
-        //Inputs to the Database
-        try {
-
-            Class.forName(Dbclass).newInstance();
-            ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
-                    + "databaseName=" + db + ";user=" + un + ";password="
-                    + password + ";";
-            conn = DriverManager.getConnection(ConnURL);
-            String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
-                    "(" +
-                    "?," + //1
-                    "?," + //2
-                    "?," + //3
-                    "?," + //4
-                    "?," + //5
-                    "?," + //6
-                    "?," + //7
-                    "?," + //8
-                    "?," + //9
-                    "?," + //10
-                    "?," + //11
-                    "?," + //12
-                    "?," + //13
-                    "?" + //14
-                    ")";
-
-
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, strUsername);
-            pstmt.setString(2, strPassword);
-            pstmt.setString(3, strFirstName);
-            pstmt.setString(4, strArr[0]);
-            pstmt.setString(5, strArr[1]);
-            pstmt.setString(6, strArr[2]);
-            pstmt.setString(7, strArr[3]);
-            pstmt.setString(8, strArr[4]);
-            pstmt.setInt(9, intCampusSelect);
-            pstmt.setBoolean(10, boolMain);
-            pstmt.setBoolean(11, boolJohnstown);
-            pstmt.setBoolean(12, boolBradford);
-            pstmt.setBoolean(13, boolTitusville);
-            pstmt.setBoolean(14, boolGreensburg);
-
-            pstmt.executeUpdate();
-            return "New User Added Successfully";
+                String query = "UPDATE Users SET " +
+                        "Lang1=?," +
+                        "Lang2=?," +
+                        "Lang3=?," +
+                        "Lang4=?," +
+                        "Lang5=?," +
+                        "Attending=?," +
+                        "Main=?," +
+                        "Johnstown=?," +
+                        "Bradford=?," +
+                        "Titusville=?," +
+                        "Greensburg=?" +
+                        "WHERE Username=?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, strArr[0]);
+                pstmt.setString(2, strArr[1]);
+                pstmt.setString(3, strArr[2]);
+                pstmt.setString(4, strArr[3]);
+                pstmt.setString(5, strArr[4]);
+                pstmt.setInt(6, intCampusSelect);
+                pstmt.setBoolean(7, boolMain);
+                pstmt.setBoolean(8, boolJohnstown);
+                pstmt.setBoolean(9, boolBradford);
+                pstmt.setBoolean(10, boolTitusville);
+                pstmt.setBoolean(11, boolGreensburg);
+                pstmt.setString(12, strUsername);
+                pstmt = conn.prepareStatement(query);
 
 
+                rs = pstmt.executeQuery();
 
+                return "Account Successfully Updated";
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                return "exception";
+            }
+            catch (ClassNotFoundException e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+            catch (Exception e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-            return "exception";
-        }
-        catch (ClassNotFoundException e) {
-            Log.e("ERRO", e.getMessage());
-            return "exception";
-        }
-        catch (Exception e) {
-            Log.e("ERRO", e.getMessage());
-            return "exception";
-        }
+
     }
 
     protected void onPostExecute(String result) {
 
-
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        if (result.equals("New User Added Successfully")) {
+            Intent intentRegister = new Intent(context, StartActivity.class);
+            intentRegister.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intentRegister);
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+        else if (result.equals("Account Successfully Updated")) {
+            Intent intentMain = new Intent(context, MainActivity.class);
+            intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intentMain);
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
 
 
     }

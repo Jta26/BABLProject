@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -159,8 +160,10 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     public void btnSubmitOnClick(View v) {
         //Hash Passwords Here
 
-
         //Calls the Database Class
+
+        //NewUserBoolean
+        Boolean boolNewUser = true;
 
         //Strings for base User data
         EditText edtUsername = (EditText) findViewById(R.id.edtUsername);
@@ -173,68 +176,75 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
         String strPasswordConfirm = edtPasswordConfirm.getText().toString();
         String strFirstName = edtFirstName.getText().toString();
 
-        //User's Campus
-        RadioButton rdbPittsburgh = (RadioButton) findViewById(R.id.rdbPittsburgh);
-        RadioButton rdbJohnstown = (RadioButton) findViewById(R.id.rdbJohnstown);
-        RadioButton rdbBradford = (RadioButton) findViewById(R.id.rdbBradford);
-        RadioButton rdbTitusville = (RadioButton) findViewById(R.id.rdbTitusville);
-        RadioButton rdbGreensburg = (RadioButton) findViewById(R.id.rdbGreensburg);
-        Integer intCampusSelect =6;
-
-        if (rdbPittsburgh.isChecked()){
-            intCampusSelect = 0;
+        if (TextUtils.isEmpty(edtUsername.getText().toString())){
+            Toast.makeText(getApplication().getBaseContext(), R.string.FieldCantEmpty, Toast.LENGTH_LONG).show();
         }
-        else if (rdbJohnstown.isChecked()){
-            intCampusSelect = 1;
+        else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
+            Toast.makeText(getApplication().getBaseContext(), R.string.FieldCantEmpty, Toast.LENGTH_LONG).show();
         }
-        else if (rdbBradford.isChecked()) {
-            intCampusSelect = 2;
-        }
-        else if (rdbTitusville.isChecked()) {
-            intCampusSelect = 3;
-        }
-        else if (rdbGreensburg.isChecked()) {
-            intCampusSelect = 4;
-        }
-
-        //Bools for Campuses User wants to find people from
-        Boolean boolMain = false;
-        Boolean boolJohnstown = false;
-        Boolean boolBradford = false;
-        Boolean boolTitusville = false;
-        Boolean boolGreensburg = false;
-
-        CheckBox chkMain = (CheckBox) findViewById(R.id.chkMain);
-        CheckBox chkJohnstown = (CheckBox) findViewById(R.id.chkJohnstown);
-        CheckBox chkBradford = (CheckBox) findViewById(R.id.chkBradford);
-        CheckBox chkTitusville = (CheckBox) findViewById(R.id.chkTitusville);
-        CheckBox chkGreensburg = (CheckBox) findViewById(R.id.chkGreensburg);
-        if (chkMain.isChecked()){
-            boolMain = true;
-        }
-        if (chkJohnstown.isChecked()){
-            boolJohnstown = true;
-        }
-        if (chkBradford.isChecked()) {
-            boolBradford = true;
-        }
-        if (chkTitusville.isChecked()) {
-            boolTitusville = true;
-        }
-        if (chkGreensburg.isChecked()) {
-            boolGreensburg = true;
-        }
-
-        //Checks if passwords are equal
-        if (strPassword.equals(strPasswordConfirm)) {
-            new BABLDatabase(getApplication().getBaseContext(),strUsername, strPassword,strFirstName,intCampusSelect, boolMain, boolJohnstown, boolBradford,boolTitusville,boolGreensburg).execute(strArr);
-            Intent intentRegister = new Intent(this, StartActivity.class);
-            startActivity(intentRegister);
+        else if (TextUtils.isEmpty(edtFirstName.getText().toString())) {
+            Toast.makeText(getApplication().getBaseContext(), R.string.FieldCantEmpty, Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(getApplication().getBaseContext(), "Passwords to not match", Toast.LENGTH_LONG);
+
+
+            //User's Campus
+            RadioButton rdbPittsburgh = (RadioButton) findViewById(R.id.rdbPittsburgh);
+            RadioButton rdbJohnstown = (RadioButton) findViewById(R.id.rdbJohnstown);
+            RadioButton rdbBradford = (RadioButton) findViewById(R.id.rdbBradford);
+            RadioButton rdbTitusville = (RadioButton) findViewById(R.id.rdbTitusville);
+            RadioButton rdbGreensburg = (RadioButton) findViewById(R.id.rdbGreensburg);
+            Integer intCampusSelect = 6;
+
+            if (rdbPittsburgh.isChecked()) {
+                intCampusSelect = 0;
+            } else if (rdbJohnstown.isChecked()) {
+                intCampusSelect = 1;
+            } else if (rdbBradford.isChecked()) {
+                intCampusSelect = 2;
+            } else if (rdbTitusville.isChecked()) {
+                intCampusSelect = 3;
+            } else if (rdbGreensburg.isChecked()) {
+                intCampusSelect = 4;
+            }
+
+            //Bools for Campuses User wants to find people from
+            Boolean boolMain = false;
+            Boolean boolJohnstown = false;
+            Boolean boolBradford = false;
+            Boolean boolTitusville = false;
+            Boolean boolGreensburg = false;
+
+            CheckBox chkMain = (CheckBox) findViewById(R.id.chkMain);
+            CheckBox chkJohnstown = (CheckBox) findViewById(R.id.chkJohnstown);
+            CheckBox chkBradford = (CheckBox) findViewById(R.id.chkBradford);
+            CheckBox chkTitusville = (CheckBox) findViewById(R.id.chkTitusville);
+            CheckBox chkGreensburg = (CheckBox) findViewById(R.id.chkGreensburg);
+            if (chkMain.isChecked()) {
+                boolMain = true;
+            }
+            if (chkJohnstown.isChecked()) {
+                boolJohnstown = true;
+            }
+            if (chkBradford.isChecked()) {
+                boolBradford = true;
+            }
+            if (chkTitusville.isChecked()) {
+                boolTitusville = true;
+            }
+            if (chkGreensburg.isChecked()) {
+                boolGreensburg = true;
+            }
+
+            //Checks if passwords are equal
+            if (strPassword.equals(strPasswordConfirm)) {
+
+                new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+
+            } else {
+                Toast.makeText(getApplication().getBaseContext(), "Passwords to not match", Toast.LENGTH_LONG);
+            }
+
         }
-
-
     }
 }

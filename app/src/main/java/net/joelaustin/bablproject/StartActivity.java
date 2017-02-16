@@ -14,10 +14,12 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
     }
+    //Register Button Event Handler
     public void btnRegisterOnClick(View v){
         Intent intentRegister = new Intent(this, RegisterActivity.class);
         startActivity(intentRegister);
     }
+    //Login Button Event Handler
     public void btnLoginOnClick(View v) {
 
         EditText edtUsername = (EditText) findViewById(R.id.edtLoginUsername);
@@ -25,17 +27,8 @@ public class StartActivity extends AppCompatActivity {
         String strUsername = edtUsername.getText().toString();
         String strPassword = edtPassword.getText().toString();
 
-        Boolean boolVerify;
-        BABLLoginVerify loginClass = new BABLLoginVerify();
-        boolVerify = loginClass.VerifyLogin(strUsername, strPassword);
+        new BABLLoginVerify(StartActivity.this, strUsername, strPassword).execute();
 
-        if (boolVerify == true) {
-            Intent intentMainActivity = new Intent(this, MainActivity.class);
-            startActivity(intentMainActivity);
-        }
-        else {
-            Toast.makeText(getApplication().getBaseContext(), R.string.incorrectPass, Toast.LENGTH_LONG);
-        }
 
 
 
