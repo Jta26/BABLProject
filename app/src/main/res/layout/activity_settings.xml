@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="net.joelaustin.bablproject.RegisterActivity"
+    android:windowSoftInputMode="stateVisible">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="@string/accountsettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txvTitle"
+            android:textAlignment="center"
+            android:textStyle="normal|bold|italic"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/title_font_size"
+            android:textAllCaps="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:text="@string/FirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/txvFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:background="@drawable/rounded_edittext_greyed"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:ems="10"
+                    android:id="@+id/edtSettingsFirstName"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="190dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:text="@string/username"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txvUsername"
+                    android:textSize="@dimen/login_font_size"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:focusable="true"/>
+
+                <TextView
+                    android:text="@string/pittEmail"
+                    android:textSize="@dimen/login_font_size"
+                    android:textColor="@color/colorAccent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txvPitt"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:background="@drawable/rounded_edittext_greyed"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:id="@+id/edtSettingsUsername"
+                    android:layout_width="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/txvPitt"
+                    android:layout_toStartOf="@+id/txvPitt" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/Languages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txvLanguages"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_alignTop="@+id/spinnerLang"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:text="@string/settingschangelangdesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spinnerLang"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/txvDesc"
+                    android:layout_marginTop="10dp" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerLang"
+                    android:paddingTop="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/spinnerLang"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:id="@+id/linLang"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"></LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="@string/settingschangecampus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txvAddCampus"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/login_font_size"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/txvSelectCampus"
+                    android:layout_alignBottom="@+id/txvSelectCampus"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="11dp"
+                    android:layout_marginEnd="11dp">
+
+                    <TextView
+                        android:text="@string/settingschangecampusdesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvSelectCampusAttend"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgSettingsCampuses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txvSelectCampusAttend">
+
+                        <RadioButton
+                            android:id="@+id/rdbSettingsPittsburgh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Pittsburgh"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:checked="false"
+                            android:layout_weight="1" />
+
+                        <RadioButton
+                            android:id="@+id/rdbSettingsJohnstown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbPittsburgh"
+                            android:text="@string/Johnstown"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
+
+                        <RadioButton
+                            android:id="@+id/rdbSettingsBradford"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Bradford"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_below="@id/rdbJohnstown"
+                            android:layout_weight="1" />
+                        <RadioButton
+                            android:id="@+id/rdbSettingsTitusville"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbBradford"
+                            android:text="@string/Titusville"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
+
+
+
+                        <RadioButton
+                            android:id="@+id/rdbSettingsGreensburg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rdbTitusville"
+                            android:text="@string/Greensburg"
+                            android:textSize="@dimen/login_font_size"
+                            android:layout_weight="1" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="@string/campusSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvSelectCampus"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:text="@string/Pittsburgh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkSettingsMain"
+                        android:layout_below="@+id/txvSelectCampus"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Johnstown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkSettingsJohnstown"
+                        android:layout_below="@+id/chkSettingsMain"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Bradford"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkSettingsBradford"
+                        android:layout_below="@+id/chkSettingsJohnstown"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Titusville"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkSettingsTitusville"
+                        android:layout_below="@+id/chkSettingsBradford"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+                    <CheckBox
+                        android:text="@string/Greensburg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chkSettingsGreensburg"
+                        android:layout_below="@+id/chkSettingsTitusville"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="25sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/chkSettingsGreensburg"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvAddFacebook"
+                        android:text="@string/AddFacebook"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/login_font_size"/>
+
+                    <TextView
+                        android:text="@string/AddFacebookDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txvFacebookDesc"
+                        android:layout_below="@+id/txvAddFacebook"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <com.facebook.login.widget.LoginButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txvFacebookDesc"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/btnFacebook"/>
+
+                </RelativeLayout>
+                <Button
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/NewUserSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnNewUserSubmit"
+                    android:layout_below="@+id/edtPasswordConfirm"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="normal|bold"
+                    android:textAlignment="center"
+                    android:onClick="btnSubmitSettingsOnClick"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="@dimen/login_font_size"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
