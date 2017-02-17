@@ -5,7 +5,7 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="pittEmail">"@"Pitt.edu</string>
-    <string name="WhatIs">BABL used to help University of Pittsburgh students of all campuses connect with and meet new people.
+    <string name="WhatIs">BABL is used to help University of Pittsburgh students of all campuses connect with and meet new people.
         It\'s core functionality is based around people that speak or are learning another language discover someone else that also speaks their language.
     </string>
     <string name="incorrectPass">Username or Password Incorrect</string>
@@ -41,27 +41,54 @@
         <item>English</item>
         <item>Japanese</item>
         <item>German</item>
-        <item>Chinese</item>
+        <item>Mandarin</item>
+        <item>Cantonese</item>
+        <item>Korean</item>
         <item>Russian</item>
         <item>Latin</item>
-        <item>English</item>
-        <item>Japanese</item>
-        <item>German</item>
-        <item>Chinese</item>
-        <item>Russian</item>
-        <item>Latin</item>
-        <item>English</item>
-        <item>Japanese</item>
-        <item>German</item>
-        <item>Chinese</item>
-        <item>Russian</item>
-        <item>Latin</item>
-        <item>English</item>
-        <item>Japanese</item>
-        <item>German</item>
-        <item>Chinese</item>
-        <item>Russian</item>
-        <item>Latin</item>
+        <item>Albanian</item>
+        <item>Arabic</item>
+        <item>Armenian</item>
+        <item>Belarusian</item>
+        <item>Bosnian</item>
+        <item>Bulgarian</item>
+        <item>Croatian</item>
+        <item>Czech</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>Esperanto</item>
+        <item>Estonian</item>
+        <item>Filipino</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>Georgian</item>
+        <item>Greek</item>
+        <item>Hawaiian</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hungarian</item>
+        <item>Icelandic</item>
+        <item>Indonesian</item>
+        <item>Irish</item>
+        <item>Italian</item>
+        <item>Javanese</item>
+        <item>Lao</item>
+        <item>Latvian</item>
+        <item>Lithuanian</item>
+        <item>Macedonian</item>
+        <item>Mongolian</item>
+        <item>Portuguese</item>
+        <item>Polish</item>
+        <item>Persian</item>
+        <item>Norwegian</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+        <item>Thai</item>
+        <item>Vietnamese</item>
+        <item>Ukrainian</item>
+        <item>Welsh</item>
+
+
 
     </string-array>
     <string name="facebook_app_id">1752316158322312</string>

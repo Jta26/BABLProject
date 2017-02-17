@@ -35,6 +35,7 @@ import org.w3c.dom.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -61,7 +62,11 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
 
         //Spinner List Things
-        listLang = new ArrayList<>(Arrays.asList("Nothing","English", "Japanese", "German", "Chinese", "Latin", "Cantonese", "French"));
+        listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.LanguagesArray)));
+        java.util.Collections.sort(listLang);
+        Collections.reverse(listLang);
+        listLang.add("Select");
+        Collections.reverse(listLang);
         spinnerLang = (Spinner) findViewById(R.id.spinnerLang);
         adapterLang = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listLang);
         adapterLang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
