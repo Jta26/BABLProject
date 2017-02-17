@@ -201,7 +201,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
               
 
 
-                rs = pstmt.executeQuery();
+                pstmt.execute();
 
                 return "Account Successfully Updated";
             }
@@ -230,10 +230,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
         else if (result.equals("Account Successfully Updated")) {
-            Intent intentMain = new Intent(context, MainActivity.class);
-            intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intentMain);
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            new BABLDataRetrieve(context).execute();
         }
         else {
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();

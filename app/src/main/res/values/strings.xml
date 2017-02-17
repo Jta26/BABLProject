@@ -31,6 +31,10 @@
     <string name="Bradford">Bradford</string>
     <string name="Titusville">Titusville</string>
     <string name="Greensburg">Greensburg</string>
+    <string name="passwordmatch">Password do not match.</string>
+    <string name="campusselectblank">Please select a campus.</string>
+    <string name="nocampuschecked">Please select at least one campus to find someone at.</string>
+    <string name="nolanguageselected">Please select at least one language.</string>
 
 
     <string-array name="LanguagesArray">

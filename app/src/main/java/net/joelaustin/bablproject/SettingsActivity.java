@@ -31,6 +31,7 @@ import java.util.List;
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
+
     private Integer intCampusSelect = 6;
     private Boolean boolMain = false;
     private Boolean boolJohnstown = false;
@@ -51,6 +52,19 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     List<String> listLang;
     ArrayAdapter<String> adapterLang;
     Spinner spinnerLang;
+
+
+    RadioButton rdbSettingsPittsburgh;
+    RadioButton rdbSettingsJohnstown;
+    RadioButton rdbSettingsBradford;
+    RadioButton rdbSettingsTitusville;
+    RadioButton rdbSettingsGreensburg;
+
+    CheckBox chkSettingsMain;
+    CheckBox chkSettingsJohnstown;
+    CheckBox chkSettingsBradford;
+    CheckBox chkSettingsTitusville;
+    CheckBox chkSettingsGreensburg;
 
     int index = 0;
     @Override
@@ -89,7 +103,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         });
 
         //Reads Data from BABLDataLocal
-
         EditText edtSettingsUsername = (EditText) findViewById(R.id.edtSettingsUsername);
         EditText edtSettingsFirstName = (EditText) findViewById(R.id.edtSettingsFirstName);
         strArr[0] = localdata.get_strLang1();
@@ -98,9 +111,21 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         strArr[3] = localdata.get_strLang4();
         strArr[4] = localdata.get_strLang5();
 
-
         edtSettingsFirstName.setText(localdata.get_strFirstName());
         edtSettingsUsername.setText(localdata.get_strUsername());
+
+        rdbSettingsPittsburgh = (RadioButton) findViewById(R.id.rdbSettingsPittsburgh);
+        rdbSettingsJohnstown = (RadioButton) findViewById(R.id.rdbSettingsJohnstown);
+        rdbSettingsBradford = (RadioButton) findViewById(R.id.rdbSettingsBradford);
+        rdbSettingsTitusville = (RadioButton) findViewById(R.id.rdbSettingsTitusville);
+        rdbSettingsGreensburg = (RadioButton) findViewById(R.id.rdbSettingsGreensburg);
+
+        chkSettingsMain = (CheckBox) findViewById(R.id.chkSettingsMain);
+        chkSettingsJohnstown = (CheckBox) findViewById(R.id.chkSettingsJohnstown);
+        chkSettingsBradford = (CheckBox) findViewById(R.id.chkSettingsBradford);
+        chkSettingsTitusville = (CheckBox) findViewById(R.id.chkSettingsTitusville);
+        chkSettingsGreensburg = (CheckBox) findViewById(R.id.chkSettingsGreensburg);
+
 
         for (int i = 0; i < strArr.length; i++) {
 
@@ -108,7 +133,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
             }
             else {
-                String strLang = strArr[i];
+                final String strLang = strArr[i];
                 //Some XML Formatting
                 final LinearLayout linLang = (LinearLayout) findViewById(R.id.linLang);
                 final LinearLayout linLangX = new LinearLayout(this);
@@ -119,8 +144,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
 
                 //The TextView with the name of the Language
+
                 final TextView txvLang = new TextView(this);
-                txvLang.setText(Integer.toString(index + 1) + ". " + strLang);
+                txvLang.setText(strLang);
                 LinearLayout.LayoutParams txvLangParams = new LinearLayout.LayoutParams(800, ViewGroup.LayoutParams.WRAP_CONTENT);
                 txvLang.setLayoutParams(txvLangParams);
                 txvLang.setTextSize(25);
@@ -138,9 +164,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v){
                         linLang.removeView(linLangX);
-                        strArr[index] = null;
+                        strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
                         index--;
-                        listLang.add(txvLang.getText().toString().substring(3));
+                        listLang.add(txvLang.getText().toString());
 
 
                     }
@@ -150,10 +176,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 //Adds to An Array
 
                 strArr[index] = strLang;
-
                 listLang.remove(strArr[i]);
                 adapterLang.notifyDataSetChanged();
-
                 spinnerLang.setSelection(0);
                 index++;
             }
@@ -162,11 +186,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
 
         //User's Campus
-        RadioButton rdbSettingsPittsburgh = (RadioButton) findViewById(R.id.rdbSettingsPittsburgh);
-        RadioButton rdbSettingsJohnstown = (RadioButton) findViewById(R.id.rdbSettingsJohnstown);
-        RadioButton rdbSettingsBradford = (RadioButton) findViewById(R.id.rdbSettingsBradford);
-        RadioButton rdbSettingsTitusville = (RadioButton) findViewById(R.id.rdbSettingsTitusville);
-        RadioButton rdbSettingsGreensburg = (RadioButton) findViewById(R.id.rdbSettingsGreensburg);
+
 
         switch (localdata.get_intCampusAttend()) {
             case 0 :
@@ -191,11 +211,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 break;
         }
 
-        CheckBox chkSettingsMain = (CheckBox) findViewById(R.id.chkSettingsMain);
-        CheckBox chkSettingsJohnstown = (CheckBox) findViewById(R.id.chkSettingsJohnstown);
-        CheckBox chkSettingsBradford = (CheckBox) findViewById(R.id.chkSettingsBradford);
-        CheckBox chkSettingsTitusville = (CheckBox) findViewById(R.id.chkSettingsTitusville);
-        CheckBox chkSettingsGreensburg = (CheckBox) findViewById(R.id.chkSettingsGreensburg);
         if (localdata.get_boolMain() == true) {
             chkSettingsMain.setChecked(true);
             boolMain = true;
@@ -225,30 +240,27 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
     //When The Spinner is Clicked
-    public void onItemSelected(final AdapterView<?> parent, View v, final int pos, long id){
+    public void onItemSelected(final AdapterView<?> parent, View v, final int pos, long id) {
 
 
-        if (index > 4){
-
+        if (index == 4) {
             String strMaxLang = getResources().getString(R.string.maxLang);
             Toast.makeText(getApplication().getBaseContext(), strMaxLang, Toast.LENGTH_SHORT).show();
-        }
-        else if (pos == 0) {
+        } else if (pos == 0) {
 
-        }
-        else {
+        } else {
             //Some XML Formatting
             final LinearLayout linLang = (LinearLayout) findViewById(R.id.linLang);
             final LinearLayout linLangX = new LinearLayout(this);
             linLangX.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams linXMarginParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            linXMarginParams.setMargins(0,0,0,0);
+            linXMarginParams.setMargins(0, 0, 0, 0);
             linLangX.setLayoutParams(linXMarginParams);
 
             //The TextView with the name of the Language
             final TextView txvLang = new TextView(this);
-            String strLang = parent.getItemAtPosition(pos).toString();
-            txvLang.setText(Integer.toString(index + 1) + ". " + strLang);
+            final String strLang = parent.getItemAtPosition(pos).toString();
+            txvLang.setText(strLang);
             LinearLayout.LayoutParams txvLangParams = new LinearLayout.LayoutParams(800, ViewGroup.LayoutParams.WRAP_CONTENT);
             txvLang.setLayoutParams(txvLangParams);
             txvLang.setTextSize(25);
@@ -260,31 +272,33 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             final ImageButton btnRemoveLang = new ImageButton(this);
             btnRemoveLang.setImageResource(R.drawable.remove);
             btnRemoveLang.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            LinearLayout.LayoutParams btnRemoveLangParams = new LinearLayout.LayoutParams(120,120);
-            btnRemoveLangParams.setMargins(0,0,400,0);
+            LinearLayout.LayoutParams btnRemoveLangParams = new LinearLayout.LayoutParams(120, 120);
+            btnRemoveLangParams.setMargins(0, 0, 400, 0);
             btnRemoveLang.setLayoutParams(btnRemoveLangParams);
             btnRemoveLang.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v){
+                public void onClick(View v) {
                     linLang.removeView(linLangX);
-
+                    listLang.add(txvLang.getText().toString());
                     index--;
-                    listLang.add(txvLang.getText().toString().substring(3));
-
-
+                    strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
                 }
             });
             linLangX.addView(btnRemoveLang);
 
             //Adds to An Array
+            for (int i = 0; i <= strArr.length; i++) {
+                if (strArr[i] == null) {
+                    strArr[i] = strLang;
+                    listLang.remove(pos);
+                    adapterLang.notifyDataSetChanged();
+                    spinnerLang.setSelection(0);
+                    index++;
+                    break;
+                }
+            }
 
-            strArr[index] = strLang;
-            listLang.remove(pos);
-            adapterLang.notifyDataSetChanged();
-            spinnerLang.setSelection(0);
-            index++;
 
         }
-
     }
     public void onNothingSelected(AdapterView<?> parent){
 
@@ -292,8 +306,53 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     public void btnSubmitSettingsOnClick(View v) {
 
+        String[] strNewArr = new String[5];
+
+        if (rdbSettingsPittsburgh.isChecked()) {
+            intCampusSelect = 0;
+        } else if (rdbSettingsJohnstown.isChecked()) {
+            intCampusSelect = 1;
+        } else if (rdbSettingsBradford.isChecked()) {
+            intCampusSelect = 2;
+        } else if (rdbSettingsTitusville.isChecked()) {
+            intCampusSelect = 3;
+        } else if (rdbSettingsGreensburg.isChecked()) {
+            intCampusSelect = 4;
+        }
+
+        if (chkSettingsMain.isChecked()) {
+            boolMain = true;
+        }
+        else {
+            boolMain = false;
+        }
+        if (chkSettingsJohnstown.isChecked()) {
+            boolJohnstown = true;
+        }
+        else {
+            boolJohnstown = false;
+        }
+        if (chkSettingsBradford.isChecked()) {
+            boolBradford = true;
+        }
+        else {
+            boolBradford = false;
+        }
+        if (chkSettingsTitusville.isChecked()) {
+            boolTitusville = true;
+        }
+        else {
+            boolTitusville = false;
+        }
+        if (chkSettingsGreensburg.isChecked()) {
+            boolGreensburg = true;
+        }
+        else {
+            boolGreensburg = false;
+        }
         Boolean boolNewUser = false;
         new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),"" , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+
     }
 
 }
