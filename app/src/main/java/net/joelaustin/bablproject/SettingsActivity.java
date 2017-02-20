@@ -186,7 +186,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             }
         }
 
-    //User's Campus
+        //User's Campus
         switch(localdata.get_intCampusAttend())
 
         {
@@ -213,40 +213,31 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         }
 
         if(localdata.get_boolMain()==true)
-
         {
             chkSettingsMain.setChecked(true);
             boolMain = true;
         }
 
         if(localdata.get_boolJohnstown()==true)
-
         {
             chkSettingsJohnstown.setChecked(true);
             boolJohnstown = true;
         }
-
         if(localdata.get_boolBradford()==true)
-
         {
             chkSettingsBradford.setChecked(true);
             boolBradford = true;
         }
-
         if(localdata.get_boolTitusville()==true)
-
         {
             chkSettingsTitusville.setChecked(true);
             boolTitusville = true;
         }
-
         if(localdata.get_boolGreensburg()==true)
-
         {
             chkSettingsGreensburg.setChecked(true);
             boolGreensburg = true;
         }
-
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -297,8 +288,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 }
             });
             linLangX.addView(btnRemoveLang);
-
-
 
             //Adds to An Array
             for (int i = 0; i <= strArr.length; i++) {

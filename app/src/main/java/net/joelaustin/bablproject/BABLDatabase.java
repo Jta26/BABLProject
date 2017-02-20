@@ -4,6 +4,7 @@ package net.joelaustin.bablproject;
  * Created by Joel-PC on 2/3/2017.
  */
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -19,7 +20,6 @@ import java.sql.SQLException;
 
 
 public class BABLDatabase extends AsyncTask<String, Void, String>{
-
 
     private Context context;
     private String strUsername;
@@ -105,6 +105,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
             //Inputs to the Database
             try {
 
+                String hashedPass = BCrypt.hashpw(strPassword, BCrypt.gensalt());
                 Class.forName(Dbclass).newInstance();
                 ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                         + "databaseName=" + db + ";user=" + un + ";password="
@@ -131,7 +132,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, strUsername);
-                pstmt.setString(2, strPassword);
+                pstmt.setString(2, hashedPass);
                 pstmt.setString(3, strFirstName);
                 pstmt.setString(4, strArr[0]);
                 pstmt.setString(5, strArr[1]);
