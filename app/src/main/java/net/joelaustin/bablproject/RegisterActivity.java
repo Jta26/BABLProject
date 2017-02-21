@@ -35,6 +35,7 @@ import org.w3c.dom.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -140,7 +141,13 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
             btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v){
                     linLang.removeView(linLangX);
+                    listLang.remove(0);
                     listLang.add(txvLang.getText().toString());
+                    java.util.Collections.sort(listLang);
+                    Collections.reverse(listLang);
+                    listLang.add("Select");
+                    Collections.reverse(listLang);
+                    adapterLang.notifyDataSetChanged();
                     index--;
                     strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
                 }

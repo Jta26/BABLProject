@@ -167,9 +167,15 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         linLang.removeView(linLangX);
-                        strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
-                        index--;
+                        listLang.remove(0);
                         listLang.add(txvLang.getText().toString());
+                        java.util.Collections.sort(listLang);
+                        Collections.reverse(listLang);
+                        listLang.add("Select");
+                        Collections.reverse(listLang);
+                        adapterLang.notifyDataSetChanged();
+                        index--;
+                        strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
 
 
                     }
@@ -282,7 +288,13 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     linLang.removeView(linLangX);
+                    listLang.remove(0);
                     listLang.add(txvLang.getText().toString());
+                    java.util.Collections.sort(listLang);
+                    Collections.reverse(listLang);
+                    listLang.add("Select");
+                    Collections.reverse(listLang);
+                    adapterLang.notifyDataSetChanged();
                     index--;
                     strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
                 }
