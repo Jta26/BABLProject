@@ -8,7 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     BABLDataLocal dataLocal = new BABLDataLocal();
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //Logout button event handler
     public void btnLogoutOnClick(View v) {
+
 
         dataLocal.set_strFirstName(null);
         dataLocal.set_strUsername(null);
