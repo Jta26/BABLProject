@@ -35,6 +35,8 @@ import org.w3c.dom.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -52,6 +54,7 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     Spinner spinnerLang;
 
     int index = 0;
+    int intDeletedIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,11 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
 
         //Spinner List Things
-        listLang = new ArrayList<>(Arrays.asList("Nothing","English", "Japanese", "German", "Chinese", "Latin", "Cantonese", "French"));
+        listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.LanguagesArray)));
+        java.util.Collections.sort(listLang);
+        Collections.reverse(listLang);
+        listLang.add("Select");
+        Collections.reverse(listLang);
         spinnerLang = (Spinner) findViewById(R.id.spinnerLang);
         adapterLang = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listLang);
         adapterLang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,8 +103,8 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     public void onItemSelected(final AdapterView<?> parent, View v, final int pos, long id){
 
 
-        if (index > 4){
 
+        if (index == 4) {
             String strMaxLang = getResources().getString(R.string.maxLang);
             Toast.makeText(getApplication().getBaseContext(), strMaxLang, Toast.LENGTH_SHORT).show();
         }
@@ -115,8 +122,8 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
             //The TextView with the name of the Language
             final TextView txvLang = new TextView(this);
-            String strLang = parent.getItemAtPosition(pos).toString();
-            txvLang.setText(Integer.toString(index + 1) + ". " + strLang);
+            final String strLang = parent.getItemAtPosition(pos).toString();
+            txvLang.setText(strLang);
             LinearLayout.LayoutParams txvLangParams = new LinearLayout.LayoutParams(800, ViewGroup.LayoutParams.WRAP_CONTENT);
             txvLang.setLayoutParams(txvLangParams);
             txvLang.setTextSize(25);
@@ -134,21 +141,31 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
             btnRemoveLang.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v){
                     linLang.removeView(linLangX);
+                    listLang.remove(0);
+                    listLang.add(txvLang.getText().toString());
+                    java.util.Collections.sort(listLang);
+                    Collections.reverse(listLang);
+                    listLang.add("Select");
+                    Collections.reverse(listLang);
+                    adapterLang.notifyDataSetChanged();
                     index--;
-                    listLang.add(txvLang.getText().toString().substring(3));
-
-
+                    strArr[Arrays.asList(strArr).indexOf(strLang)] = null;
                 }
             });
             linLangX.addView(btnRemoveLang);
 
             //Adds to An Array
+            for (int i = 0; i <= strArr.length; i++) {
+                if (strArr[i] == null) {
+                    strArr[i] = strLang;
+                    listLang.remove(pos);
+                    adapterLang.notifyDataSetChanged();
+                    spinnerLang.setSelection(0);
+                    index++;
+                    break;
+                }
+            }
 
-            strArr[index] = strLang;
-            listLang.remove(pos);
-            adapterLang.notifyDataSetChanged();
-            spinnerLang.setSelection(0);
-            index++;
 
         }
 
@@ -236,13 +253,38 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
                 boolGreensburg = true;
             }
 
-            //Checks if passwords are equal
-            if (strPassword.equals(strPasswordConfirm)) {
 
-                new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+
+            //Checks if passwords are equal and checks if any other fields are not satisfied.
+            if (strPassword.equals(strPasswordConfirm)) {
+                Boolean boolHasLanguage = false;
+                for(int i = 0; i < strArr.length; i++)
+                {
+                    if(strArr[i] != null) {
+                        boolHasLanguage = true;
+                        break;
+                    }
+                }
+                if (boolHasLanguage == false) {
+                    Toast.makeText(getApplication().getBaseContext(), R.string.nolanguageselected, Toast.LENGTH_LONG).show();
+                }
+                else if (intCampusSelect == 6) {
+                    Toast.makeText(getApplication().getBaseContext(), R.string.campusselectblank, Toast.LENGTH_LONG).show();
+                }
+                else if (chkMain.isChecked() == false && chkJohnstown.isChecked() == false && chkBradford.isChecked() == false && chkTitusville.isChecked() == false && chkGreensburg.isChecked() == false) {
+                    Toast.makeText(getApplication().getBaseContext(), R.string.nocampuschecked, Toast.LENGTH_LONG).show();
+                }
+                else {
+
+
+
+
+                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+                }
+
 
             } else {
-                Toast.makeText(getApplication().getBaseContext(), "Passwords to not match", Toast.LENGTH_LONG);
+                Toast.makeText(getApplication().getBaseContext(), R.string.passwordmatch, Toast.LENGTH_LONG).show();
             }
 
         }

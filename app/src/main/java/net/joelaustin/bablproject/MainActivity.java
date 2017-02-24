@@ -1,13 +1,11 @@
 package net.joelaustin.bablproject;
 
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     BABLDataLocal dataLocal = new BABLDataLocal();

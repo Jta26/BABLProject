@@ -67,7 +67,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
             while (rs.next()) {
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
-                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && strPassword.equals(strPasswordVerify)) {
+                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && BCrypt.checkpw(strPassword,strPasswordVerify)) {
 
                     return true;
                 }
