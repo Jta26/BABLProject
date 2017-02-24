@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 //WIP
 
-public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
+public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
 
     ResultSet rs;
     PreparedStatement pstmt;
@@ -42,7 +42,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
         this.strPassword = strPassword;
     }
 
-    public Boolean doInBackground(Boolean... boolVerify) {
+    public Boolean doInBackground(Void... Void) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -67,7 +67,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
             while (rs.next()) {
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
-                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && strPassword.equals(strPasswordVerify)) {
+                if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && BCrypt.checkpw(strPassword,strPasswordVerify)) {
 
                     return true;
                 }

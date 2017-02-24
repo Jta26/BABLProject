@@ -126,6 +126,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
 
         Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         Toast.makeText(context, R.string.UserDataRetrieved, Toast.LENGTH_SHORT).show();
     }

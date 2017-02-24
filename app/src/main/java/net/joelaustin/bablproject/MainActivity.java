@@ -1,16 +1,21 @@
 package net.joelaustin.bablproject;
 
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     BABLDataLocal dataLocal = new BABLDataLocal();
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //Logout button event handler
     public void btnLogoutOnClick(View v) {
+
 
         dataLocal.set_strFirstName(null);
         dataLocal.set_strUsername(null);
