@@ -5,8 +5,8 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="pittEmail">"@"Pitt.edu</string>
-    <string name="WhatIs">BABL is used to help University of Pittsburgh students of all campuses connect with and meet new people.
-        It\'s core functionality is based around people that speak or are learning another language discover someone else that also speaks their language.
+    <string name="WhatIs">BABL is an app designed to help University of Pittsburgh students of all campuses connect with and meet new people.
+        It\'s core functionality is based around people that speak or are learning to speak another language discover someone else that also speaks that language.
     </string>
     <string name="incorrectPass">Username or Password Incorrect</string>
 
