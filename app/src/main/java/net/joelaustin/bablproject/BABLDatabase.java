@@ -48,22 +48,27 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     }
 
 
-    private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
-    private String db = "DbBABL";
+    private String db = "BABLdb";
     private String un = "gregmckibbin";
     private String password = "password";
+
+
 
     ResultSet rs;
     PreparedStatement pstmt;
 
     protected String doInBackground(String... strArr){
 
+        String languageString = strArr[0] + "," + strArr[1] + "," + strArr[2] + "," + strArr[3] + "," + strArr[4];
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection conn = null;
         String ConnURL = null;
+
 
 
         if (boolNewUser == true){
@@ -75,7 +80,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                         + password + ";";
                 conn = DriverManager.getConnection(ConnURL);
 
-                String query = "SELECT * FROM Users";
+                String query = "SELECT Username FROM Users";
 
                 pstmt = conn.prepareStatement(query);
 
@@ -111,40 +116,23 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                         + "databaseName=" + db + ";user=" + un + ";password="
                         + password + ";";
                 conn = DriverManager.getConnection(ConnURL);
-                String query = "INSERT INTO Users (Username, Password, FirstName, Lang1, Lang2, Lang3, Lang4, Lang5, Attending, Main, Johnstown, Bradford, Titusville, Greensburg) VALUES " +
-                        "(" +
-                        "?," + //1
-                        "?," + //2
-                        "?," + //3
-                        "?," + //4
-                        "?," + //5
-                        "?," + //6
-                        "?," + //7
-                        "?," + //8
-                        "?," + //9
-                        "?," + //10
-                        "?," + //11
-                        "?," + //12
-                        "?," + //13
-                        "?" + //14
-                        ")";
 
+                String query = "EXEC InsertUser @username=?, @password=?, @firstname=?, @attending=?, @main=?, @johnstown=?, @bradford=?, @titusville=?, @greensburg=?, @languages=?;";
 
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, strUsername);
                 pstmt.setString(2, hashedPass);
                 pstmt.setString(3, strFirstName);
-                pstmt.setString(4, strArr[0]);
-                pstmt.setString(5, strArr[1]);
-                pstmt.setString(6, strArr[2]);
-                pstmt.setString(7, strArr[3]);
-                pstmt.setString(8, strArr[4]);
-                pstmt.setInt(9, intCampusSelect);
-                pstmt.setBoolean(10, boolMain);
-                pstmt.setBoolean(11, boolJohnstown);
-                pstmt.setBoolean(12, boolBradford);
-                pstmt.setBoolean(13, boolTitusville);
-                pstmt.setBoolean(14, boolGreensburg);
+                pstmt.setInt(4, intCampusSelect);
+                pstmt.setBoolean(5, boolMain);
+                pstmt.setBoolean(6, boolJohnstown);
+                pstmt.setBoolean(7, boolBradford);
+                pstmt.setBoolean(8, boolTitusville);
+                pstmt.setBoolean(9, boolGreensburg);
+                languageString = languageString.replace(",null", "");
+                pstmt.setString(10, languageString);
+
+
 
                 pstmt.executeUpdate();
                 return "New User Added Successfully";
@@ -167,6 +155,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         }
         else {
             try {
+
                 Class.forName(Dbclass).newInstance();
                 ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                         + "databaseName=" + db + ";user=" + un + ";password="

@@ -26,9 +26,9 @@ public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
 
     BABLDataLocal localData = new BABLDataLocal();
 
-    private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
-    private String db = "DbBABL";
+    private String db = "BABLdb";
     private String un = "gregmckibbin";
     private String password = "password";
 
