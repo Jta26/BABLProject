@@ -62,9 +62,9 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     protected String doInBackground(String... strArr){
 
         String languageString = strArr[0] + "," + strArr[1] + "," + strArr[2] + "," + strArr[3] + "," + strArr[4];
+        languageString = languageString.replace(",null", "");
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                .permitAll().build();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Connection conn = null;
         String ConnURL = null;
@@ -129,7 +129,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 pstmt.setBoolean(7, boolBradford);
                 pstmt.setBoolean(8, boolTitusville);
                 pstmt.setBoolean(9, boolGreensburg);
-                languageString = languageString.replace(",null", "");
+
                 pstmt.setString(10, languageString);
 
 
