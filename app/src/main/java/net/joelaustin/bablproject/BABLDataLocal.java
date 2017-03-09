@@ -6,8 +6,11 @@ package net.joelaustin.bablproject;
 
 public class BABLDataLocal {
 
+    private static Integer _intUserID;
+
     private static String _strUsername;
     private static String _strFirstName;
+    private static String _strHashedPass;
 
     private static String _strLang1;
     private static String _strLang2;
@@ -23,6 +26,13 @@ public class BABLDataLocal {
     private static Boolean _boolTitusville;
     private static Boolean _boolGreensburg;
 
+    public void set_intUserID(Integer intUserID) {
+        this._intUserID = intUserID;
+    }
+    //get UserID;
+    public Integer get_intUserID() {
+        return _intUserID;
+    }
     //set Username
     public void set_strUsername(String strUsername) {
         _strUsername = strUsername;
@@ -38,6 +48,14 @@ public class BABLDataLocal {
     //get FirstName
     public String get_strFirstName(){
         return _strFirstName;
+    }
+    //set HashedPass
+    public void set_strHashedPass(String strHashedPass) {
+        this._strHashedPass = strHashedPass;
+    }
+    //get HashedPass
+    public String get_strHashedPass() {
+        return _strHashedPass;
     }
     //set Language 1
     public void set_strLang1(String strLang1){

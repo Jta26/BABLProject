@@ -3,8 +3,6 @@ package net.joelaustin.bablproject;
 /**
  * Created by Joel-PC on 2/3/2017.
  */
-
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,6 +18,8 @@ import java.sql.SQLException;
 
 
 public class BABLDatabase extends AsyncTask<String, Void, String>{
+
+    BABLDataLocal localdata = new BABLDataLocal();
 
     private Context context;
     private String strUsername;
@@ -71,7 +71,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
 
-        if (boolNewUser == true){
+        if (boolNewUser == true) {
             //Checks if USERNAMES are Equal, if they are, stops process;
             try {
                 Class.forName(Dbclass).newInstance();
@@ -86,31 +86,30 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
                 rs = pstmt.executeQuery();
-                while (rs.next()){
+                while (rs.next()) {
                     String strUsernameVerify = rs.getString("Username");
-                    if (strUsernameVerify.equals(strUsername)){
+                    if (strUsernameVerify.equals(strUsername)) {
                         return "Username Already Exists";
                     }
 
                 }
-            }
-            catch (SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
                 return "exception";
-            }
-            catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            } catch (Exception e) {
                 Log.e("ERRO", e.getMessage());
                 return "exception";
             }
-            catch (Exception e) {
-                Log.e("ERRO", e.getMessage());
-                return "exception";
-            }
+        }
 
             //Inputs to the Database
             try {
 
-                String hashedPass = BCrypt.hashpw(strPassword, BCrypt.gensalt());
+
+
                 Class.forName(Dbclass).newInstance();
                 ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
                         + "databaseName=" + db + ";user=" + un + ";password="
@@ -118,10 +117,13 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 conn = DriverManager.getConnection(ConnURL);
 
                 String query = "EXEC InsertUser @username=?, @password=?, @firstname=?, @attending=?, @main=?, @johnstown=?, @bradford=?, @titusville=?, @greensburg=?, @languages=?;";
-
+                //Self Notes:
+                //Location Matching, I.E. campus selection matching will be done AFTER all the matches of your language have been pulled.
+                //This solution is suitable because we wont be pulling that much data anyways, The stored procedure is too difficult
+                // with all the variables.
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, strUsername);
-                pstmt.setString(2, hashedPass);
+                pstmt.setString(2, strPassword);
                 pstmt.setString(3, strFirstName);
                 pstmt.setInt(4, intCampusSelect);
                 pstmt.setBoolean(5, boolMain);
@@ -153,73 +155,16 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 return "exception";
             }
         }
-        else {
-            try {
-
-                Class.forName(Dbclass).newInstance();
-                ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
-                        + "databaseName=" + db + ";user=" + un + ";password="
-                        + password + ";";
-                conn = DriverManager.getConnection(ConnURL);
-
-                String query = "UPDATE Users SET " +
-                        "Lang1=?," +
-                        "Lang2=?," +
-                        "Lang3=?," +
-                        "Lang4=?," +
-                        "Lang5=?," +
-                        "Attending=?," +
-                        "Main=?," +
-                        "Johnstown=?," +
-                        "Bradford=?," +
-                        "Titusville=?," +
-                        "Greensburg=?" +
-                        "WHERE Username=?";
-                pstmt = conn.prepareStatement(query);
-                pstmt.setString(1, strArr[0]);
-                pstmt.setString(2, strArr[1]);
-                pstmt.setString(3, strArr[2]);
-                pstmt.setString(4, strArr[3]);
-                pstmt.setString(5, strArr[4]);
-                pstmt.setInt(6, intCampusSelect);
-                pstmt.setBoolean(7, boolMain);
-                pstmt.setBoolean(8, boolJohnstown);
-                pstmt.setBoolean(9, boolBradford);
-                pstmt.setBoolean(10, boolTitusville);
-                pstmt.setBoolean(11, boolGreensburg);
-                pstmt.setString(12, strUsername);
-              
-
-
-                pstmt.execute();
-
-                return "Account Successfully Updated";
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-                return "exception";
-            }
-            catch (ClassNotFoundException e) {
-                Log.e("ERRO", e.getMessage());
-                return "exception";
-            }
-            catch (Exception e) {
-                Log.e("ERRO", e.getMessage());
-                return "exception";
-            }
-        }
-
-    }
 
     protected void onPostExecute(String result) {
 
-        if (result.equals("New User Added Successfully")) {
+        if (boolNewUser == true) {
             Intent intentRegister = new Intent(context, StartActivity.class);
             intentRegister.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intentRegister);
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
-        else if (result.equals("Account Successfully Updated")) {
+        else if (boolNewUser == false) {
             new BABLDataRetrieve(context).execute();
         }
         else {

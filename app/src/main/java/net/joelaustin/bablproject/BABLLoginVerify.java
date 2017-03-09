@@ -59,16 +59,19 @@ public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT * FROM Users";
+            String query = "SELECT UserID, Username, Password FROM Users WHERE Username=?";
 
             pstmt = conn.prepareStatement(query);
-
+            pstmt.setString(1, strUsername.toUpperCase());
             rs = pstmt.executeQuery();
+
             while (rs.next()) {
+                Integer intUserID = rs.getInt("UserID");
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
                 if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && BCrypt.checkpw(strPassword,strPasswordVerify)) {
-
+                    localData.set_intUserID(intUserID);
+                    localData.set_strUsername(strUsername);
                     return true;
                 }
 
@@ -90,7 +93,7 @@ public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result){
 
         if (result == true) {
-            localData.set_strUsername(strUsername);
+
             strPassword = null;
             new BABLDataRetrieve(context).execute();
         }

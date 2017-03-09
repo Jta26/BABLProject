@@ -54,7 +54,6 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     Spinner spinnerLang;
 
     int index = 0;
-    int intDeletedIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -276,10 +275,11 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
                 }
                 else {
 
+                    String hashedPass = BCrypt.hashpw(strPassword, BCrypt.gensalt());
 
 
 
-                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, hashedPass, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
                 }
 
 

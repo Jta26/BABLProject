@@ -110,6 +110,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         //Reads Data from BABLDataLocal
         EditText edtSettingsUsername = (EditText) findViewById(R.id.edtSettingsUsername);
         EditText edtSettingsFirstName = (EditText) findViewById(R.id.edtSettingsFirstName);
+
         strArr[0] = localdata.get_strLang1();
         strArr[1] = localdata.get_strLang2();
         strArr[2] = localdata.get_strLang3();
@@ -375,8 +376,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             else {
                 boolGreensburg = false;
             }
+
             Boolean boolNewUser = false;
-            new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),"" , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+            new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
         }
         else {
             Toast.makeText(getApplication().getBaseContext(), R.string.nolanguageselected, Toast.LENGTH_LONG).show();

@@ -57,34 +57,19 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT * FROM Users";
+            String query = "SELECT * FROM Users WHERE UserID=?;";
 
             pstmt = conn.prepareStatement(query);
-
+            int UserID = localData.get_intUserID();
+            pstmt.setInt(1, UserID);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                String strUsernameVerify = rs.getString("Username");
-
-
-                if (strUsernameVerify.toUpperCase().equals(strUsername.toUpperCase())) {
+                    //set hashed password locally
+                    String strHashedPass = rs.getString("Password");
+                    localData.set_strHashedPass(strHashedPass);
                     //sets First Name
                     String strFirstName = rs.getString("FirstName");
                     localData.set_strFirstName(strFirstName);
-                    //Sets Languages 1-5
-                    String strLang1 = rs.getString("Lang1");
-                    localData.set_strLang1(strLang1);
-
-                    String strLang2 = rs.getString("Lang2");
-                    localData.set_strLang2(strLang2);
-
-                    String strLang3 = rs.getString("Lang3");
-                    localData.set_strLang3(strLang3);
-
-                    String strLang4 = rs.getString("Lang4");
-                    localData.set_strLang4(strLang4);
-
-                    String strLang5 = rs.getString("Lang5");
-                    localData.set_strLang5(strLang5);
                     //Sets Campus Attending
                     Integer intCampusAttending = rs.getInt("Attending");
                     localData.set_intCampusAttend(intCampusAttending);
@@ -104,8 +89,6 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
                     Boolean boolGreensburg = rs.getBoolean("Greensburg");
                     localData.set_boolGreensburg(boolGreensburg);
 
-                    return "User Data Successfully Retrieved";
-                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,7 +100,53 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
             Log.e("ERRO", e.getMessage());
             return "Not Successful";
         }
-        return "Not Successful";
+        try {
+            Class.forName(Dbclass).newInstance();
+            ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
+                    + "databaseName=" + db + ";user=" + un + ";password="
+                    + password + ";";
+            conn = DriverManager.getConnection(ConnURL);
+
+            String query = "SELECT Language FROM UserLanguages WHERE UserID=?;";
+
+            pstmt = conn.prepareStatement(query);
+            int UserID = localData.get_intUserID();
+            pstmt.setInt(1, UserID);
+            rs = pstmt.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                switch (i) {
+                    case 0:
+                        localData.set_strLang1(rs.getString("Language"));
+                        break;
+                    case 1:
+                        localData.set_strLang2(rs.getString("Language"));
+                        break;
+                    case 2:
+                        localData.set_strLang3(rs.getString("Language"));
+                        break;
+                    case 3:
+                        localData.set_strLang4(rs.getString("Language"));
+                        break;
+                    case 4:
+                        localData.set_strLang5(rs.getString("Language"));
+                        break;
+                }
+                  i++;
+
+
+            }
+            return "User Data Retrieved Successfully";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Not Successful";
+        } catch (ClassNotFoundException e) {
+            Log.e("ERRO", e.getMessage());
+            return "Not Successful";
+        } catch (Exception e) {
+            Log.e("ERRO", e.getMessage());
+            return "Not Successful";
+        }
     }
 
 
