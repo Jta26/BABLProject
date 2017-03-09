@@ -49,7 +49,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
         Connection conn = null;
         String ConnURL = null;
 
-        //Finds where USERNAME is equal, then sets all other data under that username.
+        //Finds where UserID is equal, then sets all other data under that UserID.
         try {
             Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
@@ -64,53 +64,35 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
             pstmt.setInt(1, UserID);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                    //set hashed password locally
-                    String strHashedPass = rs.getString("Password");
-                    localData.set_strHashedPass(strHashedPass);
-                    //sets First Name
-                    String strFirstName = rs.getString("FirstName");
-                    localData.set_strFirstName(strFirstName);
-                    //Sets Campus Attending
-                    Integer intCampusAttending = rs.getInt("Attending");
-                    localData.set_intCampusAttend(intCampusAttending);
-                    //Sets Campus Preferences
-                    Boolean boolMain = rs.getBoolean("Main");
-                    localData.set_boolMain(boolMain);
+                //set hashed password locally
+                String strHashedPass = rs.getString("Password");
+                localData.set_strHashedPass(strHashedPass);
+                //sets First Name
+                String strFirstName = rs.getString("FirstName");
+                localData.set_strFirstName(strFirstName);
+                //Sets Campus Attending
+                Integer intCampusAttending = rs.getInt("Attending");
+                localData.set_intCampusAttend(intCampusAttending);
+                //Sets Campus Preferences
+                Boolean boolMain = rs.getBoolean("Main");
+                localData.set_boolMain(boolMain);
 
-                    Boolean boolJohnstown = rs.getBoolean("Johnstown");
-                    localData.set_boolJohnstown(boolJohnstown);
+                Boolean boolJohnstown = rs.getBoolean("Johnstown");
+                localData.set_boolJohnstown(boolJohnstown);
 
-                    Boolean boolBradford = rs.getBoolean("Bradford");
-                    localData.set_boolBradford(boolBradford);
+                Boolean boolBradford = rs.getBoolean("Bradford");
+                localData.set_boolBradford(boolBradford);
 
-                    Boolean boolTitusville = rs.getBoolean("Titusville");
-                    localData.set_boolTitusville(boolTitusville);
+                Boolean boolTitusville = rs.getBoolean("Titusville");
+                localData.set_boolTitusville(boolTitusville);
 
-                    Boolean boolGreensburg = rs.getBoolean("Greensburg");
-                    localData.set_boolGreensburg(boolGreensburg);
+                Boolean boolGreensburg = rs.getBoolean("Greensburg");
+                localData.set_boolGreensburg(boolGreensburg);
 
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return "Not Successful";
-        } catch (ClassNotFoundException e) {
-            Log.e("ERRO", e.getMessage());
-            return "Not Successful";
-        } catch (Exception e) {
-            Log.e("ERRO", e.getMessage());
-            return "Not Successful";
-        }
-        try {
-            Class.forName(Dbclass).newInstance();
-            ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
-                    + "databaseName=" + db + ";user=" + un + ";password="
-                    + password + ";";
-            conn = DriverManager.getConnection(ConnURL);
-
-            String query = "SELECT Language FROM UserLanguages WHERE UserID=?;";
-
+            //Update Languages
+            query = "SELECT Language FROM UserLanguages WHERE UserID=?";
             pstmt = conn.prepareStatement(query);
-            int UserID = localData.get_intUserID();
             pstmt.setInt(1, UserID);
             rs = pstmt.executeQuery();
             int i = 0;
@@ -132,9 +114,9 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
                         localData.set_strLang5(rs.getString("Language"));
                         break;
                 }
-                  i++;
 
 
+                i++;
             }
             return "User Data Retrieved Successfully";
         } catch (SQLException e) {
@@ -147,6 +129,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
             Log.e("ERRO", e.getMessage());
             return "Not Successful";
         }
+
     }
 
 

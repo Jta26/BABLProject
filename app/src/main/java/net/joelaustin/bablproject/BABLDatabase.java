@@ -19,7 +19,6 @@ import java.sql.SQLException;
 
 public class BABLDatabase extends AsyncTask<String, Void, String>{
 
-    BABLDataLocal localdata = new BABLDataLocal();
 
     private Context context;
     private String strUsername;
@@ -32,6 +31,17 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private Boolean boolTitusville;
     private Boolean boolGreensburg;
     private Boolean boolNewUser;
+
+    private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
+    private String db = "BABLdb";
+    private String un = "gregmckibbin";
+    private String password = "password";
+
+    BABLDataLocal localdata = new BABLDataLocal();
+
+    ResultSet rs;
+    PreparedStatement pstmt;
 
     public BABLDatabase(Context context,Boolean boolNewUser, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
         this.context = context;
@@ -46,19 +56,6 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
         this.boolGreensburg = boolGreensburg;
         this.boolNewUser = boolNewUser;
     }
-
-
-    private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
-    private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
-    private String db = "BABLdb";
-    private String un = "gregmckibbin";
-    private String password = "password";
-
-
-
-    ResultSet rs;
-    PreparedStatement pstmt;
-
     protected String doInBackground(String... strArr){
 
         String languageString = strArr[0] + "," + strArr[1] + "," + strArr[2] + "," + strArr[3] + "," + strArr[4];
@@ -103,8 +100,6 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 Log.e("ERRO", e.getMessage());
                 return "exception";
             }
-        }
-
             //Inputs to the Database
             try {
 
@@ -154,6 +149,92 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 Log.e("ERRO", e.getMessage());
                 return "exception";
             }
+        }
+        else {
+            //Updates UserData in Database
+            try {
+
+                int intUserID = localdata.get_intUserID();
+
+
+                Class.forName(Dbclass).newInstance();
+                ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
+                        + "databaseName=" + db + ";user=" + un + ";password="
+                        + password + ";";
+                conn = DriverManager.getConnection(ConnURL);
+
+                String query = "UPDATE Users SET Attending=?, Main=?, Johnstown=?, Bradford=?, Titusville=?, Greensburg=? WHERE UserID=?";
+                //Self Notes:
+                //Location Matching, I.E. campus selection matching will be done AFTER all the matches of your language have been pulled.
+                //This solution is suitable because we wont be pulling that much data anyways, The stored procedure is too difficult
+                // with all the variables.
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, intCampusSelect);
+                pstmt.setBoolean(2, boolMain);
+                pstmt.setBoolean(3, boolJohnstown);
+                pstmt.setBoolean(4, boolBradford);
+                pstmt.setBoolean(5, boolTitusville);
+                pstmt.setBoolean(6, boolGreensburg);
+
+                pstmt.setInt(7,intUserID );
+                pstmt.executeUpdate();
+
+                query = "DELETE FROM Matches WHERE userID=? OR MatchingId=?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, intUserID);
+                pstmt.setInt(2, intUserID);
+                pstmt.execute();
+
+                query = "DELETE FROM UserLanguages Where UserID=?";
+
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, intUserID);
+
+                pstmt.execute();
+
+                query = "INSERT INTO UserLanguages VALUES (?, ?)";
+
+
+                for (String language:strArr
+                     ) {
+                    if (language == null) {
+
+                    }
+                    else {
+                        pstmt = conn.prepareStatement(query);
+                        pstmt.setInt(1, intUserID);
+                        pstmt.setString(2, language);
+                        pstmt.execute();
+                    }
+
+                }
+
+                query = "EXEC UpdateMatches @userId=?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, intUserID);
+                pstmt.execute();
+
+
+                return "User Data Successfully Updated";
+
+
+
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                return "exception";
+            }
+            catch (ClassNotFoundException e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+            catch (Exception e) {
+                Log.e("ERRO", e.getMessage());
+                return "exception";
+            }
+        }
+
+
         }
 
     protected void onPostExecute(String result) {

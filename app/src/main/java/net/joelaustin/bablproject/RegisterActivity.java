@@ -103,7 +103,7 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
 
 
-        if (index == 4) {
+        if (index == 5) {
             String strMaxLang = getResources().getString(R.string.maxLang);
             Toast.makeText(getApplication().getBaseContext(), strMaxLang, Toast.LENGTH_SHORT).show();
         }
