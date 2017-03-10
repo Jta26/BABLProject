@@ -24,6 +24,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     private String strUsername;
     private String strPassword;
     private String strFirstName;
+    private String strFacebookId;
     private Integer intCampusSelect;
     private Boolean boolMain;
     private Boolean boolJohnstown;
@@ -43,11 +44,12 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     ResultSet rs;
     PreparedStatement pstmt;
 
-    public BABLDatabase(Context context,Boolean boolNewUser, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg) {
+    public BABLDatabase(Context context,Boolean boolNewUser, String strUsername, String strPassword, String strFirstName,Integer intCampusSelect, Boolean boolMain, Boolean boolJohnstown, Boolean boolBradford, Boolean boolTitusville, Boolean boolGreensburg, String strFacebookId) {
         this.context = context;
         this.strUsername = strUsername;
         this.strPassword = strPassword;
         this.strFirstName = strFirstName;
+        this.strFacebookId = strFacebookId;
         this.intCampusSelect = intCampusSelect;
         this.boolMain = boolMain;
         this.boolJohnstown = boolJohnstown;
@@ -111,7 +113,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                         + password + ";";
                 conn = DriverManager.getConnection(ConnURL);
 
-                String query = "EXEC InsertUser @username=?, @password=?, @firstname=?, @attending=?, @main=?, @johnstown=?, @bradford=?, @titusville=?, @greensburg=?, @languages=?;";
+                String query = "EXEC InsertUser @username=?, @password=?, @firstname=?, @attending=?, @main=?, @johnstown=?, @bradford=?, @titusville=?, @greensburg=?, @facebookid=?, @languages=?;";
                 //Self Notes:
                 //Location Matching, I.E. campus selection matching will be done AFTER all the matches of your language have been pulled.
                 //This solution is suitable because we wont be pulling that much data anyways, The stored procedure is too difficult
@@ -126,8 +128,8 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 pstmt.setBoolean(7, boolBradford);
                 pstmt.setBoolean(8, boolTitusville);
                 pstmt.setBoolean(9, boolGreensburg);
-
-                pstmt.setString(10, languageString);
+                pstmt.setString(10,strFacebookId);
+                pstmt.setString(11, languageString);
 
 
 
@@ -163,7 +165,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                         + password + ";";
                 conn = DriverManager.getConnection(ConnURL);
 
-                String query = "UPDATE Users SET Attending=?, Main=?, Johnstown=?, Bradford=?, Titusville=?, Greensburg=? WHERE UserID=?";
+                String query = "UPDATE Users SET Attending=?, Main=?, Johnstown=?, Bradford=?, Titusville=?, Greensburg=?,FacebookId=? WHERE UserID=?";
                 //Self Notes:
                 //Location Matching, I.E. campus selection matching will be done AFTER all the matches of your language have been pulled.
                 //This solution is suitable because we wont be pulling that much data anyways, The stored procedure is too difficult
@@ -175,8 +177,8 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 pstmt.setBoolean(4, boolBradford);
                 pstmt.setBoolean(5, boolTitusville);
                 pstmt.setBoolean(6, boolGreensburg);
-
-                pstmt.setInt(7,intUserID );
+                pstmt.setString(7, strFacebookId);
+                pstmt.setInt(8,intUserID );
                 pstmt.executeUpdate();
 
                 query = "DELETE FROM Matches WHERE userID=? OR MatchingId=?";
@@ -195,8 +197,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
                 query = "INSERT INTO UserLanguages VALUES (?, ?)";
 
 
-                for (String language:strArr
-                     ) {
+                for (String language:strArr) {
                     if (language == null) {
 
                     }

@@ -26,6 +26,8 @@ public class BABLDataLocal {
     private static Boolean _boolTitusville;
     private static Boolean _boolGreensburg;
 
+    private static String _strFacebookId;
+
     public void set_intUserID(Integer intUserID) {
         this._intUserID = intUserID;
     }
@@ -146,5 +148,11 @@ public class BABLDataLocal {
         return _boolGreensburg;
     }
 
+    public void set_strFacebookId(String strFacebookId) {
+        this._strFacebookId = strFacebookId;
+    }
+    public String get_strFacebookId() {
+        return _strFacebookId;
+    }
 
 }

@@ -35,6 +35,8 @@
     <string name="campusselectblank">Please select a campus.</string>
     <string name="nocampuschecked">Please select at least one campus to find someone at.</string>
     <string name="nolanguageselected">Please select at least one language.</string>
+    <string name="facebooksuccess">Facebook Linked!</string>
+    <string name="connectfacebook">Please Connect with Facebook to Continue.</string>
 
 
     <string-array name="LanguagesArray">
@@ -89,7 +91,6 @@
         <item>Welsh</item>
 
 
-
     </string-array>
     <string name="facebook_app_id">1752316158322312</string>
 
@@ -109,6 +110,7 @@
     <string name="settingschangelangdesc">Here you can change the languages that you would like to meet people from.</string>
     <string name="settingschangecampus">Change Campus</string>
     <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
+    <string name="title_activity_matches">MatchesActivity</string>
 </resources>
 
 

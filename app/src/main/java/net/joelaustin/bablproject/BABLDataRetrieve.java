@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,6 +38,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
     ResultSet rs;
     PreparedStatement pstmt;
     Context context;
+
     public BABLDataRetrieve(Context context){
         this.context = context;
     }
@@ -70,6 +73,9 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
                 //sets First Name
                 String strFirstName = rs.getString("FirstName");
                 localData.set_strFirstName(strFirstName);
+                //Sets facebook User Id
+                String strFacebookId = rs.getString("FacebookID");
+                localData.set_strFacebookId(strFacebookId);
                 //Sets Campus Attending
                 Integer intCampusAttending = rs.getInt("Attending");
                 localData.set_intCampusAttend(intCampusAttending);
@@ -88,6 +94,8 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
                 Boolean boolGreensburg = rs.getBoolean("Greensburg");
                 localData.set_boolGreensburg(boolGreensburg);
+
+
 
             }
             //Update Languages
