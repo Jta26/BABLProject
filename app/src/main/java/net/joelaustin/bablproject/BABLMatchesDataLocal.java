@@ -1,5 +1,7 @@
 package net.joelaustin.bablproject;
 
+import java.util.Stack;
+
 /**
  * Created by gregm on 3/15/2017.
  */
@@ -15,6 +17,7 @@ public class BABLMatchesDataLocal {
     private static String _strLang5;
     private static Integer _intCampusAttend;
     private static String _strFacebookID;
+    public static Stack _stackMatchID = new Stack();
 
     //set UserID
     public void set_intUserID(Integer intUserID) {
