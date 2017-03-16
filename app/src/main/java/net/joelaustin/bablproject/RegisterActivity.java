@@ -26,9 +26,12 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 
 import org.w3c.dom.Text;
 
@@ -45,6 +48,7 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private TextView txvFacebook;
+    private String strFacebookId;
 
     //String Array for Storing the Languages
     public String[] strArr = new String[5];
@@ -54,7 +58,6 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     Spinner spinnerLang;
 
     int index = 0;
-    int intDeletedIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +84,8 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                txvFacebook.setText("User ID: " + loginResult.getAccessToken().getUserId() + "\n" + "Login Token: " + loginResult.getAccessToken().getToken());
+                txvFacebook.setText(R.string.facebooksuccess);
+//                txvFacebook.setText("User ID: " + loginResult.getAccessToken().getUserId() + "\n" + "Login Token: " + loginResult.getAccessToken().getToken());
             }
 
             @Override
@@ -104,7 +108,7 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
 
 
 
-        if (index == 4) {
+        if (index == 5) {
             String strMaxLang = getResources().getString(R.string.maxLang);
             Toast.makeText(getApplication().getBaseContext(), strMaxLang, Toast.LENGTH_SHORT).show();
         }
@@ -175,9 +179,8 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     }
 
     public void btnSubmitOnClick(View v) {
-        //Hash Passwords Here
 
-        //Calls the Database Class
+
 
         //NewUserBoolean
         Boolean boolNewUser = true;
@@ -274,12 +277,21 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
                 else if (chkMain.isChecked() == false && chkJohnstown.isChecked() == false && chkBradford.isChecked() == false && chkTitusville.isChecked() == false && chkGreensburg.isChecked() == false) {
                     Toast.makeText(getApplication().getBaseContext(), R.string.nocampuschecked, Toast.LENGTH_LONG).show();
                 }
+                else if (strFacebookId == null) {
+                    //Gets the Users UserId from Facebook, then Logs the user out of Facebook.
+                    try {
+                        strFacebookId = Profile.getCurrentProfile().getId();
+                        LoginManager.getInstance().logOut();
+                        String hashedPass = BCrypt.hashpw(strPassword, BCrypt.gensalt());
+                        new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, hashedPass, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg, strFacebookId).execute(strArr);
+                    }
+                    catch (Exception e){
+                        Toast.makeText(this, R.string.connectfacebook, Toast.LENGTH_LONG).show();
+                    }
+                }
                 else {
-
-
-
-
-                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, strPassword, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+                    String hashedPass = BCrypt.hashpw(strPassword, BCrypt.gensalt());
+                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser, strUsername, hashedPass, strFirstName, intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg, strFacebookId).execute(strArr);
                 }
 
 

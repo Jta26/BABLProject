@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.joelaustin.bablproject.MatchesActivity"
+    android:windowSoftInputMode="stateVisible">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_delete"
+        android:id="@+id/rejectButton"
+        android:minHeight="60dp"
+        android:minWidth="90dp"
+        android:onClick="rejectMatch"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="10dp" />
+
+
+    <ImageView
+        app:srcCompat="@drawable/babllogo"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_height="80dp"
+        android:layout_width="110dp" />
+
+    <ImageButton
+        app:srcCompat="@drawable/back_arrow2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/backButton"
+        android:scaleType="fitXY"
+        android:background="@drawable/rounded_button"
+        android:paddingTop="5dp"
+        android:paddingLeft="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:onClick="returnMainActivity" />
+
+    <TextView
+        android:text="FirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/suggestionImage"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/suggestionName"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="normal|bold|italic"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:text="Languages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/suggestionImage"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/suggestionLang"
+        android:layout_marginTop="20dp"
+        android:textStyle="normal|italic"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <com.facebook.login.widget.ProfilePictureView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
+        android:id="@+id/suggestionImage"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:layout_margin="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:id="@+id/confirmButton"
+        android:minHeight="60dp"
+        android:minWidth="90dp"
+        android:onClick="confirmMatch"
+        android:background="@drawable/rounded_button"
+        android:layout_alignTop="@+id/rejectButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <com.facebook.login.widget.ProfilePictureView
+        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
+        android:id="@+id/matchesButton"
+        android:scaleType="fitXY"
+        android:background="@drawable/rounded_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="viewMatches"
+        android:layout_alignTop="@+id/backButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

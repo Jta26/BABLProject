@@ -7,8 +7,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+
 public class MainActivity extends AppCompatActivity {
+
+
+
     BABLDataLocal dataLocal = new BABLDataLocal();
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void btnFindMatchesOnClick(View v) {
+        Intent intent = new Intent(getApplication().getBaseContext(), MatchesActivity.class);
+        startActivity(intent);
+    }
     public void btnAccountSettingsOnClick(View v) {
         Intent intent = new Intent(getApplication().getBaseContext(), SettingsActivity.class);
         startActivity(intent);
@@ -48,8 +63,10 @@ public class MainActivity extends AppCompatActivity {
     //Logout button event handler
     public void btnLogoutOnClick(View v) {
 
+
         dataLocal.set_strFirstName(null);
         dataLocal.set_strUsername(null);
+        dataLocal.set_strFacebookId(null);
         dataLocal.set_strLang1(null);
         dataLocal.set_strLang2(null);
         dataLocal.set_strLang3(null);
@@ -61,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
         dataLocal.set_boolBradford(null);
         dataLocal.set_boolTitusville(null);
         dataLocal.set_boolGreensburg(null);
+        dataLocal.set_intUserID(null);
+
+        LoginManager.getInstance().logOut();
 
         Intent intent = new Intent(getApplication().getBaseContext(), StartActivity.class);
         startActivity(intent);

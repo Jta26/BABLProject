@@ -20,6 +20,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -45,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private TextView txvFacebook;
+    private String strFacebookId;
 
     //String Array for Storing the Languages
     public String[] strArr = new String[5];
@@ -93,7 +96,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                txvFacebook.setText("User ID: " + loginResult.getAccessToken().getUserId() + "\n" + "Login Token: " + loginResult.getAccessToken().getToken());
+                txvFacebook.setText(R.string.facebooksuccess);
+
             }
 
             @Override
@@ -110,6 +114,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         //Reads Data from BABLDataLocal
         EditText edtSettingsUsername = (EditText) findViewById(R.id.edtSettingsUsername);
         EditText edtSettingsFirstName = (EditText) findViewById(R.id.edtSettingsFirstName);
+
         strArr[0] = localdata.get_strLang1();
         strArr[1] = localdata.get_strLang2();
         strArr[2] = localdata.get_strLang3();
@@ -324,6 +329,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     public void btnSubmitSettingsOnClick(View v) {
 
 
+        //Checks if there is at least 1 language in strArr; if so Returns True
         Boolean boolHasLanguage = false;
         for(int i = 0; i < strArr.length; i++)
         {
@@ -333,6 +339,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             }
         }
         if (boolHasLanguage == true) {
+            //Checks if Which campus Radio button is Selected, Sets Attending Integer accordingly.
             if (rdbSettingsPittsburgh.isChecked()) {
                 intCampusSelect = 0;
             } else if (rdbSettingsJohnstown.isChecked()) {
@@ -344,44 +351,63 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             } else if (rdbSettingsGreensburg.isChecked()) {
                 intCampusSelect = 4;
             }
-
+            //Determines if the user wants to find settings from the Main Campus
             if (chkSettingsMain.isChecked()) {
                 boolMain = true;
             }
             else {
                 boolMain = false;
             }
+            //Determines if the user wants to find settings from Johnstown Campus
             if (chkSettingsJohnstown.isChecked()) {
                 boolJohnstown = true;
             }
             else {
                 boolJohnstown = false;
             }
+            //Determines if the user wants to find settings from the Bradford Campus
             if (chkSettingsBradford.isChecked()) {
                 boolBradford = true;
             }
             else {
                 boolBradford = false;
             }
+            //Determines if the user wants to find settings from the Titusville Campus
             if (chkSettingsTitusville.isChecked()) {
                 boolTitusville = true;
             }
             else {
                 boolTitusville = false;
             }
+            //Determines if the user wants to find settings from the Greensburg Campus
             if (chkSettingsGreensburg.isChecked()) {
                 boolGreensburg = true;
             }
             else {
                 boolGreensburg = false;
             }
-            Boolean boolNewUser = false;
-            new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),"" , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg).execute(strArr);
+
+            if (strFacebookId == null) {
+                //Gets the Users UserId from Facebook, then Logs the user out of Facebook.
+                try {
+                    strFacebookId = Profile.getCurrentProfile().getId();
+                    LoginManager.getInstance().logOut();
+                    Boolean boolNewUser = false;
+                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+                }
+                catch (Exception e){
+                    Toast.makeText(this, R.string.connectfacebook, Toast.LENGTH_LONG).show();
+                }
+            }
+            else {
+                Boolean boolNewUser = false;
+                new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+            }
+
         }
         else {
             Toast.makeText(getApplication().getBaseContext(), R.string.nolanguageselected, Toast.LENGTH_LONG).show();
         }
-
 
     }
 

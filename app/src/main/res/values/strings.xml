@@ -5,8 +5,8 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="pittEmail">"@"Pitt.edu</string>
-    <string name="WhatIs">BABL is used to help University of Pittsburgh students of all campuses connect with and meet new people.
-        It\'s core functionality is based around people that speak or are learning another language discover someone else that also speaks their language.
+    <string name="WhatIs">BABL is an app designed to help University of Pittsburgh students of all campuses connect with and meet new people.
+        It\'s core functionality is based around people that speak or are learning to speak another language discover someone else that also speaks that language.
     </string>
     <string name="incorrectPass">Username or Password Incorrect</string>
 
@@ -35,6 +35,8 @@
     <string name="campusselectblank">Please select a campus.</string>
     <string name="nocampuschecked">Please select at least one campus to find someone at.</string>
     <string name="nolanguageselected">Please select at least one language.</string>
+    <string name="facebooksuccess">Facebook Linked!</string>
+    <string name="connectfacebook">Please Connect with Facebook to Continue.</string>
 
 
     <string-array name="LanguagesArray">
@@ -89,7 +91,6 @@
         <item>Welsh</item>
 
 
-
     </string-array>
     <string name="facebook_app_id">1752316158322312</string>
 
@@ -109,6 +110,7 @@
     <string name="settingschangelangdesc">Here you can change the languages that you would like to meet people from.</string>
     <string name="settingschangecampus">Change Campus</string>
     <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
+    <string name="title_activity_matches">MatchesActivity</string>
 </resources>
 
 

@@ -19,16 +19,16 @@ import java.sql.SQLException;
 
 //WIP
 
-public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
+public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
 
     ResultSet rs;
     PreparedStatement pstmt;
 
     BABLDataLocal localData = new BABLDataLocal();
 
-    private String ip = "databaseforbabl.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
+    private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
-    private String db = "DbBABL";
+    private String db = "BABLdb";
     private String un = "gregmckibbin";
     private String password = "password";
 
@@ -42,7 +42,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
         this.strPassword = strPassword;
     }
 
-    public Boolean doInBackground(Boolean... boolVerify) {
+    public Boolean doInBackground(Void... Void) {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -59,16 +59,19 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT * FROM Users";
+            String query = "SELECT UserID, Username, Password FROM Users WHERE Username=?";
 
             pstmt = conn.prepareStatement(query);
-
+            pstmt.setString(1, strUsername.toUpperCase());
             rs = pstmt.executeQuery();
+
             while (rs.next()) {
+                Integer intUserID = rs.getInt("UserID");
                 String strUsernameVerify = rs.getString("Username");
                 String strPasswordVerify = rs.getString("Password");
                 if (strUsername.toUpperCase().equals(strUsernameVerify.toUpperCase()) && BCrypt.checkpw(strPassword,strPasswordVerify)) {
-
+                    localData.set_intUserID(intUserID);
+                    localData.set_strUsername(strUsername);
                     return true;
                 }
 
@@ -90,7 +93,7 @@ public class BABLLoginVerify extends AsyncTask<Boolean, Void, Boolean> {
     protected void onPostExecute(Boolean result){
 
         if (result == true) {
-            localData.set_strUsername(strUsername);
+
             strPassword = null;
             new BABLDataRetrieve(context).execute();
         }

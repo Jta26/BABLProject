@@ -74,16 +74,17 @@
             </RelativeLayout>
 
             <Button
-            android:text="@string/FindMatches"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/login_font_size"
-            android:textStyle="normal|bold|italic"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnMatches"
-            android:background="@drawable/rounded_button"
+                android:text="@string/FindMatches"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:textSize="@dimen/login_font_size"
+                android:textStyle="normal|bold|italic"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnMatches"
+                android:background="@drawable/rounded_button"
+                android:onClick="btnFindMatchesOnClick"
             />
         <RelativeLayout
             android:layout_width="match_parent"
