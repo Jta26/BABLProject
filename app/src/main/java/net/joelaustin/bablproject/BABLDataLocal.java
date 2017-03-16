@@ -1,5 +1,7 @@
 package net.joelaustin.bablproject;
 
+import java.util.ArrayList;
+
 /**
  * Created by Joel on 2/6/2017.
  */
@@ -147,6 +149,24 @@ public class BABLDataLocal {
     public Boolean get_boolGreensburg(){
         return _boolGreensburg;
     }
+
+    public void set_strFacebookId(String strFacebookId) {
+        this._strFacebookId = strFacebookId;
+    }
+    public String get_strFacebookId() {
+        return _strFacebookId;
+    }
+
+    public String getNextMatchName(){
+        return _listMatchName.get(0);
+    }
+
+    public String getNextMatchLang(){
+        return _listMatchLangs.get(0);
+    }
+
+    //check if there are any potential matches left
+    public boolean checkMatchesEmpty() { return _listMatchFBID.isEmpty(); }
 
     public void set_strFacebookId(String strFacebookId) {
         this._strFacebookId = strFacebookId;

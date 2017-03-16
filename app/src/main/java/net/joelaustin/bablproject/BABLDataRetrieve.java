@@ -31,12 +31,16 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
     private String db = "BABLdb";
     private String un = "gregmckibbin";
     private String password = "password";
-    private String test = "Test";
+    //private String test = "Test";
 
-    String strUsername = localData.get_strUsername();
+    //String strUsername = localData.get_strUsername();
 
     ResultSet rs;
+    ResultSet rs2;
+    ResultSet rs3;
     PreparedStatement pstmt;
+    PreparedStatement pstmt2;
+    PreparedStatement pstmt3;
     Context context;
 
     public BABLDataRetrieve(Context context){
