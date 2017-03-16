@@ -30,12 +30,6 @@ public class BABLDataLocal {
 
     private static String _strFacebookId;
 
-    private static ArrayList<Integer> _listMatchID = new ArrayList<>();
-    private static ArrayList<String> _listMatchFBID = new ArrayList<>();
-    private static ArrayList<String> _listMatchLangs = new ArrayList<>();
-    private static ArrayList<String> _listMatchName = new ArrayList<>();
-
-
     public void set_intUserID(Integer intUserID) {
         this._intUserID = intUserID;
     }
@@ -156,27 +150,11 @@ public class BABLDataLocal {
         return _boolGreensburg;
     }
 
-    //add match's Facebook ID to list
-    public void addMatch(String userFBID, Integer userID, String firstName, String langs){
-        _listMatchFBID.add(userFBID);
-        _listMatchID.add(userID);
-        _listMatchName.add(firstName);
-        _listMatchLangs.add(langs);
+    public void set_strFacebookId(String strFacebookId) {
+        this._strFacebookId = strFacebookId;
     }
-    //remove current match's Facebook ID from list
-    public void removeMatch(){
-        _listMatchFBID.remove(0);
-        _listMatchID.remove(0);
-        _listMatchName.remove(0);
-        _listMatchLangs.remove(0);
-    }
-    //view next match (any viewed matches are removed once confirmed/denied or if
-    // they're not at the correct campus, so next match is always index 0)
-    public String getNextMatchFBID(){
-        return _listMatchFBID.get(0);
-    }
-    public Integer getNextMatchID(){
-        return _listMatchID.get(0);
+    public String get_strFacebookId() {
+        return _strFacebookId;
     }
 
     public String getNextMatchName(){

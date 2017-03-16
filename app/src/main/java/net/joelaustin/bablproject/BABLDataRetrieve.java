@@ -130,57 +130,6 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
                 i++;
             }
-            //Update Matches
-            query = "SELECT MatchingID FROM Matches WHERE UserID=?";
-
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, UserID);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                String strFBID, strFirstname;
-                String strLangs = "";
-                Integer intUserID = rs.getInt("MatchingID");
-                String query2 = "SELECT FacebookID,Firstname FROM Users WHERE UserID=?";
-                pstmt2 = conn.prepareStatement(query2);
-                pstmt2.setInt(1, intUserID);
-                while(rs2.next()){
-                    strFBID = rs2.getString("FacebookID");
-                    strFirstname = rs2.getString("Firstname");
-                    String query3 = "SELECT Language FROM UserLanguages WHERE UserID=?";
-                    pstmt3 = conn.prepareStatement(query2);
-                    pstmt3.setInt(1, intUserID);
-                    while(rs3.next()){
-                        strLangs += rs3.getString("Language") + "\n";
-                    }
-                    localData.addMatch(strFBID, intUserID, strFirstname,strLangs);
-                }
-            }
-
-            query = "SELECT UserID FROM Matches WHERE MatchingID=?";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, UserID);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                String strFBID, strFirstname;
-                String strLangs = "";
-                Integer intUserID = rs.getInt("UserID");
-                String query2 = "SELECT FacebookID,Firstname FROM Users WHERE UserID=?";
-                pstmt2 = conn.prepareStatement(query2);
-                pstmt2.setInt(1, intUserID);
-                while(rs2.next()){
-                    strFBID = rs2.getString("FacebookID");
-                    strFirstname = rs2.getString("Firstname");
-                    String query3 = "SELECT Language FROM UserLanguages WHERE UserID=?";
-                    pstmt3 = conn.prepareStatement(query2);
-                    pstmt3.setInt(1, intUserID);
-                    while(rs3.next()){
-                        strLangs += rs3.getString("Language") + "\n";
-                    }
-                    localData.addMatch(strFBID, intUserID, strFirstname,strLangs);
-                }
-
-            }
-
             return "User Data Retrieved Successfully";
         } catch (SQLException e) {
             e.printStackTrace();

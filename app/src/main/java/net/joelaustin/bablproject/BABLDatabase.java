@@ -133,7 +133,7 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 
 
-                pstmt.executeUpdate();
+                pstmt.execute();
                 return "New User Added Successfully";
 
 
@@ -241,10 +241,16 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String result) {
 
         if (boolNewUser == true) {
-            Intent intentRegister = new Intent(context, StartActivity.class);
-            intentRegister.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intentRegister);
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            if (result.equals("Username Already Exists") ) {
+                Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intentRegister = new Intent(context, StartActivity.class);
+                intentRegister.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intentRegister);
+                Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            }
+
         }
         else if (boolNewUser == false) {
             new BABLDataRetrieve(context).execute();
