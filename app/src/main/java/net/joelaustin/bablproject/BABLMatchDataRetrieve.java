@@ -1,8 +1,10 @@
 package net.joelaustin.bablproject;
 
+import android.content.Context;
 import android.database.CursorJoiner;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,13 +26,15 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
     private String un = "gregmckibbin";
     private String password = "password";
 
+    Context context;
     Connection conn;
     String ConnURL;
     PreparedStatement pstmt;
     ResultSet rs;
     int intMatchId;
 
-    public BABLMatchDataRetrieve(){
+    public BABLMatchDataRetrieve(Context context){
+        this.context = context;
 
     }
     protected String doInBackground(Void...voids) {
@@ -46,9 +50,38 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intMatchId);
             rs = pstmt.executeQuery();
+            localmatchdata.set_intUserID(intMatchId);
+            localmatchdata.set_strUsername(rs.getString("Username"));
+            localmatchdata.set_strFirstName(rs.getString("FirstName"));
+            localmatchdata.set_intCampusAttend(rs.getInt("Attending"));
+            localmatchdata.set_strFacebookID(rs.getString("FacebookID"));
 
 
-
+            query = "Select * FROM UserLanguages WHERE UserId=?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, intMatchId);
+            rs = pstmt.executeQuery();
+                int i = 0;
+                while (rs.next()) {
+                    switch (i) {
+                        case 0:
+                            localmatchdata.set_strLang1(rs.getString("Language"));
+                            break;
+                        case 1:
+                            localmatchdata.set_strLang2(rs.getString("Language"));
+                            break;
+                        case 2:
+                            localmatchdata.set_strLang3(rs.getString("Language"));
+                            break;
+                        case 3:
+                            localmatchdata.set_strLang4(rs.getString("Language"));
+                            break;
+                        case 4:
+                            localmatchdata.set_strLang5(rs.getString("Language"));
+                            break;
+                    }
+                    i++;
+                }
             return "User Data Retrieved Successfully";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,6 +96,6 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
     }
 
     protected void onPostExecute(String results){
-
+        Toast.makeText(context, results, Toast.LENGTH_LONG).show();
     }
 }

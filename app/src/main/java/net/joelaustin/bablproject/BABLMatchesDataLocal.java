@@ -9,6 +9,7 @@ import java.util.Stack;
 public class BABLMatchesDataLocal {
 
     private static Integer _intUserID;
+    private static String _strUsername;
     private static String _strFirstName;
     private static String _strLang1;
     private static String _strLang2;
@@ -26,6 +27,14 @@ public class BABLMatchesDataLocal {
     //get UserID
     public Integer get_intUserID() {
         return _intUserID;
+    }
+    //set Username
+    public void set_strUsername(String strUsername) {
+        this._strUsername = strUsername;
+    }
+    //getUsername {
+    public String get_strUsername() {
+        return _strUsername;
     }
     //set First Name
     public void set_strFirstName(String strFirstName) { this._strFirstName = strFirstName; }
