@@ -157,22 +157,4 @@ public class BABLDataLocal {
         return _strFacebookId;
     }
 
-    public String getNextMatchName(){
-        return _listMatchName.get(0);
-    }
-
-    public String getNextMatchLang(){
-        return _listMatchLangs.get(0);
-    }
-
-    //check if there are any potential matches left
-    public boolean checkMatchesEmpty() { return _listMatchFBID.isEmpty(); }
-
-    public void set_strFacebookId(String strFacebookId) {
-        this._strFacebookId = strFacebookId;
-    }
-    public String get_strFacebookId() {
-        return _strFacebookId;
-    }
-
 }
