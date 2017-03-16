@@ -14,6 +14,7 @@ public class BABLMatchesDataLocal {
     private static String _strLang4;
     private static String _strLang5;
     private static Integer _intCampusAttend;
+    private static String _strFacebookID;
 
     //set UserID
     public void set_intUserID(Integer intUserID) {
@@ -23,6 +24,10 @@ public class BABLMatchesDataLocal {
     public Integer get_intUserID() {
         return _intUserID;
     }
+    //set First Name
+    public void set_strFirstName(String strFirstName) { this._strFirstName = strFirstName; }
+    //get First Name
+    public String get_strFirstName() { return _strFirstName; }
     //set Language 1
     public void set_strLang1(String strLang1){
         this._strLang1 = strLang1;
@@ -71,4 +76,8 @@ public class BABLMatchesDataLocal {
     public Integer get_intCampusAttend(){
         return _intCampusAttend;
     }
+    //set FacebookID
+    public void set_strFacebookID(String strFacebookID) { this._strFacebookID = strFacebookID; }
+    //get FacebookID
+    public String get_strFacebookID() { return _strFacebookID; }
 }
