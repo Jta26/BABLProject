@@ -17,6 +17,8 @@ import java.sql.SQLException;
 
 public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
 
+    BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
+
     Context context;
     private int intUserID;
     private String strFirstname;
@@ -67,6 +69,10 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
             pstmt.setInt(1, intUserID);
             pstmt.setInt(2, intUserID);
             rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+            }
 
             return "User Data Retrieved Successfully";
         } catch (SQLException e) {
