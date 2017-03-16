@@ -17,7 +17,7 @@ public class BABLMatchesDataLocal {
     private static String _strLang5;
     private static Integer _intCampusAttend;
     private static String _strFacebookID;
-    public static Stack _stackMatchID = new Stack();
+    public static Stack stackMatchID = new Stack();
 
     //set UserID
     public void set_intUserID(Integer intUserID) {

@@ -21,27 +21,10 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
 
     Context context;
     private int intUserID;
-    private String strFirstname;
-    private String strLang1;
-    private String strLang2;
-    private String strLang3;
-    private String strLang4;
-    private String strLang5;
 
-    private int intCampusAttend;
-
-    private String strFacebookId;
-
-    public BABLMatchRetrieve(Context context, int intUserID, String strFirstname, String strLang1, String strLang2, String strLang3, String strLang4, String strLang5, int intCampusAttend, String strFacebookId) {
+    public BABLMatchRetrieve(Context context, int intUserID) {
         this.context = context;
-        this.strFirstname = strFirstname;
-        this.strLang1 = strLang1;
-        this.strLang2 = strLang2;
-        this.strLang3 = strLang3;
-        this.strLang4 = strLang4;
-        this.strLang5 = strLang5;
-        this.intCampusAttend = intCampusAttend;
-        this.strFacebookId = strFacebookId;
+        this.intUserID = intUserID;
 
     }
     private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
@@ -71,6 +54,14 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                int tempId = rs.getInt("UserId");
+                int tempMatchId = rs.getInt("MatchingId");
+                if(tempId == intUserID) {
+                    Matcheslocaldata.stackMatchID.push(tempMatchId);
+                }
+                else {
+                    Matcheslocaldata.stackMatchID.push(tempId);
+                }
 
             }
 
