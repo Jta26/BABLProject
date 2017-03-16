@@ -15,6 +15,7 @@ import com.facebook.login.widget.ProfilePictureView;
 public class MatchesActivity extends AppCompatActivity {
 
     BABLDataLocal localdata = new BABLDataLocal();
+    BABLMatchesDataLocal localmatchdata = new BABLMatchesDataLocal();
 
     private ProfilePictureView profilepic;
     private ProfilePictureView matchprofilepic;
@@ -27,6 +28,8 @@ public class MatchesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
+        new BABLMatchDataRetrieve(this).execute();
+
         ImageButton rejectButton = (ImageButton) findViewById(R.id.rejectButton);
         ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
         suggestionName = (TextView) findViewById(R.id.suggestionName);
@@ -34,38 +37,34 @@ public class MatchesActivity extends AppCompatActivity {
 
         try {
             profilepic = (ProfilePictureView) findViewById(R.id.matchesButton);
-            profilepic.setProfileId(localdata.get_strFacebookId());
+            profilepic.setProfileId(localmatchdata.get_strFacebookID());
         } catch (Exception e) {
             Toast.makeText(this, "You Might Need to Login to Facebook", Toast.LENGTH_LONG).show();
 
         }
+
+        if (localmatchdata.isEmpty()) {
+            Toast.makeText(this, "You Have No Matches Currently. Check Again Later.", Toast.LENGTH_LONG).show();
+        } else {
+            try {
+                matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
+                matchprofilepic.setProfileId(localmatchdata.get_strFacebookID());
+                suggestionName.setText(localmatchdata.get_strFirstName());
+                suggestionLang.setText(localmatchdata.get_strLang1() + "\n" + localmatchdata.get_strLang2() + "\n" +
+                                        localmatchdata.get_strLang3() + "\n" + localmatchdata.get_strLang4() + "\n" +
+                                        localmatchdata.get_strLang5());
+            } catch (Exception e) {
+                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+            }
+        }
     }
-//
-//        if(localdata.checkMatchesEmpty()){
-//            Toast.makeText(this, "You Have No Matches Currently. Check Again Later.", Toast.LENGTH_LONG).show();
-//        }
-//        else {
-//            try {
-//                matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
-//                matchprofilepic.setProfileId(localdata.getNextMatchFBID());
-//                suggestionName.setText(localdata.getNextMatchName());
-//                suggestionLang.setText(localdata.getNextMatchLang());
-//            }
-//            catch (Exception e){
-//                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
-//            }
-//        }
-//
-//
-//    }
-//
-//
-//
-//    public void returnMainActivity(View v){
-//        Intent intent = new Intent(context, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(intent);
-//    }
+
+
+    public void returnMainActivity(View v){
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 //
 //    public void viewMatches(View v){
 //

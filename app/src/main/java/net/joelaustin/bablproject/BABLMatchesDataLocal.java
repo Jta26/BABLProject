@@ -92,4 +92,6 @@ public class BABLMatchesDataLocal {
     public void set_strFacebookID(String strFacebookID) { this._strFacebookID = strFacebookID; }
     //get FacebookID
     public String get_strFacebookID() { return _strFacebookID; }
+    //check if there are no matches
+    public boolean isEmpty(){ return _intUserID == null; }
 }
