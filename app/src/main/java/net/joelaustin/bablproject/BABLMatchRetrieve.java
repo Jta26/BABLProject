@@ -18,15 +18,11 @@ import java.sql.SQLException;
 public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
 
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
+    BABLDataLocal datalocal = new BABLDataLocal();
 
     Context context;
-    private int intUserID;
+    private int intUserID = datalocal.get_intUserID();
 
-    public BABLMatchRetrieve(Context context, int intUserID) {
-        this.context = context;
-        this.intUserID = intUserID;
-
-    }
     private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
     private String db = "BABLdb";
@@ -38,6 +34,10 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
     PreparedStatement pstmt;
     ResultSet rs;
 
+    public BABLMatchRetrieve(Context context) {
+        this.context = context;
+
+    }
 
     protected String doInBackground(Void... voids) {
         try {

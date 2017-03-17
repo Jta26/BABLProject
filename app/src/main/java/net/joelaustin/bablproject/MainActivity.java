@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new BABLMatchRetrieve(this, dataLocal.get_intUserID()).execute();
+        new BABLMatchRetrieve(this).execute();
 
         TextView txvWelcome = (TextView) findViewById(R.id.txvWelcome);
 
