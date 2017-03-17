@@ -18,6 +18,7 @@ import java.sql.SQLException;
 
 public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
 
+    public AsyncResponse delegate = null;
     BABLMatchesDataLocal localmatchdata = new BABLMatchesDataLocal();
 
     private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
@@ -50,12 +51,13 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intMatchId);
             rs = pstmt.executeQuery();
-            localmatchdata.set_intUserID(intMatchId);
-            localmatchdata.set_strUsername(rs.getString("Username"));
-            localmatchdata.set_strFirstName(rs.getString("FirstName"));
-            localmatchdata.set_intCampusAttend(rs.getInt("Attending"));
-            localmatchdata.set_strFacebookID(rs.getString("FacebookID"));
-
+            while(rs.next()){
+                localmatchdata.set_intUserID(intMatchId);
+                localmatchdata.set_strUsername(rs.getString("Username"));
+                localmatchdata.set_strFirstName(rs.getString("FirstName"));
+                localmatchdata.set_intCampusAttend(rs.getInt("Attending"));
+                localmatchdata.set_strFacebookID(rs.getString("FacebookID"));
+            }
 
             query = "Select * FROM UserLanguages WHERE UserId=?";
             pstmt = conn.prepareStatement(query);
@@ -82,7 +84,7 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
                     }
                     i++;
                 }
-            return "User Data Retrieved Successfully";
+            return "";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
@@ -94,8 +96,10 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             return "Not Successful";
         }
     }
-
+    @Override
     protected void onPostExecute(String results){
-        Toast.makeText(context, results, Toast.LENGTH_LONG).show();
+        delegate.processFinish(results);
+
     }
 }
+

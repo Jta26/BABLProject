@@ -65,7 +65,7 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
 
             }
 
-            return "User Data Retrieved Successfully";
+            return "Match Data Retrieved Successfully";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
