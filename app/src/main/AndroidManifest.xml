@@ -32,7 +32,12 @@
             android:label="@string/app_name" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".MatchesActivity"></activity>
+        <activity android:name=".MatchesActivity" />
+        <activity
+            android:name=".ConfirmedMatches"
+            android:label="@string/title_activity_confirmed_matches"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ViewConfirmedMatches"></activity>
     </application>
 
 </manifest>

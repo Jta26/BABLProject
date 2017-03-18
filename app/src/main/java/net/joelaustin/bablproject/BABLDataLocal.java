@@ -1,6 +1,8 @@
 package net.joelaustin.bablproject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Joel on 2/6/2017.
@@ -29,6 +31,8 @@ public class BABLDataLocal {
     private static Boolean _boolGreensburg;
 
     private static String _strFacebookId;
+
+    public static Stack stkConfirmedMatches = new Stack();
 
     public void set_intUserID(Integer intUserID) {
         this._intUserID = intUserID;
@@ -149,10 +153,11 @@ public class BABLDataLocal {
     public Boolean get_boolGreensburg(){
         return _boolGreensburg;
     }
-
+    //set FacebookId
     public void set_strFacebookId(String strFacebookId) {
         this._strFacebookId = strFacebookId;
     }
+    //get FacebookId
     public String get_strFacebookId() {
         return _strFacebookId;
     }

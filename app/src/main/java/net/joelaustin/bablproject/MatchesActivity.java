@@ -69,6 +69,21 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+    public void confirmMatch(View v) {
+        boolean test = true;
+        new BABLEnterMatchResult(this).execute(test);
+        BABLMatchDataRetrieve matchdata = new BABLMatchDataRetrieve(this);
+        matchdata.delegate = this;
+        matchdata.execute();
+        new BABLConfirmMatches(this).execute();
+    }
+    public void rejectMatch(View v) {
+        boolean test = false;
+        new BABLEnterMatchResult(this).execute(test);
+        BABLMatchDataRetrieve matchdata = new BABLMatchDataRetrieve(this);
+        matchdata.delegate = this;
+        matchdata.execute();
+    }
 //
 //    public void viewMatches(View v){
 //

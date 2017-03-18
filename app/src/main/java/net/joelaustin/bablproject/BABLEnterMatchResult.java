@@ -62,7 +62,7 @@ public class BABLEnterMatchResult extends AsyncTask<Boolean, Void, String>{
 
             rs = pstmt.executeQuery();
 
-
+            //Runs through the results and checks whether or not the user is the matcher or the matchee.
             while (rs.next()) {
                 int dbUserId = rs.getInt("UserId");
                 int dbMatchingId = rs.getInt("MatchingId");
@@ -74,36 +74,28 @@ public class BABLEnterMatchResult extends AsyncTask<Boolean, Void, String>{
                     boolIsUserId = false;
                 }
             }
+            //If the User is the original matcher then it updates the corresponding column in the database with their choice result.
             if (boolIsUserId) {
-                query = "INSERT INTO Matches UserConfirm VALUES (?)";
-                pstmt = conn.prepareStatement(query);
-                if (boolMatchType[0]) {
-                   intMatchChoice = 1;
-                }
-                else {
-                    intMatchChoice = 2;
-                }
-                pstmt.setInt(1, intMatchChoice);
-                pstmt.execute();
+                query = "UPDATE Matches SET UserConfirm=? WHERE (UserId=? AND MatchingId=?) OR (UserId=? AND MatchingId=?)";
             }
             else {
                 query = "UPDATE Matches SET MatchingConfirm=? WHERE (UserId=? AND MatchingId=?) OR (UserId=? AND MatchingId=?)";
-                pstmt = conn.prepareStatement(query);
-                if (boolMatchType[0].booleanValue()) {
-                    intMatchChoice = 1;
-                }
-                else {
-                    intMatchChoice = 2;
-                }
-                pstmt.setInt(1, intMatchChoice);
-                pstmt.setInt(2, intUserId);
-                pstmt.setInt(3, intMatchId);
-
-                pstmt.setInt(4, intMatchId);
-                pstmt.setInt(5, intUserId);
-                pstmt.executeUpdate();
             }
-
+            if (boolMatchType[0]) {
+                intMatchChoice = 1;
+            }
+            else {
+                intMatchChoice = 2;
+            }
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, intMatchChoice);
+            //Finds the row where the User is the Matcher
+            pstmt.setInt(2, intUserId);
+            pstmt.setInt(3, intMatchId);
+            //Or Finds the row where the User is Matchee.
+            pstmt.setInt(4, intMatchId);
+            pstmt.setInt(5, intUserId);
+            pstmt.execute();
             return "Match Choice Recorded";
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,6 +109,7 @@ public class BABLEnterMatchResult extends AsyncTask<Boolean, Void, String>{
         }
     }
     protected void onPostExecute(String results) {
+        //Toasts the result if the user match choice was recorded.
         Toast.makeText(context, results, Toast.LENGTH_LONG).show();
     }
 }

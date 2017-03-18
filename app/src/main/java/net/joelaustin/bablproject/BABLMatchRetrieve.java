@@ -47,7 +47,7 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT UserId, MatchingId FROM Matches WHERE UserId=? OR MatchingId=?";
+            String query = "SELECT UserId, MatchingId FROM Matches WHERE (UserId=? AND UserConfirm!=2) OR (MatchingId=? AND MatchingConfirm!=2)";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intUserID);
             pstmt.setInt(2, intUserID);

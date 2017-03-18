@@ -99,6 +99,7 @@
     <string name="Welcome">Welcome</string>
     <string name="ActionPhrase">What would you like to do?</string>
     <string name="FindMatches">Find Matches</string>
+    <string name="ViewMatches">View Matches</string>
     <string name="Or">Or</string>
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
@@ -111,6 +112,7 @@
     <string name="settingschangecampus">Change Campus</string>
     <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
     <string name="title_activity_matches">MatchesActivity</string>
+    <string name="title_activity_confirmed_matches">ConfirmedMatches</string>
 </resources>
 
 

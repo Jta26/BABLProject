@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplication().getBaseContext(), MatchesActivity.class);
         startActivity(intent);
     }
+    public void btnViewMatchesOnClick(View v) {
+        //TODO
+        //Start ConfirmedMatches Activity
+        Intent intent = new Intent(getApplication().getBaseContext(), ViewConfirmedMatches.class);
+        startActivity(intent);
+    }
     public void btnAccountSettingsOnClick(View v) {
         Intent intent = new Intent(getApplication().getBaseContext(), SettingsActivity.class);
         startActivity(intent);
