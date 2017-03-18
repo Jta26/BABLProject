@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new BABLMatchRetrieve(this).execute();
+        new BABLConfirmMatches(this).execute();
 
         TextView txvWelcome = (TextView) findViewById(R.id.txvWelcome);
 
@@ -61,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
     public void btnViewMatchesOnClick(View v) {
         //TODO
         //Start ConfirmedMatches Activity
+        new BABLConfirmMatches(this).execute();
         Intent intent = new Intent(getApplication().getBaseContext(), ViewConfirmedMatches.class);
         startActivity(intent);
+
     }
     public void btnAccountSettingsOnClick(View v) {
         Intent intent = new Intent(getApplication().getBaseContext(), SettingsActivity.class);

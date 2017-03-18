@@ -18,6 +18,7 @@
     <string name="Languages">Add Languages</string>
     <string name="langDesc">Add Languages to the List that you speak, or are learning to speak.</string>
     <string name="Campus">Select Campus</string>
+    <string name="literalcampus">campus</string>
     <string name="campusAttend">First, which campus are you currently attending.</string>
     <string name="campusSelect">Next, select which campuses you would like to meet someone from.</string>
     <string name="maxLang">You can only have 5 Languages</string>
