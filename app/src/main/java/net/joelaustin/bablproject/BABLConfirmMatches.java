@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 /**
  * Created by Joel on 3/17/2017.
  */
@@ -47,9 +49,10 @@ public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            String query = "SELECT UserId, MatchingId FROM Matches WHERE UserConfirm=1 AND MatchingConfirm=1";
+            String query = "SELECT UserId, MatchingId FROM Matches WHERE (UserConfirm=1 AND MatchingConfirm=1) AND (UserId=? OR MatchingId=?)";
             pstmt = conn.prepareStatement(query);
-
+            pstmt.setInt(1, intUserID);
+            pstmt.setInt(2, intUserID);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int dbUserId = rs.getInt("UserId");
@@ -85,6 +88,11 @@ public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean results){
         if(results) {
             Toast.makeText(context, "Match Found", Toast.LENGTH_LONG).show();
+            for (int i = 0; i <= datalocal.stkConfirmedMatches.size(); i++){
+                new BABLShowConfirmedMatches(context).execute();
+            }
+
+
         }
         else {
             Toast.makeText(context, "No Match Found", Toast.LENGTH_LONG).show();

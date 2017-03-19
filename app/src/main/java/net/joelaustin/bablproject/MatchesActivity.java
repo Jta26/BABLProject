@@ -75,7 +75,6 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         BABLMatchDataRetrieve matchdata = new BABLMatchDataRetrieve(this);
         matchdata.delegate = this;
         matchdata.execute();
-        new BABLConfirmMatches(this).execute();
     }
     public void rejectMatch(View v) {
         boolean test = false;

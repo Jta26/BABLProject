@@ -114,6 +114,8 @@
     <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
     <string name="title_activity_matches">MatchesActivity</string>
     <string name="title_activity_confirmed_matches">ConfirmedMatches</string>
+    <!--Matches Acitvity Strings -->
+    <string name="findonFacebook">Find on Facebook</string>
 </resources>
 
 
