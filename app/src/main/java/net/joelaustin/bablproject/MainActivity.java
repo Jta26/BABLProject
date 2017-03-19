@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         new BABLUpdateMatches(this).execute();
 
         TextView txvWelcome = (TextView) findViewById(R.id.txvWelcome);
-
+        if (dataLocal.get_strFirstName().length() >= 11 ) {
+            txvWelcome.setTextSize(30);
+        }
         txvWelcome.setText(txvWelcome.getText() + " " + dataLocal.get_strFirstName());
 
         ImageView imgSign = (ImageView) findViewById(R.id.imgMain);

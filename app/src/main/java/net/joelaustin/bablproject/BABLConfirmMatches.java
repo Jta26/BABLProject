@@ -87,7 +87,6 @@ public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
     }
     protected void onPostExecute(Boolean results){
         if(results) {
-            Toast.makeText(context, "Match Found", Toast.LENGTH_LONG).show();
             for (int i = 0; i <= datalocal.stkConfirmedMatches.size(); i++){
                 new BABLShowConfirmedMatches(context).execute();
             }

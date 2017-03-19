@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.login.widget.ProfilePictureView;
 
@@ -30,7 +31,8 @@ import org.w3c.dom.Text;
 public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
     BABLDataLocal localdata = new BABLDataLocal();
     BABLMatchesDataLocal matchlocaldata = new BABLMatchesDataLocal();
-    Integer intMatchId = (Integer) localdata.stkConfirmedMatches.pop();
+
+        Integer intMatchId;
     Context context;
     String[] strArr = new String[9];
 
@@ -40,6 +42,13 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
 
 
     protected String doInBackground(Void...voids) {
+        try{
+            intMatchId = (Integer) localdata.stkConfirmedMatches.pop();
+        }
+        catch (Exception e) {
+            return "No Matches Found";
+        }
+
 
             String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
             String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
@@ -186,7 +195,12 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
         btnConnectOnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/app_scoped_user_id/" + strArr[2])));
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/" + localdata.get_strFacebookId()));
+                    context.startActivity(intent);
+                } catch(Exception e) {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/appetizerandroid")));
+                }
             }
         });
 
@@ -216,4 +230,10 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
 
     }
 
+    @Override
+    protected void onPostExecute(String s) {
+        if (s.equals("No Matches Found")) {
+            Toast.makeText(context, "No Matches Found", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

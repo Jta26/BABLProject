@@ -106,9 +106,10 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         matchdata.execute();
     }
 //
-//    public void viewMatches(View v){
-//
-//    }
+    public void viewMatches(View v){
+        Intent intent = new Intent(getBaseContext().getApplicationContext(), ViewConfirmedMatches.class);
+        startActivity(intent);
+    }
 //
 //    public void confirmMatch(View v){
 //

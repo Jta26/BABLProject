@@ -20,8 +20,7 @@ public class ViewConfirmedMatches extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_confirmed_matches);
-
-
+        
         new BABLConfirmMatches(this).execute();
         linVertLayout = (LinearLayout) findViewById(R.id.linMatches);
 
