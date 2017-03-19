@@ -46,7 +46,14 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
                     + password + ";";
             conn = DriverManager.getConnection(ConnURL);
 
-            intMatchId = (Integer) localmatchdata.stackMatchID.pop();
+            try {
+                intMatchId = (Integer) localmatchdata.stackMatchID.pop();
+            }
+            catch (Exception e){
+                Toast.makeText(context, "No Matches Remain", Toast.LENGTH_SHORT).show();
+                return "No Matches Remain";
+            }
+
             String query = "SELECT * FROM Users Where UserId=?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intMatchId);

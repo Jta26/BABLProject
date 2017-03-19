@@ -2,10 +2,12 @@ package net.joelaustin.bablproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +51,16 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         }
 
         if (localmatchdata.isEmpty()) {
-            Toast.makeText(this, "You Have No Matches Currently. Check Again Later.", Toast.LENGTH_LONG).show();
+            matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
+            matchprofilepic.setVisibility(View.GONE);
+            suggestionLang.setVisibility(View.GONE);
+            ImageButton btnConfirm = (ImageButton) findViewById(R.id.confirmButton);
+            btnConfirm.setVisibility(View.GONE);
+            ImageButton btnReject = (ImageButton) findViewById(R.id.rejectButton);
+            btnReject.setVisibility(View.GONE);
+            suggestionName.setText("No Matches Right Now, Try Again later");
+            suggestionName.setTextSize(30);
+
         } else {
             try {
                 matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
@@ -72,9 +83,20 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
     public void confirmMatch(View v) {
         boolean test = true;
         new BABLEnterMatchResult(this).execute(test);
-        BABLMatchDataRetrieve matchdata = new BABLMatchDataRetrieve(this);
-        matchdata.delegate = this;
-        matchdata.execute();
+        try {
+            BABLMatchDataRetrieve matchdata = new BABLMatchDataRetrieve(this);
+            matchdata.delegate = this;
+            matchdata.execute();
+        }
+        catch (Exception e) {
+            profilepic.setVisibility(View.GONE);
+            suggestionLang.setVisibility(View.GONE);
+            ImageButton btnConfirm = (ImageButton) findViewById(R.id.confirmButton);
+            btnConfirm.setVisibility(View.GONE);
+            ImageButton btnReject = (ImageButton) findViewById(R.id.rejectButton);
+            btnReject.setVisibility(View.GONE);
+            suggestionName.setText("No Matches Right Now, Try Again later");
+        }
     }
     public void rejectMatch(View v) {
         boolean test = false;
