@@ -162,4 +162,23 @@ public class BABLDataLocal {
         return _strFacebookId;
     }
 
+    public void LocalDataLogout() {
+        set_strFirstName(null);
+        set_strUsername(null);
+        set_intUserID(null);
+        set_boolMain(null);
+        set_boolJohnstown(null);
+        set_boolBradford(null);
+        set_boolTitusville(null);
+        set_boolGreensburg(null);
+        set_strLang1(null);
+        set_strLang1(null);
+        set_strLang2(null);
+        set_strLang3(null);
+        set_strLang4(null);
+        set_strLang5(null);
+        set_intCampusAttend(null);
+        set_strFacebookId(null);
+        set_strHashedPass(null);
+    }
 }

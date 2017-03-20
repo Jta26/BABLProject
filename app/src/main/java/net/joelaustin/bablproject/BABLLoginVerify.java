@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 //WIP
 
-public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
+public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean>{
 
     ResultSet rs;
     PreparedStatement pstmt;
@@ -96,6 +96,9 @@ public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean> {
 
             strPassword = null;
             new BABLDataRetrieve(context).execute();
+            new BABLUpdateMatches(context).execute();
+
+
         }
         if (result == false) {
             Toast.makeText(context, R.string.incorrectPass, Toast.LENGTH_LONG).show();

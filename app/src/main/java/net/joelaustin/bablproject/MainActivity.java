@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
@@ -16,16 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     BABLDataLocal dataLocal = new BABLDataLocal();
 
-
+    BABLMatchesDataLocal matchDataLocal = new BABLMatchesDataLocal();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        new BABLUpdateMatches(this).execute();
 
         TextView txvWelcome = (TextView) findViewById(R.id.txvWelcome);
         if (dataLocal.get_strFirstName().length() >= 11 ) {
@@ -74,28 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
     //Logout button event handler
     public void btnLogoutOnClick(View v) {
-
-
-        dataLocal.set_strFirstName(null);
-        dataLocal.set_strUsername(null);
-        dataLocal.set_strFacebookId(null);
-        dataLocal.set_strLang1(null);
-        dataLocal.set_strLang2(null);
-        dataLocal.set_strLang3(null);
-        dataLocal.set_strLang4(null);
-        dataLocal.set_strLang5(null);
-        dataLocal.set_intCampusAttend(null);
-        dataLocal.set_boolMain(null);
-        dataLocal.set_boolJohnstown(null);
-        dataLocal.set_boolBradford(null);
-        dataLocal.set_boolTitusville(null);
-        dataLocal.set_boolGreensburg(null);
-        dataLocal.set_intUserID(null);
-
+        dataLocal.LocalDataLogout();
+        matchDataLocal.LocalDataLogout();
         LoginManager.getInstance().logOut();
-
         Intent intent = new Intent(getApplication().getBaseContext(), StartActivity.class);
         startActivity(intent);
+        Toast.makeText(this, R.string.logoutsucceess, Toast.LENGTH_SHORT).show();
 
 
     }

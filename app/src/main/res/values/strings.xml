@@ -104,6 +104,8 @@
     <string name="Or">Or</string>
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
+    <string name="logoutsucceess">Fully Logged Out</string>
+    <string name ="loginsuccess">Successfully Logged In</string>
     <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
 
     <!--SettingsActivity Strings -->

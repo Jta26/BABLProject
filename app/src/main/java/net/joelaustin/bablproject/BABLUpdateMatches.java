@@ -64,7 +64,6 @@ public class BABLUpdateMatches extends AsyncTask<Void, Void, String> {
     }
 
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         new BABLMatchRetrieve(context).execute();
     }
 }

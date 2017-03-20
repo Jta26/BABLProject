@@ -94,4 +94,18 @@ public class BABLMatchesDataLocal {
     public String get_strFacebookID() { return _strFacebookID; }
     //check if there are no matches
     public boolean isEmpty(){ return _intUserID == null; }
+
+    public void LocalDataLogout() {
+        set_strFirstName(null);
+        set_strUsername(null);
+        set_intUserID(null);
+        set_strLang1(null);
+        set_strLang1(null);
+        set_strLang2(null);
+        set_strLang3(null);
+        set_strLang4(null);
+        set_strLang5(null);
+        set_intCampusAttend(null);
+        set_strFacebookID(null);
+    }
 }

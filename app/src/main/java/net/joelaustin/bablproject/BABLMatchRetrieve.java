@@ -1,6 +1,7 @@
 package net.joelaustin.bablproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -64,7 +65,7 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
                 }
             }
 
-            return "Matches Retrieved Successfully";
+            return "Successfully Logged In";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
@@ -77,7 +78,17 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
         }
     }
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        if (result.equals("Successfully Logged In")) {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            Toast.makeText(context, R.string.UserDataRetrieved, Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+        }
+
     }
 
 }

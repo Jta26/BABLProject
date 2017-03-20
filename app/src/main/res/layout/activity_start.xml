@@ -98,7 +98,7 @@
             android:text="@string/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnNewUserSubmit"
+            android:id="@+id/btnLogin"
             android:onClick="btnLoginOnClick"
             android:textColor="@color/colorPrimary"
             android:textStyle="normal|bold"
@@ -112,7 +112,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/btnNewUserSubmit"
+            android:layout_below="@+id/btnLogin"
             android:layout_above="@+id/btnRegister">
 
             <Button

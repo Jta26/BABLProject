@@ -376,7 +376,7 @@
                     android:text="@string/NewUserSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnNewUserSubmit"
+                    android:id="@+id/btnLogin"
                     android:layout_below="@+id/edtPasswordConfirm"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="normal|bold"
