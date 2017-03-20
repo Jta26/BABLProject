@@ -39,6 +39,17 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
 
     }
     protected String doInBackground(Void...voids) {
+        localmatchdata.set_strFacebookID(null);
+        localmatchdata.set_intCampusAttend(null);
+        localmatchdata.set_intUserID(null);
+        localmatchdata.set_strUsername(null);
+        localmatchdata.set_strFirstName(null);
+        localmatchdata.set_strLang1(null);
+        localmatchdata.set_strLang2(null);
+        localmatchdata.set_strLang3(null);
+        localmatchdata.set_strLang4(null);
+        localmatchdata.set_strLang4(null);
+        localmatchdata.set_strLang5(null);
         try {
             Class.forName(Dbclass).newInstance();
             ConnURL = "jdbc:jtds:sqlserver://" + ip + ";"
