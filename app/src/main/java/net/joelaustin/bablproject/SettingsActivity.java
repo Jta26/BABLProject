@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private Boolean boolGreensburg = false;
 
     BABLDataLocal localdata = new BABLDataLocal();
+    ExternalFunctions extFunc = new ExternalFunctions();
 
     //Facebook Objects
     private CallbackManager callbackManager;
@@ -76,7 +78,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-
+        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        extFunc.buttonEffect(btnSubmit);
         //Spinner List Things
         listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.LanguagesArray)));
         java.util.Collections.sort(listLang);
