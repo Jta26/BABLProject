@@ -35,6 +35,7 @@ import org.w3c.dom.Text;
 public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
     BABLDataLocal localdata = new BABLDataLocal();
     BABLMatchesDataLocal matchlocaldata = new BABLMatchesDataLocal();
+    ExternalFunctions extFunc = new ExternalFunctions();
 
         Integer intMatchId;
     Context context;
@@ -190,6 +191,7 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
             Button btnConnectOnFacebook = new Button(context);
             LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             btnParams.setMargins(20, 10, 20, 20);
+            extFunc.buttonEffect(btnConnectOnFacebook);
 
             btnConnectOnFacebook.setLayoutParams(btnParams);
             btnConnectOnFacebook.setText(context.getResources().getString(R.string.findonFacebook));
@@ -217,7 +219,6 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
                     context.startActivity(intent);
                 }
             });
-
             for (int i = 0; i < strings.length; i++) {
                 if (strings[i] == null) {
                     strings[i] = "";

@@ -20,6 +20,7 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
 
     public AsyncResponse delegate = null;
     BABLMatchesDataLocal localmatchdata = new BABLMatchesDataLocal();
+    BABLDataLocal localdata = new BABLDataLocal();
 
     private String ip = "babldatabase2.cpngtl6yxjrl.us-west-2.rds.amazonaws.com:1433";
     private String Dbclass = "net.sourceforge.jtds.jdbc.Driver";
@@ -64,10 +65,35 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
                 Toast.makeText(context, "No Matches Remain", Toast.LENGTH_SHORT).show();
                 return "No Matches Remain";
             }
+            int intMainFind = 6;
+            int intJohnstownFind = 6;
+            int intBradfordFind = 6;
+            int intTitusvilleFind = 6;
+            int intGreensburgFind = 6;
+            if (localdata.get_boolMain()) {
+                intMainFind = 0;
+            }
+            if (localdata.get_boolJohnstown()) {
+                intJohnstownFind = 1;
+            }
+            if (localdata.get_boolBradford()) {
+                intBradfordFind = 2;
+            }
+            if (localdata.get_boolTitusville()) {
+                intTitusvilleFind = 3;
+            }
+            if (localdata.get_boolGreensburg()) {
+                intGreensburgFind = 4;
+            }
 
-            String query = "SELECT * FROM Users Where UserId=?";
+            String query = "SELECT * FROM Users Where UserId=? AND (Attending = ? OR Attending = ? OR Attending = ? OR Attending = ? OR Attending = ?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intMatchId);
+            pstmt.setInt(2, intMainFind);
+            pstmt.setInt(3, intJohnstownFind);
+            pstmt.setInt(4, intBradfordFind);
+            pstmt.setInt(5, intTitusvilleFind);
+            pstmt.setInt(6, intGreensburgFind);
             rs = pstmt.executeQuery();
             while(rs.next()){
                 localmatchdata.set_intUserID(intMatchId);
