@@ -397,6 +397,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     LoginManager.getInstance().logOut();
                     Boolean boolNewUser = false;
                     new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+                    new BABLUpdateMatches(this).execute();
                 }
                 catch (Exception e){
                     Toast.makeText(this, R.string.connectfacebook, Toast.LENGTH_LONG).show();
@@ -405,6 +406,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             else {
                 Boolean boolNewUser = false;
                 new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+                new BABLUpdateMatches(this).execute();
             }
 
         }

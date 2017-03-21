@@ -39,6 +39,8 @@ public class StartActivity extends AppCompatActivity {
 
         new BABLLoginVerify(StartActivity.this, strUsername, strPassword).execute();
 
+    }
+    public void onBackPressed(){
 
     }
 
