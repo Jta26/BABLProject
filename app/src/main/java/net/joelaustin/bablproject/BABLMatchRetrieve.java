@@ -55,6 +55,7 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+
                 int tempId = rs.getInt("UserId");
                 int tempMatchId = rs.getInt("MatchingId");
                 if(tempId == intUserID) {
@@ -83,7 +84,6 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
             Intent intent = new Intent(context, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
-            Toast.makeText(context, R.string.UserDataRetrieved, Toast.LENGTH_SHORT).show();
         }
         else {
 

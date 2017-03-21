@@ -2,6 +2,8 @@ package net.joelaustin.bablproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import java.sql.Connection;
@@ -9,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import android.text.Layout;
 import android.util.Log;
@@ -126,7 +129,7 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
            return"Match Found";
     }
 
-    protected void onProgressUpdate(String... strings){
+    protected void onProgressUpdate(final String... strings){
             LinearLayout linVertLayout = new LinearLayout(context);
             LinearLayout.LayoutParams paramsMain = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             paramsMain.setMargins(0, 50, 0, 0);
@@ -197,12 +200,21 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
             btnConnectOnFacebook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/" + localdata.get_strFacebookId()));
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/appetizerandroid")));
+                    String url = "https://www.facebook.com/" + strings[2];
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href="+url));
+
+                    // If a Facebook app is installed, use it. Otherwise, launch
+                    // a browser
+                    final PackageManager packageManager = context.getPackageManager();
+                    List<ResolveInfo> list =
+                            packageManager.queryIntentActivities(intent,
+                                    PackageManager.MATCH_DEFAULT_ONLY);
+                    if (list.size() == 0) {
+                        final String urlBrowser = "https://www.facebook.com/" + strings[2];
+                        intent.setData(Uri.parse(urlBrowser));
                     }
+
+                    context.startActivity(intent);
                 }
             });
 
