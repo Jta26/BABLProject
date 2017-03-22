@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 
+import pl.droidsonroids.gif.GifImageView;
+
+//the class to display that find matches function of the system.
 public class MatchesActivity extends AppCompatActivity implements AsyncResponse {
 
     BABLDataLocal localdata = new BABLDataLocal();
@@ -25,6 +29,7 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
     ImageButton btnConfirm;
     ImageButton rejectButton;
     ImageButton backButton;
+    GifImageView imgLoading;
     private ProfilePictureView matchprofilepic;
     Context context;
     TextView suggestionName;
@@ -45,8 +50,19 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
         suggestionName = (TextView) findViewById(R.id.suggestionName);
         suggestionLang = (TextView) findViewById(R.id.suggestionLang);
+
+        imgLoading = (GifImageView) findViewById(R.id.imgLoading);
+
+        suggestionName.setText(R.string.findingmatches);
         extfunc.buttonEffect(btnConfirm);
         extfunc.buttonEffect(rejectButton);
+        btnConfirm.setVisibility(View.GONE);
+        rejectButton.setVisibility(View.GONE);
+        matchprofilepic.setVisibility(View.GONE);
+        suggestionLang.setVisibility(View.GONE);
+
+
+
         try {
 
         } catch (Exception e) {
@@ -62,12 +78,13 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         if (localmatchdata.isEmpty()) {
             matchprofilepic.setVisibility(View.GONE);
             suggestionLang.setVisibility(View.GONE);
+            imgLoading.setVisibility(View.GONE);
             ImageButton btnConfirm = (ImageButton) findViewById(R.id.confirmButton);
             btnConfirm.setVisibility(View.GONE);
             ImageButton btnReject = (ImageButton) findViewById(R.id.rejectButton);
             btnReject.setVisibility(View.GONE);
             suggestionName.setGravity(View.TEXT_ALIGNMENT_CENTER);
-            suggestionName.setText("No Matches Right Now, Try Again later");
+            suggestionName.setText(R.string.nomatches);
         } else {
             try {
                 btnConfirm.setVisibility(View.VISIBLE);
@@ -75,6 +92,7 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
                 suggestionName.setVisibility(View.VISIBLE);
                 suggestionLang.setVisibility(View.VISIBLE);
                 matchprofilepic.setVisibility(View.VISIBLE);
+                imgLoading.setVisibility(View.GONE);
                 matchprofilepic.setProfileId(localmatchdata.get_strFacebookID());
                 suggestionName.setText(localmatchdata.get_strFirstName() + " " + getResources().getString(R.string.speaks));
                 if (localmatchdata.get_strLang1() == null) {
@@ -121,6 +139,7 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
             btnReject.setVisibility(View.GONE);
             matchprofilepic.setVisibility(View.GONE);
             suggestionLang.setVisibility(View.GONE);
+            imgLoading.setVisibility(View.VISIBLE);
             suggestionName.setText(getResources().getString(R.string.pleasewait));
         }
         catch (Exception e) {
@@ -142,9 +161,5 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         catch (Exception e) {
 
         }
-    }
-//
-    public void viewMatches(View v){
-
     }
 }

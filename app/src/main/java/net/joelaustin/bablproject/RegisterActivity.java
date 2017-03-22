@@ -43,7 +43,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-
+//The class to register new users
 public class RegisterActivity extends Activity implements OnItemSelectedListener{
     ExternalFunctions extFunc = new ExternalFunctions();
     //Facebook Objects

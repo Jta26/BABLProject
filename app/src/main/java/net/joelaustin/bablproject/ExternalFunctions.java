@@ -9,6 +9,7 @@ import android.view.View;
  * Created by Joel on 3/21/2017.
  */
 
+//Holds functions to be called for special effects.
 public class ExternalFunctions {
 
     public static void buttonEffect(View button){

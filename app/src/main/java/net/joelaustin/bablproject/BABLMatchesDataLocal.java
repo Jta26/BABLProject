@@ -6,6 +6,8 @@ import java.util.Stack;
  * Created by gregm on 3/15/2017.
  */
 
+//This Class is responsible for getting and setting the current match's Information
+//As well as holding a stack of all the current matches remaining.
 public class BABLMatchesDataLocal {
 
     private static Integer _intUserID;

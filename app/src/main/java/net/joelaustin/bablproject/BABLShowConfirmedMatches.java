@@ -31,7 +31,7 @@ import org.w3c.dom.Text;
 /**
  * Created by Joel on 3/18/2017.
  */
-
+//This class is responsible for retrieving and displaying CONFIRMED matches where both users have decided to match.
 public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
     BABLDataLocal localdata = new BABLDataLocal();
     BABLMatchesDataLocal matchlocaldata = new BABLMatchesDataLocal();

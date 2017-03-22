@@ -15,7 +15,8 @@ import java.sql.SQLException;
 /**
  * Created by gregm on 3/16/2017.
  */
-
+//This Class is for retrieving Match's Data based on the Stack in Matches Data Local Class
+//As well as filtering out matches that do not meet the user's selected campuses.
 public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
 
     public AsyncResponse delegate = null;

@@ -20,7 +20,7 @@ import java.sql.SQLException;
 /**
  * Created by Joel-PC on 2/6/2017.
  */
-
+//This class is responsible for retireving UserData on Login and storing into the BABLDataLocal Class.
 public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
     BABLDataLocal localData = new BABLDataLocal();

@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+//the class to edit account settings.
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 

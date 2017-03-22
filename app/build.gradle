@@ -31,5 +31,6 @@ dependencies {
     compile 'org.mindrot:jbcrypt:0.4'
     compile 'com.android.support:design:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.5'
     testCompile 'junit:junit:4.12'
 }

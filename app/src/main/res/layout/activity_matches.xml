@@ -13,20 +13,86 @@
     android:windowSoftInputMode="stateVisible"
     tools:context="net.joelaustin.bablproject.MatchesActivity">
 
-
-    <TextView
-        android:id="@+id/txvTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:text="@string/FindMatches"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/title_font_size"
-        android:textStyle="normal|bold|italic"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/txvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorAccent"
+            android:text="@string/FindMatches"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/title_font_size"
+            android:textStyle="normal|bold|italic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp">
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/suggestionImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txvTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:background="@color/colorAccent"
+                android:padding="2dp"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_square">
+
+            </com.facebook.login.widget.ProfilePictureView>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/imgLoading"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="false"
+                android:background="@drawable/loading" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/suggestionName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/suggestionImage"
+            android:layout_marginTop="10dp"
+            android:text="FirstName"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="36sp"
+            android:textStyle="normal|bold|italic" />
+
+        <TextView
+            android:id="@+id/suggestionLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/suggestionName"
+            android:text="Languages"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="normal|italic" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/rejectButton"
@@ -42,46 +108,6 @@
         android:onClick="rejectMatch"
         app:srcCompat="@android:drawable/ic_delete" />
 
-
-    <TextView
-        android:id="@+id/suggestionName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="FirstName"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="36sp"
-        android:textStyle="normal|bold|italic"
-        android:layout_below="@+id/suggestionImage"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/suggestionLang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Languages"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="normal|italic"
-        android:layout_below="@+id/suggestionName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <com.facebook.login.widget.ProfilePictureView
-        android:id="@+id/suggestionImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:padding="2dp"
-        android:background="@color/colorAccent"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
-        android:layout_below="@+id/txvTitle"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:id="@+id/confirmButton"

@@ -118,8 +118,10 @@
     <string name="title_activity_confirmed_matches">ConfirmedMatches</string>
     <!--Matches Acitvity Strings -->
     <string name="findonFacebook">Find on Facebook</string>
+    <string name="nomatches">No matches right now, try again later</string>
     <string name="pleasewait">Please wait while we find another match.</string>
     <string name="speaks">Speaks:</string>
+    <string name="findingmatches">Finding Matches</string>
 </resources>
 
 

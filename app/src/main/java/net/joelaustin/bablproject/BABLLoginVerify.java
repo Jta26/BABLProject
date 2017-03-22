@@ -16,9 +16,7 @@ import java.sql.SQLException;
 /**
  * Created by Joel on 2/6/2017.
  */
-
-//WIP
-
+//This class is responsible for verifying login information.
 public class BABLLoginVerify extends AsyncTask<Void, Void, Boolean>{
 
     ResultSet rs;

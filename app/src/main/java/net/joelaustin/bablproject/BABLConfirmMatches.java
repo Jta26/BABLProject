@@ -16,7 +16,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 /**
  * Created by Joel on 3/17/2017.
  */
-//This Class will be for Confirming if there are any new Matches where 1 == 1 in the database.
+//This Class is for Confirming if there are any new Matches where 1 == 1 in the database.
 public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
 
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();

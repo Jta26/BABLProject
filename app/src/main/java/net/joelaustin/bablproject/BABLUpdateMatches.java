@@ -14,7 +14,7 @@ import java.sql.SQLException;
 /**
  * Created by Joel on 3/18/2017.
  */
-
+//This class is responsible for Checking for new Matches based on UserId in the Database and is called when Logged in.
 public class BABLUpdateMatches extends AsyncTask<Void, Void, String> {
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
     BABLDataLocal datalocal = new BABLDataLocal();

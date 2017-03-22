@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
-
+//The activity after being logged in.
 public class MainActivity extends AppCompatActivity {
 
     BABLDataLocal dataLocal = new BABLDataLocal();

@@ -110,6 +110,6 @@ public class BABLEnterMatchResult extends AsyncTask<Boolean, Void, String>{
     }
     protected void onPostExecute(String results) {
         //Toasts the result if the user match choice was recorded.
-        Toast.makeText(context, results, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, results, Toast.LENGTH_SHORT).show();
     }
 }

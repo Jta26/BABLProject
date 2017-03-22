@@ -8,6 +8,8 @@ import java.util.Stack;
  * Created by Joel on 2/6/2017.
  */
 
+//This class is responsible for holding Logged In User Data for retrieval.
+//It should not change unless the user edits their account settings.
 public class BABLDataLocal {
 
     private static Integer _intUserID;

@@ -16,6 +16,7 @@ import java.sql.SQLException;
  * Created by gregm on 3/16/2017.
  */
 
+//This class is responsible for retrieving match UserId's and pushing them to the stack in BABLMatchesDataLocal
 public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
 
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.facebook.login.widget.ProfilePictureView;
 
+//the activity to show matches where both users have confirmed.
 public class ViewConfirmedMatches extends AppCompatActivity{
 
     BABLDataLocal localdata = new BABLDataLocal();
