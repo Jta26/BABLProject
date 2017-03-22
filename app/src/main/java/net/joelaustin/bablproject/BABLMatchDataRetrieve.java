@@ -95,14 +95,18 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             pstmt.setInt(5, intTitusvilleFind);
             pstmt.setInt(6, intGreensburgFind);
             rs = pstmt.executeQuery();
-            while(rs.next()){
-                localmatchdata.set_intUserID(intMatchId);
-                localmatchdata.set_strUsername(rs.getString("Username"));
-                localmatchdata.set_strFirstName(rs.getString("FirstName"));
-                localmatchdata.set_intCampusAttend(rs.getInt("Attending"));
-                localmatchdata.set_strFacebookID(rs.getString("FacebookID"));
+            if (!rs.next()) {
+                doInBackground();
             }
-
+            else {
+                do {
+                    localmatchdata.set_intUserID(intMatchId);
+                    localmatchdata.set_strUsername(rs.getString("Username"));
+                    localmatchdata.set_strFirstName(rs.getString("FirstName"));
+                    localmatchdata.set_intCampusAttend(rs.getInt("Attending"));
+                    localmatchdata.set_strFacebookID(rs.getString("FacebookID"));
+                } while (rs.next());
+            }
             query = "Select * FROM UserLanguages WHERE UserId=?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, intMatchId);
@@ -128,7 +132,10 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
                     }
                     i++;
                 }
-            return "New Match Retrieved";
+            return "Match Successfully Retrieved";
+
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
@@ -139,6 +146,10 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             Log.e("ERRO", e.getMessage());
             return "Not Successful";
         }
+    }
+
+    protected void onProgressUpdate(Void...voids) {
+        new BABLMatchDataRetrieve(context).execute();
     }
     @Override
     protected void onPostExecute(String results){
