@@ -42,13 +42,11 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         setContentView(R.layout.activity_matches);
         btnConfirm = (ImageButton) findViewById(R.id.confirmButton);
         rejectButton = (ImageButton) findViewById(R.id.rejectButton);
-        backButton = (ImageButton) findViewById(R.id.backButton);
         matchprofilepic = (ProfilePictureView) findViewById(R.id.suggestionImage);
         suggestionName = (TextView) findViewById(R.id.suggestionName);
         suggestionLang = (TextView) findViewById(R.id.suggestionLang);
         extfunc.buttonEffect(btnConfirm);
         extfunc.buttonEffect(rejectButton);
-        extfunc.buttonEffect(backButton);
         try {
 
         } catch (Exception e) {
@@ -74,12 +72,11 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
             try {
                 btnConfirm.setVisibility(View.VISIBLE);
                 rejectButton.setVisibility(View.VISIBLE);
-                backButton.setVisibility(View.VISIBLE);
                 suggestionName.setVisibility(View.VISIBLE);
                 suggestionLang.setVisibility(View.VISIBLE);
                 matchprofilepic.setVisibility(View.VISIBLE);
                 matchprofilepic.setProfileId(localmatchdata.get_strFacebookID());
-                suggestionName.setText(localmatchdata.get_strFirstName());
+                suggestionName.setText(localmatchdata.get_strFirstName() + " " + getResources().getString(R.string.speaks));
                 if (localmatchdata.get_strLang1() == null) {
                     localmatchdata.set_strLang1("");
 

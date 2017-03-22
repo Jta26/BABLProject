@@ -119,6 +119,7 @@
     <!--Matches Acitvity Strings -->
     <string name="findonFacebook">Find on Facebook</string>
     <string name="pleasewait">Please wait while we find another match.</string>
+    <string name="speaks">Speaks:</string>
 </resources>
 
 

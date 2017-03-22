@@ -18,16 +18,15 @@
         android:id="@+id/txvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="@color/colorAccent"
         android:text="@string/FindMatches"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/title_font_size"
-        android:textStyle="normal|bold|italic" />
+        android:textStyle="normal|bold|italic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:id="@+id/rejectButton"
@@ -53,33 +52,36 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         android:textStyle="normal|bold|italic"
-        android:layout_marginTop="64dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/suggestionImage"
+        android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/suggestionLang"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/suggestionImage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
+        android:textAlignment="center"
         android:text="Languages"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30sp"
-        android:textStyle="normal|italic" />
+        android:textStyle="normal|italic"
+        android:layout_below="@+id/suggestionName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/suggestionImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/suggestionName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
         android:scaleX="2"
         android:scaleY="2"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
+        android:padding="2dp"
+        android:background="@color/colorAccent"
+        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
+        android:layout_below="@+id/txvTitle"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:id="@+id/confirmButton"
