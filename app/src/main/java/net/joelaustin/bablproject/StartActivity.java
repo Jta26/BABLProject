@@ -10,6 +10,7 @@ import android.widget.EditText;
 //the class when the user starts the app.
 public class StartActivity extends AppCompatActivity {
 
+
     ExternalFunctions extFunc = new ExternalFunctions();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,13 @@ public class StartActivity extends AppCompatActivity {
         EditText edtPassword = (EditText) findViewById(R.id.edtLoginPassword);
         String strUsername = edtUsername.getText().toString();
         String strPassword = edtPassword.getText().toString();
+        LoadingScreen.strUsername = strUsername;
+        LoadingScreen.strPassword = strPassword;
 
-        new BABLLoginVerify(StartActivity.this, strUsername, strPassword).execute();
+        Intent intent = new Intent(this, LoadingScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
 
     }
     public void onBackPressed(){

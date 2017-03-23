@@ -1,15 +1,9 @@
 package net.joelaustin.bablproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.facebook.login.LoginManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,6 +17,7 @@ import java.sql.SQLException;
 //This class is responsible for retireving UserData on Login and storing into the BABLDataLocal Class.
 public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
+    public AsyncResponse delegate = null;
     BABLDataLocal localData = new BABLDataLocal();
 
 
@@ -124,7 +119,7 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
 
                 i++;
             }
-            return "User Data Retrieved Successfully";
+            return "User Data Retrieved";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
@@ -139,10 +134,9 @@ public class BABLDataRetrieve extends AsyncTask<Void, Void, String> {
     }
 
 
-
+    @Override
     protected void onPostExecute(String result){
-        Toast.makeText(context, R.string.loginsuccess, Toast.LENGTH_LONG).show();
-
+        delegate.processFinish(result);
     }
 
 

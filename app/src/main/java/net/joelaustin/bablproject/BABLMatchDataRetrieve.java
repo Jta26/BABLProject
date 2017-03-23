@@ -64,7 +64,7 @@ public class BABLMatchDataRetrieve extends AsyncTask<Void, Void, String> {
             }
             catch (Exception e){
                 Toast.makeText(context, "No Matches Remain", Toast.LENGTH_SHORT).show();
-                return "No Matches Remain";
+                return "No Matches Found";
             }
             int intMainFind = 6;
             int intJohnstownFind = 6;

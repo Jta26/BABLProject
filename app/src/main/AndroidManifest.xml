@@ -37,7 +37,8 @@
             android:name=".ConfirmedMatches"
             android:label="@string/title_activity_confirmed_matches"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ViewConfirmedMatches"></activity>
+        <activity android:name=".ViewConfirmedMatches" />
+        <activity android:name=".LoadingScreen"></activity>
     </application>
 
 </manifest>

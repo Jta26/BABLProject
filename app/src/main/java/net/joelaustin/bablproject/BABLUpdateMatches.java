@@ -16,6 +16,7 @@ import java.sql.SQLException;
  */
 //This class is responsible for Checking for new Matches based on UserId in the Database and is called when Logged in.
 public class BABLUpdateMatches extends AsyncTask<Void, Void, String> {
+    public AsyncResponse delegate = null;
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
     BABLDataLocal datalocal = new BABLDataLocal();
 
@@ -62,8 +63,11 @@ public class BABLUpdateMatches extends AsyncTask<Void, Void, String> {
             return "Not Successful";
         }
     }
-
+    @Override
     protected void onPostExecute(String result) {
-        new BABLMatchRetrieve(context).execute();
+        delegate.processFinish(result);
+        BABLMatchRetrieve bablMatchRetrieve = new BABLMatchRetrieve(context);
+        bablMatchRetrieve.delegate = this.delegate;
+        bablMatchRetrieve.execute();
     }
 }

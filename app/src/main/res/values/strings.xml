@@ -9,6 +9,11 @@
         It\'s core functionality is based around people that speak or are learning to speak another language discover someone else that also speaks that language.
     </string>
     <string name="incorrectPass">Username or Password Incorrect</string>
+    <string name="verifyinglogin">Verifying Login and Retrieving Data</string>
+    <string name="loginverified">Login Verified</string>
+    <string name="userdataretireve">User Data Retrieved</string>
+    <string name="updatingmatches">Updating Matches</string>
+    <string name="done">Done</string>
 
     <!--RegisterActivity Strings-->
     <string name="NewUser">New User</string>
@@ -105,7 +110,7 @@
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
     <string name="logoutsucceess">Fully Logged Out</string>
-    <string name ="loginsuccess">Successfully Logged In</string>
+    <string name="loginsuccess">Successfully Logged In</string>
     <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
 
     <!--SettingsActivity Strings -->

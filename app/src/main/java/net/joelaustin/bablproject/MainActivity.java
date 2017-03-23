@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void onBackPressed(){
+        btnLogoutOnClick(findViewById(R.id.activity_start));
+    }
 
 
 }

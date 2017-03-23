@@ -18,6 +18,7 @@ import java.sql.SQLException;
 
 //This class is responsible for retrieving match UserId's and pushing them to the stack in BABLMatchesDataLocal
 public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
+    public AsyncResponse delegate = null;
 
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
     BABLDataLocal datalocal = new BABLDataLocal();
@@ -71,7 +72,7 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
                 }
             }
 
-            return "Successfully Logged In";
+            return "Matches Retrieved";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Not Successful";
@@ -84,15 +85,11 @@ public class BABLMatchRetrieve extends AsyncTask<Void, Void, String> {
         }
     }
     protected void onPostExecute(String result) {
-        if (result.equals("Successfully Logged In")) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            delegate.processFinish(result);
+
             Intent intent = new Intent(context, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
-        }
-        else {
-
-        }
 
     }
 

@@ -23,7 +23,7 @@
         android:id="@+id/linearLayout">
 
         <TextView
-            android:id="@+id/txvTitle"
+            android:id="@+id/txvloginTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -44,7 +44,7 @@
                 android:id="@+id/suggestionImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txvTitle"
+                android:layout_below="@+id/txvloginTitle"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="60dp"
                 android:background="@color/colorAccent"
@@ -55,14 +55,11 @@
 
             </com.facebook.login.widget.ProfilePictureView>
 
-            <pl.droidsonroids.gif.GifImageView
+            <ProgressBar
                 android:id="@+id/imgLoading"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="false"
-                android:background="@drawable/loading" />
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
         </RelativeLayout>
 

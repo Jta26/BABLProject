@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
     ImageButton btnConfirm;
     ImageButton rejectButton;
     ImageButton backButton;
-    GifImageView imgLoading;
+    ProgressBar imgLoading;
     private ProfilePictureView matchprofilepic;
     Context context;
     TextView suggestionName;
@@ -51,7 +52,7 @@ public class MatchesActivity extends AppCompatActivity implements AsyncResponse 
         suggestionName = (TextView) findViewById(R.id.suggestionName);
         suggestionLang = (TextView) findViewById(R.id.suggestionLang);
 
-        imgLoading = (GifImageView) findViewById(R.id.imgLoading);
+        imgLoading = (ProgressBar) findViewById(R.id.imgLoading);
 
         suggestionName.setText(R.string.findingmatches);
         extfunc.buttonEffect(btnConfirm);
