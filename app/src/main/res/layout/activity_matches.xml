@@ -1,20 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_matches"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:windowSoftInputMode="stateVisible"
     tools:context="net.joelaustin.bablproject.MatchesActivity">
 
-    <com.facebook.login.widget.ProfilePictureView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/profPicFacebook">
-    </com.facebook.login.widget.ProfilePictureView>
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/txvloginTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorAccent"
+            android:text="@string/FindMatches"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/title_font_size"
+            android:textStyle="normal|bold|italic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp">
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/suggestionImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txvloginTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:background="@color/colorAccent"
+                android:padding="2dp"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:srcCompat="@drawable/com_facebook_profile_picture_blank_square">
+
+            </com.facebook.login.widget.ProfilePictureView>
+
+            <ProgressBar
+                android:id="@+id/imgLoading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/suggestionName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/suggestionImage"
+            android:layout_marginTop="10dp"
+            android:text="FirstName"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="36sp"
+            android:textStyle="normal|bold|italic" />
+
+        <TextView
+            android:id="@+id/suggestionLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/suggestionName"
+            android:text="Languages"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="normal|italic" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/rejectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="60dp"
+        android:minWidth="90dp"
+        android:onClick="rejectMatch"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+
+    <ImageButton
+        android:id="@+id/confirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rejectButton"
+        android:background="@drawable/rounded_button"
+        android:minHeight="60dp"
+        android:minWidth="90dp"
+        android:onClick="confirmMatch"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
 </RelativeLayout>

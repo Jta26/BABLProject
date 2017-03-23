@@ -1,9 +1,15 @@
 package net.joelaustin.bablproject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * Created by Joel on 2/6/2017.
  */
 
+//This class is responsible for holding Logged In User Data for retrieval.
+//It should not change unless the user edits their account settings.
 public class BABLDataLocal {
 
     private static Integer _intUserID;
@@ -27,6 +33,8 @@ public class BABLDataLocal {
     private static Boolean _boolGreensburg;
 
     private static String _strFacebookId;
+
+    public static Stack stkConfirmedMatches = new Stack();
 
     public void set_intUserID(Integer intUserID) {
         this._intUserID = intUserID;
@@ -147,12 +155,32 @@ public class BABLDataLocal {
     public Boolean get_boolGreensburg(){
         return _boolGreensburg;
     }
-
+    //set FacebookId
     public void set_strFacebookId(String strFacebookId) {
         this._strFacebookId = strFacebookId;
     }
+    //get FacebookId
     public String get_strFacebookId() {
         return _strFacebookId;
     }
 
+    public void LocalDataLogout() {
+        set_strFirstName(null);
+        set_strUsername(null);
+        set_intUserID(null);
+        set_boolMain(null);
+        set_boolJohnstown(null);
+        set_boolBradford(null);
+        set_boolTitusville(null);
+        set_boolGreensburg(null);
+        set_strLang1(null);
+        set_strLang1(null);
+        set_strLang2(null);
+        set_strLang3(null);
+        set_strLang4(null);
+        set_strLang5(null);
+        set_intCampusAttend(null);
+        set_strFacebookId(null);
+        set_strHashedPass(null);
+    }
 }

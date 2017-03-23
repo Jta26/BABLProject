@@ -9,6 +9,11 @@
         It\'s core functionality is based around people that speak or are learning to speak another language discover someone else that also speaks that language.
     </string>
     <string name="incorrectPass">Username or Password Incorrect</string>
+    <string name="verifyinglogin">Verifying Login and Retrieving Data</string>
+    <string name="loginverified">Login Verified</string>
+    <string name="userdataretireve">User Data Retrieved</string>
+    <string name="updatingmatches">Updating Matches</string>
+    <string name="done">Done</string>
 
     <!--RegisterActivity Strings-->
     <string name="NewUser">New User</string>
@@ -18,6 +23,7 @@
     <string name="Languages">Add Languages</string>
     <string name="langDesc">Add Languages to the List that you speak, or are learning to speak.</string>
     <string name="Campus">Select Campus</string>
+    <string name="literalcampus">campus</string>
     <string name="campusAttend">First, which campus are you currently attending.</string>
     <string name="campusSelect">Next, select which campuses you would like to meet someone from.</string>
     <string name="maxLang">You can only have 5 Languages</string>
@@ -99,9 +105,12 @@
     <string name="Welcome">Welcome</string>
     <string name="ActionPhrase">What would you like to do?</string>
     <string name="FindMatches">Find Matches</string>
+    <string name="ViewMatches">View Matches</string>
     <string name="Or">Or</string>
     <string name="EditAccountSettings">Edit Account Settings</string>
     <string name="Logout">Logout</string>
+    <string name="logoutsucceess">Fully Logged Out</string>
+    <string name="loginsuccess">Successfully Logged In</string>
     <string name="UserDataRetrieved">User Data Retrieved Successfully</string>
 
     <!--SettingsActivity Strings -->
@@ -111,6 +120,13 @@
     <string name="settingschangecampus">Change Campus</string>
     <string name="settingschangecampusdesc">Here you can change the campus you are currently attending</string>
     <string name="title_activity_matches">MatchesActivity</string>
+    <string name="title_activity_confirmed_matches">ConfirmedMatches</string>
+    <!--Matches Acitvity Strings -->
+    <string name="findonFacebook">Find on Facebook</string>
+    <string name="nomatches">No matches right now, try again later</string>
+    <string name="pleasewait">Please wait while we find another match.</string>
+    <string name="speaks">Speaks:</string>
+    <string name="findingmatches">Finding Matches</string>
 </resources>
 
 

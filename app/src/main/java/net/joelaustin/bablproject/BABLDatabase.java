@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+//This Class is responsible for Inputing Users or Updating Users in the Database.
 public class BABLDatabase extends AsyncTask<String, Void, String>{
 
 

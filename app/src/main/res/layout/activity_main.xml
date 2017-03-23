@@ -86,7 +86,21 @@
                 android:background="@drawable/rounded_button"
                 android:onClick="btnFindMatchesOnClick"
             />
-        <RelativeLayout
+
+            <Button
+                android:id="@+id/btnViewMatches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_button"
+                android:onClick="btnViewMatchesOnClick"
+                android:text="@string/ViewMatches"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/login_font_size"
+                android:textStyle="normal|bold|italic" />
+
+            <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

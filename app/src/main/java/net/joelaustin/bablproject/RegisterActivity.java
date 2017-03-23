@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,8 +43,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-
+//The class to register new users
 public class RegisterActivity extends Activity implements OnItemSelectedListener{
+    ExternalFunctions extFunc = new ExternalFunctions();
     //Facebook Objects
     private CallbackManager callbackManager;
     private LoginButton loginButton;
@@ -62,8 +64,9 @@ public class RegisterActivity extends Activity implements OnItemSelectedListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
-
+        extFunc.buttonEffect(btnSubmit);
 
         //Spinner List Things
         listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.LanguagesArray)));

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,7 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+//the class to edit account settings.
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
@@ -42,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private Boolean boolGreensburg = false;
 
     BABLDataLocal localdata = new BABLDataLocal();
+    ExternalFunctions extFunc = new ExternalFunctions();
 
     //Facebook Objects
     private CallbackManager callbackManager;
@@ -76,7 +78,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-
+        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        extFunc.buttonEffect(btnSubmit);
         //Spinner List Things
         listLang = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.LanguagesArray)));
         java.util.Collections.sort(listLang);
@@ -394,6 +397,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     LoginManager.getInstance().logOut();
                     Boolean boolNewUser = false;
                     new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+                    new BABLUpdateMatches(this).execute();
                 }
                 catch (Exception e){
                     Toast.makeText(this, R.string.connectfacebook, Toast.LENGTH_LONG).show();
@@ -402,6 +406,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             else {
                 Boolean boolNewUser = false;
                 new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
+                new BABLUpdateMatches(this).execute();
             }
 
         }
