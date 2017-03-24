@@ -32,8 +32,9 @@ import java.util.Collections;
 import java.util.List;
 
 //the class to edit account settings.
-public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AsyncResponse {
 
+    BABLMatchesDataLocal matchesDataLocal = new BABLMatchesDataLocal();
 
     private Integer intCampusSelect = 6;
     private Boolean boolMain = false;
@@ -396,8 +397,13 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     strFacebookId = Profile.getCurrentProfile().getId();
                     LoginManager.getInstance().logOut();
                     Boolean boolNewUser = false;
-                    new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
-                    new BABLUpdateMatches(this).execute();
+                    BABLDatabase bablDatabase = new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId);
+                    matchesDataLocal.stackMatchID.clear();
+                    bablDatabase.delegate = this;
+                    bablDatabase.execute(strArr);
+                    BABLUpdateMatches bablUpdateMatches = new BABLUpdateMatches(this);
+                    bablUpdateMatches.delegate = this;
+                    bablUpdateMatches.execute();
                 }
                 catch (Exception e){
                     Toast.makeText(this, R.string.connectfacebook, Toast.LENGTH_LONG).show();
@@ -405,8 +411,13 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             }
             else {
                 Boolean boolNewUser = false;
-                new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId).execute(strArr);
-                new BABLUpdateMatches(this).execute();
+                BABLDatabase bablDatabase = new BABLDatabase(getApplication().getBaseContext(),boolNewUser,localdata.get_strUsername(),localdata.get_strHashedPass() , localdata.get_strFirstName(), intCampusSelect, boolMain, boolJohnstown, boolBradford, boolTitusville, boolGreensburg,strFacebookId);
+                bablDatabase.delegate = this;
+                bablDatabase.execute(strArr);
+                matchesDataLocal.stackMatchID.clear();
+                BABLUpdateMatches bablUpdateMatches = new BABLUpdateMatches(this);
+                bablUpdateMatches.delegate = this;
+                bablUpdateMatches.execute();
             }
 
         }
@@ -416,5 +427,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    @Override
+    public void processFinish(String output) {
+
+    }
 }
 

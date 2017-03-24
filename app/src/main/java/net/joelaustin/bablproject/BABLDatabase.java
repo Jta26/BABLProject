@@ -19,6 +19,7 @@ import java.sql.SQLException;
 //This Class is responsible for Inputing Users or Updating Users in the Database.
 public class BABLDatabase extends AsyncTask<String, Void, String>{
 
+    public AsyncResponse delegate = null;
 
     private Context context;
     private String strUsername;
@@ -253,7 +254,9 @@ public class BABLDatabase extends AsyncTask<String, Void, String>{
 
         }
         else if (boolNewUser == false) {
-            new BABLDataRetrieve(context).execute();
+            BABLDataRetrieve bablDataRetrieve = new BABLDataRetrieve(context);
+            bablDataRetrieve.delegate = delegate;
+            bablDataRetrieve.execute();
         }
         else {
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
