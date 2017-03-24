@@ -46,6 +46,7 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
         this.context = context;
     }
 
+    public AsyncResponse delegate = null;
 
     protected String doInBackground(Void...voids) {
         try{
@@ -131,6 +132,7 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
     }
 
     protected void onProgressUpdate(final String... strings){
+
             LinearLayout linVertLayout = new LinearLayout(context);
             LinearLayout.LayoutParams paramsMain = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             paramsMain.setMargins(0, 50, 0, 0);
@@ -247,8 +249,7 @@ public class BABLShowConfirmedMatches extends AsyncTask<Void, String, String>{
 
     @Override
     protected void onPostExecute(String s) {
-        if (s.equals("No Matches Found")) {
-            Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
-        }
+        delegate.processFinish(s);
+
     }
 }

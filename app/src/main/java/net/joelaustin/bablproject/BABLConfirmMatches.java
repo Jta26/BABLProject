@@ -19,6 +19,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 //This Class is for Confirming if there are any new Matches where 1 == 1 in the database.
 public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
 
+    public AsyncResponse delegate = null;
     BABLMatchesDataLocal Matcheslocaldata = new BABLMatchesDataLocal();
     BABLDataLocal datalocal = new BABLDataLocal();
 
@@ -88,7 +89,9 @@ public class BABLConfirmMatches extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean results){
         if(results) {
             for (int i = 0; i <= datalocal.stkConfirmedMatches.size(); i++){
-                new BABLShowConfirmedMatches(context).execute();
+                BABLShowConfirmedMatches bablShowConfirmedMatches = new BABLShowConfirmedMatches(context);
+                bablShowConfirmedMatches.delegate = delegate;
+                bablShowConfirmedMatches.execute();
             }
 
 
