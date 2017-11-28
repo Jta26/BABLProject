@@ -2,8 +2,10 @@
 
 ## **Pitt Mobile App Challenge**
 
-### **Code It**
+### **Video Demonstration** 
+https://www.youtube.com/watch?v=ddxCAkudekg
 
+### **Code It**
 
 BABL is a Simple, Clean, and User-Friendly app coded in Java for Android Devices. It’s core functionality is based around helping Pitt students of all campuses meet and connect with other students, for the purpose of speaking or learning to speak bilingually. BABL acts as means of increasing cultural understanding and intellectual diversity on campus by attempting to diminish communication barriers between students. 
 
